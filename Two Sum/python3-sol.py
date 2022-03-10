@@ -24,7 +24,8 @@ from collections import Counter
 # declare dictionary
 # accessing index and its value from nums list
 # storing difference of target and values from the nums list
-# check the diff value already present in the dictionary or not. For first iteration it wont be there, since it is empty dict
+# check the diff value already present in the dictionary 
+# or not. For first iteration it wont be there, since it is empty dict
 # if value present return the index stored in dict and iteration number (i)
 # storing the value and its index in dict
 
