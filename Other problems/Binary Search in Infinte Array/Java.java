@@ -1,6 +1,4 @@
 
-import java.util.Arrays;
-
 public class Java {
     public static void main(String[] args) throws Exception {
         int[] arr = { 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 15, 20, 23, 30 };
