@@ -1,11 +1,13 @@
-public class LinkedList {
+import java.util.Iterator;
+
+public class LinkedList<T> implements Iterable<T> {
     Node head;
 
     class Node {
-        int data;
+        T data;
         Node next;
 
-        Node(int val) {
+        Node(T val) {
             data = val;
             next = null;
         }
@@ -15,7 +17,7 @@ public class LinkedList {
         head = null;
     }
 
-    public void insetAtBeginning(int val) {
+    public void insetAtBeginning(T val) {
         Node newNode = new Node(val);
         if (head == null) {
             head = newNode;
@@ -33,7 +35,7 @@ public class LinkedList {
         }
     }
 
-    public void insertAtPos(int pos, int val) {
+    public void insertAtPos(int pos, T val) {
 
         if (pos == 0) {
             insetAtBeginning(val);
@@ -62,6 +64,7 @@ public class LinkedList {
 
         if (pos == 0) {
             head = head.next;
+            return;
         }
 
         Node temp = head;
@@ -72,5 +75,21 @@ public class LinkedList {
         }
 
         prev.next = temp.next;
+    }
+
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            Node temp = head;
+
+            public boolean hasNext() {
+                return temp != null;
+            }
+
+            public T next() {
+                T val = temp.data;
+                temp = temp.next;
+                return val;
+            }
+        };
     }
 }
