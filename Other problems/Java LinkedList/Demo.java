@@ -8,9 +8,6 @@ public class Demo {
         list1.insertAtPos(0, 67);
 
         list1.display();
-        System.out.println("");
-        list1.deleteAtPos(0);
 
-        list1.display();
     }
 }
