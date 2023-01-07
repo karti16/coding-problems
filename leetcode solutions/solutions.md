@@ -1,4 +1,4 @@
-## 1. [I'm an inline-style link](https://www.google.com)
+## 1. <a href="placeholder.com" target="_blank">Opens in new tab</a>
 
 ```javascript
 Array.prototype.customShift = function () {
