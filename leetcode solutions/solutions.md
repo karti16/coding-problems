@@ -1,4 +1,4 @@
-## 1. <a href="placeholder.com" target="_blank">Opens in new tab</a>
+## 1. <a href="https://placeholder.com/" target="_blank">Opens in new tab</a>
 
 ```javascript
 Array.prototype.customShift = function () {
