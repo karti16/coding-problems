@@ -78,3 +78,81 @@ var runningSum = function (nums) {
 ```
 
 ---
+
+## 18. [Maximum Number of Words Found in Sentences - (2114)](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences)
+
+```java
+//JAVA
+class Solution {
+    public int mostWordsFound(String[] sentences) {
+        int max = findNumberOfWords(sentences[0]);
+        for(int i = 1; i< sentences.length; i++){
+            int len = findNumberOfWords(sentences[i]);
+            if(len > max){
+                max = len;
+            }
+        }
+        return max;
+    }
+
+    int findNumberOfWords(String sen){
+        char[] toArr = sen.toCharArray();
+        if(toArr.length == 0) return 0;
+        int count = 1;
+        for(int i = 0; i < toArr.length - 1; i++){
+            if(toArr[i] == ' '){
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
+
+//////////
+
+class Solution {
+    public int mostWordsFound(String[] sentences) {
+        int max=0;
+        for(int i=0; i<sentences.length; i++) {
+            max = Math.max(max,(sentences[i].split(" ")).length);
+        }
+        return max;
+    }
+}
+```
+
+```javascript
+//javascript
+/**
+ * @param {string[]} sentences
+ * @return {number}
+ */
+var mostWordsFound = function (sentences) {
+  let max = sentences[0].split(" ").length;
+  console.log(max);
+  for (let i = 1; i < sentences.length; i++) {
+    let tempLen = sentences[i].split(" ").length;
+    if (tempLen > max) {
+      max = tempLen;
+    }
+  }
+
+  return max;
+};
+```
+
+---
+
+## 17. [ - ()](https://leetcode.com/problems/)
+
+```java
+//JAVA
+
+```
+
+```javascript
+//javascript
+```
+
+---
