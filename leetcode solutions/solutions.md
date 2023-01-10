@@ -144,6 +144,42 @@ var mostWordsFound = function (sentences) {
 
 ---
 
+## 19. [Length of Last Word - (58)](https://leetcode.com/problems/length-of-last-word/submissions)
+
+```java
+//JAVA
+class Solution {
+    public int lengthOfLastWord(String s) {
+        if(s.length() == 0) return 0;
+        int count = 1;
+        for(int i = s.length() - 1; i > 0; i--){
+            if(s.charAt(i) != ' ' && s.charAt(i - 1) == ' '){
+                return count;
+            }
+            if(s.charAt(i) != ' '){
+                count ++;
+            }
+        }
+        return count;
+    }
+}
+```
+
+```javascript
+//javascript
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function (s) {
+  if (s.length === 0) return 0;
+  let lastWord = s.trim().split(" ");
+  return lastWord.at(-1).length;
+};
+```
+
+---
+
 ## 17. [ - ()](https://leetcode.com/problems/)
 
 ```java
