@@ -180,7 +180,59 @@ var lengthOfLastWord = function (s) {
 
 ---
 
-## 17. [ - ()](https://leetcode.com/problems/)
+## 17. [Reverse Integer - (7)](https://leetcode.com/problems/reverse-integer)
+
+```java
+//JAVA
+class Solution {
+    public int reverse(int x) {
+        boolean flag = true;
+        if(x < 0) flag = false;
+        long num = 0;
+        x = Math.abs(x);
+        while(x>0){
+            num = num * 10;
+            int r = x % 10;
+            num = num + r;
+            x = x / 10;
+        }
+
+        if(num > Integer.MAX_VALUE) return 0;
+
+        if(flag) return (int)num;
+        else return (int)num * -1;
+    }
+}
+
+```
+
+```javascript
+//javascript
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function (x) {
+  let flag = true;
+  if (x < 0) flag = false;
+  let num = 0;
+  x = Math.abs(x);
+  while (x > 0) {
+    num = num * 10;
+    let r = x % 10;
+    num = num + r;
+    x = Math.floor(x / 10);
+  }
+  if (num > Math.pow(2, 31)) return 0;
+
+  return flag ? num : num * -1;
+};
+```
+
+---
+
+## \*\*. [ - ()](https://leetcode.com/problems/)
 
 ```java
 //JAVA
