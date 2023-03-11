@@ -18,6 +18,10 @@
 
 ### 5. [Count Numbers with Even Number of Digits](#count-numbers-with-even-number-of-digits)
 
+### 6. [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
+
+### 7. [Find in 2d sorted Array](#find-in-2d-sorted-array)
+
 <br>
 <br>
 
@@ -208,3 +212,120 @@
    ```
 
    **[⬆ Back to Top](#5-count-numbers-with-even-number-of-digits)**
+
+6. ### Find First and Last Position of Element in Sorted Array
+
+   ```java
+    public class Java {
+        public static void main(String[] args) {
+            int[] nums = { 3, 4, 5, 5, 5, 6, 7 };
+            int target = 5;
+
+            int[] result = findFirstAndLast(nums, target);
+            System.out.println(Arrays.toString(result));
+        }
+
+        static int[] findFirstAndLast(int[] nums, int target) {
+            int[] ans = { -1, -1 };
+
+            ans[0] = search(nums, target, true);
+            if (ans[0] != -1) {
+                ans[1] = search(nums, target, false);
+            }
+
+            return ans;
+
+        }
+
+        static int search(int[] nums, int target, boolean findFirstIndex) {
+            int ans = -1;
+            int start = 0;
+            int end = nums.length - 1;
+            while (start <= end) {
+                int mid = start + (end - start) / 2;
+
+                if (target < nums[mid]) {
+                    end = mid - 1;
+                } else if (target > nums[mid]) {
+                    start = mid + 1;
+                } else {
+                    ans = mid;
+                    if (findFirstIndex) {
+                        end = mid - 1;
+                    } else {
+                        start = mid + 1;
+                    }
+                }
+            }
+            return ans;
+        }
+    }
+   ```
+
+   **[⬆ Back to Top](#6-find-first-and-last-position-of-element-in-sorted-array)**
+
+7. ### Find in 2d sorted Array
+
+   ```java
+    import java.util.Arrays;
+
+    public class Java {
+        public static void main(String[] args) {
+            int[][] matrix = {
+                    { 10, 20, 30, 40 },
+                    { 15, 25, 35, 45 },
+                    { 28, 39, 37, 49 },
+                    { 33, 34, 38, 59 }
+            };
+            int target = 37;
+            int[] ans = search(matrix, target);
+            System.out.println(Arrays.toString(ans));
+        }
+
+        static int[] search(int[][] matrix, int target) {
+            int r = 0;
+            int c = matrix.length - 1;
+
+            while (r < matrix.length && c >= 0) {
+                if (matrix[r][c] == target) {
+                    return new int[] { r, c };
+                }
+
+                if (matrix[r][c] < target) {
+                    r++;
+                } else {
+                    c--;
+                }
+            }
+
+            return new int[] { -1, -1 };
+        }
+    }
+
+   ```
+
+   **[⬆ Back to Top](#7-find-in-2d-sorted-array)**
+
+8. ### title
+
+   ```java
+
+   ```
+
+   **[⬆ Back to Top]()**
+
+9. ### title
+
+   ```java
+
+   ```
+
+   **[⬆ Back to Top]()**
+
+10. ### title
+
+    ```java
+
+    ```
+
+    **[⬆ Back to Top]()**
