@@ -4,13 +4,15 @@
 
 ## List of Problems
 
-### 1. [Binary Search](#1-binary-search-1)
-### 2. [Array Linear Search](#2.%20Array%20Linear%20Search
-### 3. [Binary Search in Infinte Array](#3.%20Binary%20Search%20in%20Infinte%20Array)
-### 4. [Ceil and floor of a number from array](#4.%20Ceil%20and%20floor%20of%20a%20number%20from%20array)
-### 5. [Count Numbers with Even Number of Digits](#5.%20Count%20Numbers%20with%20Even%20Number%20of%20Digits)
-### 6. [Find First and Last Position of Element in Sorted Array](#6.%20Find%20First%20and%20Last%20Position%20of%20Element%20in%20Sorted%20Array)
-### 7. [Find in 2d sorted Array](#7.%20Find%20in%202d%20sorted%20Array)
+| S. no | Problem                                                                                                               |
+| ----- | --------------------------------------------------------------------------------------------------------------------- |
+| 1.    | [Binary Search](#1-binary-search)                                                                                     |
+| 2.    | [Array Linear Search](#2-array-linear-search)                                                                         |
+| 3.    | [Binary Search in Infinite Array](#3-binary-search-in-infinte-array)                                                  |
+| 4.    | [Ceil and floor of a number from array](#4-ceil-and-floor-of-a-number-from-array)                                     |
+| 5.    | [Count Numbers with Even Number of Digits](#5-count-numbers-with-even-number-of-digits)                               |
+| 6.    | [Find First and Last Position of Element in Sorted Array](#6-find-first-and-last-position-of-element-in-sorted-array) |
+| 7.    | [Find in 2d sorted Array](#7-find-in-2d-sorted-array)                                                                 |
 
 ### 1. Binary Search
 
@@ -41,7 +43,7 @@
     }
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 2. Array Linear Search
 
@@ -68,7 +70,7 @@ public class Java {
  }
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 3. Binary Search in Infinte Array
 
@@ -110,7 +112,7 @@ public class Java {
  }
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 4. Ceil and floor of a number from array
 
@@ -160,7 +162,7 @@ public class Java {
 
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 5. Count Numbers with Even Number of Digits
 
@@ -198,7 +200,7 @@ public class Java {
 
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 6. Find First and Last Position of Element in Sorted Array
 
@@ -249,7 +251,7 @@ public class Java {
  }
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 7. Find in 2d sorted Array
 
@@ -291,7 +293,7 @@ public class Java {
 
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 8. title
 
@@ -299,7 +301,7 @@ public class Java {
 
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 9. title
 
@@ -307,7 +309,7 @@ public class Java {
 
 ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
 
 ### 10. title
 
@@ -315,4 +317,4 @@ public class Java {
 
     ```
 
-**[⬆ Back to Top](#List%20of%20Problems)**
+**[⬆ Back to Top](#list-of-problems)**
