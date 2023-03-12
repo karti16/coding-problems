@@ -2,33 +2,18 @@
 
 ### Problems and solution from leetcode and other similar sites.
 
-<br>
+## List of Problems
+### 1. [Binary Search](#1.%20Binary%20Search)
+### 2. [Array Linear Search](#2.%20Array%20Linear%20Search)
+### 3. [Binary Search in Infinte Array](#3.%20Binary%20Search%20in%20Infinte%20Array)
+### 4. [Ceil and floor of a number from array](#4.%20Ceil%20and%20floor%20of%20a%20number%20from%20array)
+### 5. [Count Numbers with Even Number of Digits](#5.%20Count%20Numbers%20with%20Even%20Number%20of%20Digits)
+### 6. [Find First and Last Position of Element in Sorted Array](#6.%20Find%20First%20and%20Last%20Position%20of%20Element%20in%20Sorted%20Array)
+### 7. [Find in 2d sorted Array](#7.%20Find%20in%202d%20sorted%20Array)
 
-### List of Problems
-
-<br>
-
-### 1. [Binary Search](#binary-search)
-
-### 2. [Array Linear Search](#array-linear-search)
-
-### 3. [Binary Search in Infinite Array](#binary-search-in-infinte-array)
-
-### 4. [Ceil and floor of a number from array](#ceil-and-floor-of-a-number-from-array)
-
-### 5. [Count Numbers with Even Number of Digits](#count-numbers-with-even-number-of-digits)
-
-### 6. [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
-
-### 7. [Find in 2d sorted Array](#find-in-2d-sorted-array)
-
-<br>
-<br>
-
-1. ### Binary Search?
-
-   ```java
-    public class Java {
+### 1. Binary Search
+```java
+	public class Java {
     public static void main(String args[]) {
         int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8 };
         int target = 3;
@@ -54,9 +39,9 @@
     }
    ```
 
-   **[⬆ Back to Top](#1-binary-search)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-2. ### Array Linear Search
+### 2.  Array Linear Search
 
    ```java
    public class Java {
@@ -81,9 +66,9 @@
     }
    ```
 
-   **[⬆ Back to Top](#2-array-linear-search)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-3. ### Binary Search in Infinte Array
+### 3. Binary Search in Infinte Array
 
    ```java
     public class Java {
@@ -123,9 +108,9 @@
     }
    ```
 
-   **[⬆ Back to Top](#3-binary-search-in-infinte-array)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-4. ### Ceil and floor of a number from array
+### 4. Ceil and floor of a number from array
 
    ```java
    public class Java {
@@ -173,9 +158,9 @@
 
    ```
 
-   **[⬆ Back to Top](#4-ceil-and-floor-of-a-number-from-array)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-5. ### Count Numbers with Even Number of Digits
+### 5. Count Numbers with Even Number of Digits
 
    ```java
    public class Java {
@@ -211,9 +196,9 @@
 
    ```
 
-   **[⬆ Back to Top](#5-count-numbers-with-even-number-of-digits)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-6. ### Find First and Last Position of Element in Sorted Array
+### 6. Find First and Last Position of Element in Sorted Array
 
    ```java
     public class Java {
@@ -262,9 +247,9 @@
     }
    ```
 
-   **[⬆ Back to Top](#6-find-first-and-last-position-of-element-in-sorted-array)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-7. ### Find in 2d sorted Array
+### 7. Find in 2d sorted Array
 
    ```java
     import java.util.Arrays;
@@ -304,28 +289,28 @@
 
    ```
 
-   **[⬆ Back to Top](#7-find-in-2d-sorted-array)**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-8. ### title
-
-   ```java
-
-   ```
-
-   **[⬆ Back to Top]()**
-
-9. ### title
+### 8.  title
 
    ```java
 
    ```
 
-   **[⬆ Back to Top]()**
+   **[⬆ Back to Top](#List%20of%20Problems)**
 
-10. ### title
+### 9. title
+
+   ```java
+
+   ```
+
+   **[⬆ Back to Top](#List%20of%20Problems)**
+
+### 10. title
 
     ```java
 
     ```
 
-    **[⬆ Back to Top]()**
+   **[⬆ Back to Top](#List%20of%20Problems)**
