@@ -280,3 +280,98 @@ public class test {
 }
 
 ```
+
+## 5. Alternate sorting: Given an array of integers, rearrange the array in such a way that the first element is first maximum and second element is first minimum.
+
+    Input  : {1, 2, 3, 4, 5, 6, 7}
+    Output : {7, 1, 6, 2, 5, 3, 4}
+
+```java
+  // optimal solution
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+    int len = arr.length;
+
+    Arrays.sort(arr);
+
+    int i = 0;
+    int j = len - 1;
+    while (i < j) {
+      System.out.print(arr[j--] + ", ");
+      System.out.print(arr[i++] + ", ");
+    }
+    if (len % 2 != 0) {
+      System.out.print(arr[i]);
+    }
+  }
+}
+
+```
+
+```java
+// my solution
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+    int len = arr.length;
+
+    // sort in desc order
+    int[] descArr = new int[len];
+    for (int i = 0; i < len; i++)
+      descArr[i] = arr[i];
+
+    for (int i = 0; i < len; i++) {
+      for (int j = i + 1; j < len; j++) {
+        int temp = 0;
+        if (descArr[i] < descArr[j]) {
+          temp = descArr[j];
+          descArr[j] = descArr[i];
+          descArr[i] = temp;
+        }
+      }
+    }
+
+    // sort in asc order
+    int[] ascArr = new int[len];
+    for (int i = 0; i < len; i++)
+      ascArr[i] = arr[i];
+
+    for (int i = 0; i < len; i++) {
+      for (int j = i + 1; j < len; j++) {
+        int temp = 0;
+        if (ascArr[i] > ascArr[j]) {
+          temp = ascArr[j];
+          ascArr[j] = ascArr[i];
+          ascArr[i] = temp;
+        }
+      }
+    }
+    int[] resArr = new int[len];
+    int countD = 0;
+    int countA = 0;
+
+    for (int i = 0; i < len; i++) {
+      if (i % 2 == 0) {
+        resArr[i] = descArr[countD];
+        countD++;
+      } else {
+        resArr[i] = ascArr[countA];
+        countA++;
+      }
+
+    }
+
+    System.out.println(Arrays.toString(descArr));
+    System.out.println(Arrays.toString(ascArr));
+    System.out.println(Arrays.toString(resArr));
+
+  }
+
+}
+
+```
