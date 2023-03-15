@@ -1,53 +1,36 @@
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class test {
   public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Enter the string : ");
-    String str = sc.next();
-    int size = (int) Math.ceil(Math.sqrt(str.length()));
-    System.out.println(size);
 
-    System.out.println("Enter the sub-string : ");
-    String subStr = sc.next();
-    // String str = "WELCOMETOZOHOCORPORATION";
-    char arr[][] = new char[size][size];
-    int k = 0;
-    int strLen = str.length() - 1;
-    int subStrLen = subStr.length() - 1;
-    int countH = 0, countV = 0;
-    for (int i = 0; i < size; i++) {
-      for (int j = 0; j < size; j++) {
-        if (k <= strLen) {
-          arr[i][j] = str.charAt(k);
-          k++;
+    int[][] matrix = {
+        { 6, 5, 1, 8, 7, 3, 2, 9, 4 },
+        { 7, 4, 3, 2, 5, 9, 1, 6, 8 },
+        { 9, 8, 2, 1, 6, 4, 3, 5, 7 },
+        { 1, 2, 5, 4, 3, 6, 8, 7, 9 },
+        { 4, 3, 9, 5, 8, 7, 6, 1, 2 },
+        { 8, 6, 7, 9, 1, 2, 5, 4, 3 },
+        { 5, 7, 8, 3, 9, 1, 4, 2, 6 },
+        { 2, 1, 6, 7, 4, 8, 9, 3, 5 },
+        { 3, 9, 4, 6, 2, 5, 7, 8, 1 }
+    };
 
-        }
+    int size = 9;
+
+    for (int i = 0; i < matrix.length; i++) {
+      if (!checkCol(matrix[i])) {
+        System.out.println("incorrect");
       }
     }
-    for (char[] k1 : arr)
-      System.out.println(Arrays.toString(k1));
 
-    for (int i = 0; i < size; i++) {
-      for (int j = 0; j < size; j++) {
-        if (arr[i][j] == subStr.charAt(countH)) {
-          // find in column
-          for (int l = j; l < size && countH <= subStrLen; l++) {
-            if (arr[i][l] == subStr.charAt(countH)) {
-              System.out.println(arr[i][l] + "-" + subStr.charAt(countH));
-              if (countH == subStrLen) {
-                System.out.println("start : [" + i + "," + j + "]");
-                System.out.println("end : [" + l + "," + j + "]");
-              }
-              countH++;
-            }
+  }
 
-          }
-
-        }
-      }
+  static boolean checkCol(int arr[]) {
+    int sum = 0;
+    for (int i = 0; i < arr.length; i++) {
+      sum += arr[i];
     }
+    return sum == 45;
   }
 
 }
