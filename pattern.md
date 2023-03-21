@@ -301,3 +301,169 @@ public class test {
 ```
 
 ---
+
+```java
+1                 1
+1 2             2 1
+1 2 3         3 2 1
+1 2 3 4     4 3 2 1
+1 2 3 4 5 5 4 3 2 1
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int space = 2 * (n - 1);
+    for (int i = 1; i <= n; i++) {
+      // numbers
+      for (int j = 1; j <= i; j++) {
+        System.out.print(j + " ");
+      }
+      // space
+      for (int j = 1; j <= space; j++) {
+        System.out.print("  ");
+      }
+      // numbers
+      for (int j = i; j >= 1; j--) {
+        System.out.print(j + " ");
+      }
+      space -= 2;
+      System.out.println("");
+    }
+  }
+}
+
+```
+
+---
+
+```java
+1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int count = 1;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= i; j++) {
+        System.out.print(count++ + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+---
+
+```java
+A
+A B
+A B C
+A B C D
+A B C D E
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j <= i; j++) {
+        System.out.print((char) ('A' + j) + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+---
+
+```java
+A B C D E
+A B C D
+A B C
+A B
+A
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < (n - i); j++) {
+        System.out.print((char) ('A' + j) + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+---
+
+```java
+A
+B B
+C C C
+D D D D
+E E E E E
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j <= i; j++) {
+        System.out.print((char) ('A' + i) + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+
+```
+
+---
+
+```java
+        A
+      A B A
+    A B C B A
+  A B C D C B A
+A B C D E D C B A
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      // space
+      for (int j = 0; j < n - i - 1; j++) {
+        System.out.print("  ");
+      }
+
+      // char
+      char ch = 'A';
+      int breakPoint = (2 * i + 1) / 2;
+      for (int j = 1; j <= 2 * i + 1; j++) {
+        System.out.print(ch + " ");
+        if (j <= breakPoint)
+          ch = (char) (ch + 1);
+        else
+          ch = (char) (ch - 1);
+      }
+
+      // space
+      for (int j = 0; j < n - i - 1; j++) {
+        System.out.print("  ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
