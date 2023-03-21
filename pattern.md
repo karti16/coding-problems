@@ -242,3 +242,62 @@ public class test {
 ```
 
 ---
+
+```java
+*
+* *
+* * *
+* * * *
+* * * * *
+* * * *
+* * *
+* *
+*
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i <= 2 * n - 1; i++) {
+      int star = i;
+      if (i > n)
+        star = 2 * n - i;
+      for (int j = 0; j < star; j++) {
+        System.out.print("* ");
+      }
+      System.out.println("");
+    }
+  }
+}
+
+```
+
+---
+
+```java
+1
+0 1
+1 0 1
+0 1 0 1
+1 0 1 0 1
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int start;
+    for (int i = 1; i <= n; i++) {
+      if (i % 2 == 0)
+        start = 0;
+      else
+        start = 1;
+      for (int j = 1; j <= i; j++) {
+        System.out.print(start + " ");
+        start = 1 - start;
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+---
