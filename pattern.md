@@ -556,3 +556,83 @@ public class test {
 ```
 
 ---
+
+```java
+*                 *
+* *             * *
+* * *         * * *
+* * * *     * * * *
+* * * * * * * * * *
+* * * *     * * * *
+* * *         * * *
+* *             * *
+*                 *
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int space = 2 * n - 2;
+    for (int i = 0; i <= 2 * n - 1; i++) {
+      int stars = i;
+      if (i > n)
+        stars = 2 * n - i;
+      // stars
+      for (int j = 0; j < stars; j++) {
+        System.out.print("* ");
+      }
+      // space
+      for (int j = 0; j < space + 2; j++) {
+        System.out.print("  ");
+      }
+      // stars
+      for (int j = 0; j < stars; j++) {
+        System.out.print("* ");
+      }
+      if (i < n)
+        space -= 2;
+      else
+        space += 2;
+      System.out.println("");
+    }
+
+  }
+}
+```
+
+---
+
+```java
+* * * * *
+*       *
+*       *
+*       *
+* * * * *
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (i == 0 || i == n - 1 || j == 0 || j == n - 1)
+          System.out.print("* ");
+        else
+          System.out.print("  ");
+      }
+      System.out.println("");
+    }
+
+  }
+}
+
+```
+
+---
+
+```java
+
+
+```
