@@ -1,16 +1,20 @@
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class test {
   public static void main(String[] args) {
-    int n = 5;
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        if (i == 0 || i == n - 1 || j == 0 || j == n - 1)
-          System.out.print("* ");
-        else
-          System.out.print("  ");
+    int num = 36;
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    for (int i = 1; i <= Math.sqrt(num); i++) {
+      if (num % i == 0) {
+        list.add(i);
+        if (i != num / i) {
+          list.add(num / i);
+        }
       }
-      System.out.println("");
     }
+    Collections.sort(list);
+    System.out.println(list);
 
   }
 }

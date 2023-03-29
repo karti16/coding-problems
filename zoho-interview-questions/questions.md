@@ -375,3 +375,102 @@ public class test {
 }
 
 ```
+
+## 6. Reverse The number 123 to 321
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int num = 7789;
+    int revNum = 0;
+
+    while (num > 0) {
+      int lastNum = num % 10;
+      revNum = revNum * 10 + lastNum;
+      num = num / 10;
+    }
+
+    System.out.println(revNum);
+
+  }
+}
+
+```
+
+## 7. Check palindrome
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int num = 778;
+    int dup = num;
+    int revNum = 0;
+
+    while (num > 0) {
+      int lastNum = num % 10;
+      revNum = revNum * 10 + lastNum;
+      num = num / 10;
+    }
+
+    if (revNum == dup) {
+      System.out.println("yes");
+    } else {
+      System.out.println("no");
+    }
+
+  }
+}
+```
+
+## 8. Check if number is Armstrong number
+
+```java
+import java.lang.Math;
+
+public class test {
+  public static void main(String[] args) {
+    int num = 153;
+    int dup = num;
+    int digits = 3;
+    int sum = 0;
+
+    while (num > 0) {
+      int lastNum = num % 10;
+      sum += (Math.pow(lastNum, digits));
+      num = num / 10;
+    }
+    if (dup == sum) {
+      System.out.println("Armstrong Number");
+    } else {
+      System.out.println("Not Armstrong Number");
+    }
+
+  }
+}
+``
+```
+
+## 9. Print all Divisor of a number
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class test {
+  public static void main(String[] args) {
+    int num = 36;
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    for (int i = 1; i <= Math.sqrt(num); i++) {
+      if (num % i == 0) {
+        list.add(i);
+        if (i != num / i) {
+          list.add(num / i);
+        }
+      }
+    }
+    Collections.sort(list);
+    System.out.println(list);
+
+  }
+}
+```
