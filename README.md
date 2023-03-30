@@ -1,7 +1,5 @@
 # Coding-challenge
 
-## [Zoho Interview Question](zoho-interview-questions/questions.md)
-
 ## Problems and solution from leetcode and other similar sites.
 
 1. [Pattern Problems](./pattern.md)
