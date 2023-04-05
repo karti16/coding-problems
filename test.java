@@ -1,20 +1,17 @@
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class test {
   public static void main(String[] args) {
-    int num = 36;
-    ArrayList<Integer> list = new ArrayList<Integer>();
-    for (int i = 1; i <= Math.sqrt(num); i++) {
-      if (num % i == 0) {
-        list.add(i);
-        if (i != num / i) {
-          list.add(num / i);
-        }
+    int n1 = 52;
+    int n2 = 10;
+
+    while (n1 > 0 && n2 > 0) {
+      if (n1 > n2) {
+        n1 = n1 % n2;
+      } else {
+        n2 = n2 % n1;
       }
     }
-    Collections.sort(list);
-    System.out.println(list);
+    System.out.println("GCD / HCF : " + Math.max(n1, n2));
 
   }
 }

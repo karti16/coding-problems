@@ -24,6 +24,8 @@
 | 14.   | [Check palindrome](#14-check-palindrome)                                                                              |
 | 15.   | [Check if number is Armstrong number](#15-check-if-number-is-armstrong-number)                                        |
 | 16.   | [Print all Divisor of a number](#16-print-all-divisor-of-a-number)                                                    |
+| 17.   | [Check number is Prime or not](#17-check-number-is-prime-or-not)                                                      |
+| 18.   | [Find GCD / HCF of two numbers](#18-find-gcd--hcf-of-two-numbers)                                                     |
 
 ## 1. Binary Search
 
@@ -306,7 +308,7 @@ public class Java {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 8. title
+## 8. Print word in X shape
 
 ```
 g           s
@@ -603,7 +605,7 @@ public class test {
     Output : {7, 1, 6, 2, 5, 3, 4}
 
 ```java
-  // optimal solution
+
 import java.util.Arrays;
 
 public class test {
@@ -736,34 +738,70 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 10. title
+## 17. Check number is prime or not
 
-    ```java
+```java
 
-    ```
+public class test {
+  public static void main(String[] args) {
+    int num = 10;
+    int factors = 0;
+    for (int i = 1; i <= Math.sqrt(num); i++) {
+      if (num % i == 0) {
+        factors++;
+        if (num / i != i) {
+          factors++;
+        }
+      }
+    }
+    if (factors == 2) {
+      System.out.println("Prime number");
+    } else {
+      System.out.println("Not a prime number");
+    }
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 18. Find GCD / HCF of two numbers
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int n1 = 52;
+    int n2 = 10;
+
+    while (n1 > 0 && n2 > 0) {
+      if (n1 > n2) {
+        n1 = n1 % n2;
+      } else {
+        n2 = n2 % n1;
+      }
+    }
+    System.out.println("GCD / HCF : " + Math.max(n1, n2));
+
+  }
+}
+```
 
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 10. title
 
-    ```java
+```java
 
-    ```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 10. title
-
-    ```java
-
-    ```
+```
 
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 10. title
 
-    ```java
+```java
 
-    ```
+```
 
 **[⬆ Back to Top](#list-of-problems)**
