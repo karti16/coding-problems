@@ -31,6 +31,7 @@
 | 21.   | [Reverse an array](#21-reverse-an-array)                                                                              |
 | 22.   | [Reverse an array using Recursion](#22-reverse-an-array-using-recursion)                                              |
 | 23.   | [Check palindrome with recursion](#23-check-palindrome-with-recursion)                                                |
+| 24.   | [Return array of fibonacci number till N](#24-return-array-of-fibonacci-number-till-n)                                |
 
 ## 1. Binary Search
 
@@ -929,9 +930,29 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 10. title
+## 24. Return array of fibonacci number till N
 
 ```java
+import java.util.ArrayList;
+
+public class test {
+  public static void main(String[] args) {
+    int n = 10;
+    ArrayList<Integer> list = new ArrayList<>();
+    fibonacci(list, 1, 1, n);
+    System.out.println(list);
+  }
+
+  static void fibonacci(ArrayList<Integer> list, int first, int second, int n) {
+    if (n == 0) {
+      return;
+    } else {
+      list.add(first);
+      fibonacci(list, second, (first + second), n - 1);
+
+    }
+  }
+}
 
 ```
 

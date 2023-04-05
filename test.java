@@ -1,21 +1,20 @@
+import java.util.ArrayList;
+
 public class test {
   public static void main(String[] args) {
-    String str = "rhar";
-    boolean res = checkPalindrome(str, 0);
-    System.out.println(res);
+    int n = 10;
+    ArrayList<Integer> list = new ArrayList<>();
+    fibonacci(list, 1, 1, n);
+    System.out.println(list);
   }
 
-  static boolean checkPalindrome(String str, int i) {
-    if (str.length() == 0 || str.length() == 1)
-      return true;
-    if (i >= 0 && str.charAt(i) != str.charAt(str.length() - i - 1)) {
-      return false;
-    }
-    if (i < (str.length() / 2)) {
-      return checkPalindrome(str, i + 1);
-    }
+  static void fibonacci(ArrayList<Integer> list, int first, int second, int n) {
+    if (n == 0) {
+      return;
+    } else {
+      list.add(first);
+      fibonacci(list, second, (first + second), n - 1);
 
-    return true;
+    }
   }
-
 }
