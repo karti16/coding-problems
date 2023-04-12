@@ -1,124 +1,58 @@
-# 18. Find GCD / HCF of two numbers
-
-```java
-public class test {
-  public static void main(String[] args) {
-    int n1 = 52;
-    int n2 = 10;
-
-    while (n1 > 0 && n2 > 0) {
-      if (n1 > n2) {
-        n1 = n1 % n2;
-      } else {
-        n2 = n2 % n1;
-      }
-    }
-    System.out.println("GCD / HCF : " + Math.max(n1, n2));
-
-  }
-}
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 19. Print number 1 to N using recursion
-
-```java
-public class test {
-  public static void main(String[] args) {
-    int n = 10;
-    print(1, n);
-  }
-
-  static void print(int i, int N) {
-    if (i == N) {
-      System.out.print(i + " ");
-      return;
-    }
-    System.out.print(i + " ");
-    print(i + 1, N);
-  }
-}
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 20. Find all factorial numbers less than or equal to N
+## 24. Return array of fibonacci number till N
 
 ```java
 import java.util.ArrayList;
 
 public class test {
   public static void main(String[] args) {
-    long N = 120;
-    ArrayList<Long> list = new ArrayList<Long>();
-    long product = 1;
-    long i = 2;
-    while (product <= N) {
-      list.add(product);
-      product *= i;
-      i++;
-    }
-
+    int n = 10;
+    ArrayList<Integer> list = new ArrayList<>();
+    fibonacci(list, 1, 1, n);
     System.out.println(list);
   }
 
-}
+  static void fibonacci(ArrayList<Integer> list, int first, int second, int n) {
+    if (n == 0) {
+      return;
+    } else {
+      list.add(first);
+      fibonacci(list, second, (first + second), n - 1);
 
+    }
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 21. Reverse an array
+## 25. Reverse array in groups
 
 ```java
 import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int arr[] = { 5, 4, 3, 2, 1 };
-    int len = arr.length;
-    int res[] = new int[len];
-    for (int i = 0; i < len; i++) {
-      res[i] = arr[len - i - 1];
+    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int group = 3;
+    int len = arr.length - 1;
+
+    for (int i = 0; i < len; i += group) {
+
+      int start = i;
+      int end = Math.min(i + group - 1, len);
+
+      while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+      }
     }
 
-    System.out.println(Arrays.toString(res));
-  }
-
-}
-
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 22. Reverse an array using Recursion
-
-```java
-import java.util.Arrays;
-
-public class test {
-  public static void main(String[] args) {
-    int arr[] = { 5, 4, 3, 2, 1 };
-    reverseArr(arr, 0);
     System.out.println(Arrays.toString(arr));
   }
-
-  static void reverseArr(int[] arr, int i) {
-    if (i > (arr.length / 2)) {
-      return;
-    }
-
-    int temp = arr[i];
-    arr[i] = arr[arr.length - i - 1];
-    arr[arr.length - i - 1] = temp;
-
-    reverseArr(arr, i + 1);
-  }
-
 }
 
 
@@ -126,29 +60,97 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 23. Check palindrome with recursion
+## 26. Top K Frequent Elements in Array
 
 ```java
+/* count the frequency and store it in hashmap.
+ * Create array of arrays for size nums length
+ * Store the nums by their frequency in List
+ * like 5 , 2, occurred 3 times then store 5,3 in the 3rd index of the list
+ * Iterate list from hight to lowest and print the numbers
+ *
+ * link -> https://www.youtube.com/watch?v=YPTqKIgVk-k
+ * link -> https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
+*/
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 public class test {
   public static void main(String[] args) {
-    String str = "rhar";
-    boolean res = checkPalindrome(str, 0);
-    System.out.println(res);
-  }
+    int[] a = { 1, 1, 1, 4, 5, 5, 5, 2, 2, 2, 3 };
+    int k = 2;
+    HashMap<Integer, Integer> map = new HashMap<>();
 
-  static boolean checkPalindrome(String str, int i) {
-    if (str.length() == 0 || str.length() == 1)
-      return true;
-    if (i >= 0 && str.charAt(i) != str.charAt(str.length() - i - 1)) {
-      return false;
-    }
-    if (i < (str.length() / 2)) {
-      return checkPalindrome(str, i + 1);
+    for (int i = 0; i < a.length; i++) {
+      map.put(a[i], map.getOrDefault(a[i], 0) + 1);
     }
 
-    return true;
-  }
+    List<List<Integer>> freq = new ArrayList<>();
 
+    for (int i = 0; i < a.length + 1; i++) {
+      freq.add(new ArrayList<>());
+    }
+
+    for (int key : map.keySet()) {
+      freq.get(map.get(key)).add(key);
+    }
+
+    int[] res = new int[2];
+    int count = 0;
+    for (int i = freq.size() - 1; i >= 0; i--) {
+
+      if (freq.get(i).size() > 1) {
+        Collections.sort(freq.get(i), Collections.reverseOrder());
+      }
+
+      for (int ele : freq.get(i)) {
+        if (count >= k)
+          break;
+        res[count++] = ele;
+      }
+    }
+    System.out.println(Arrays.toString(res));
+    System.out.println(freq);
+    System.out.println(map);
+
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 27. Selection Sort
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 12, 5, 34, 67, 9, 55 };
+    int n = arr.length;
+    for (int i = 0; i < n - 1; i++) {
+      int min = i;
+      for (int j = i; j < n; j++) {
+        if (arr[j] < arr[min]) {
+          min = j;
+        }
+      }
+
+      int temp = arr[min];
+      arr[min] = arr[i];
+      arr[i] = temp;
+    }
+
+    System.out.println(Arrays.toString(arr));
+
+  }
 }
 
 ```

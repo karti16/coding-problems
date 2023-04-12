@@ -1,20 +1,23 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int n = 10;
-    ArrayList<Integer> list = new ArrayList<>();
-    fibonacci(list, 1, 1, n);
-    System.out.println(list);
-  }
+    int[] arr = { 12, 5, 34, 67, 9, 55 };
+    int n = arr.length;
+    for (int i = 0; i < n - 1; i++) {
+      int min = i;
+      for (int j = i; j < n; j++) {
+        if (arr[j] < arr[min]) {
+          min = j;
+        }
+      }
 
-  static void fibonacci(ArrayList<Integer> list, int first, int second, int n) {
-    if (n == 0) {
-      return;
-    } else {
-      list.add(first);
-      fibonacci(list, second, (first + second), n - 1);
-
+      int temp = arr[min];
+      arr[min] = arr[i];
+      arr[i] = temp;
     }
+
+    System.out.println(Arrays.toString(arr));
+
   }
 }
