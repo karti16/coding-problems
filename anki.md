@@ -1,158 +1,751 @@
-## 24. Return array of fibonacci number till N
+## Patter printing
+
+```
+* * * *
+* * * *
+* * * *
+* * * *
+```
+
+%
 
 ```java
-import java.util.ArrayList;
+
 
 public class test {
   public static void main(String[] args) {
-    int n = 10;
-    ArrayList<Integer> list = new ArrayList<>();
-    fibonacci(list, 1, 1, n);
-    System.out.println(list);
+    int n = 4;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        System.out.print("* ");
+      }
+      System.out.println("");
+    }
   }
+}
+```
 
-  static void fibonacci(ArrayList<Integer> list, int first, int second, int n) {
-    if (n == 0) {
-      return;
-    } else {
-      list.add(first);
-      fibonacci(list, second, (first + second), n - 1);
+## Patter printing
 
+```
+*
+* *
+* * *
+* * * *
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < i; j++) {
+        System.out.print("* ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= i; j++) {
+        System.out.print(j + " ");
+      }
+      System.out.println("");
     }
   }
 }
 
 ```
 
-**[⬆ Back to Top](#list-of-problems)**
-
-## 25. Reverse array in groups
-
-```java
-import java.util.Arrays;
-
-public class test {
-  public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    int group = 3;
-    int len = arr.length - 1;
-
-    for (int i = 0; i < len; i += group) {
-
-      int start = i;
-      int end = Math.min(i + group - 1, len);
-
-      while (start < end) {
-        int temp = arr[start];
-        arr[start] = arr[end];
-        arr[end] = temp;
-        start++;
-        end--;
-      }
-    }
-
-    System.out.println(Arrays.toString(arr));
-  }
-}
-
+## Patter printing
 
 ```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 26. Top K Frequent Elements in Array
-
-```java
-/* count the frequency and store it in hashmap.
- * Create array of arrays for size nums length
- * Store the nums by their frequency in List
- * like 5 , 2, occurred 3 times then store 5,3 in the 3rd index of the list
- * Iterate list from hight to lowest and print the numbers
- *
- * link -> https://www.youtube.com/watch?v=YPTqKIgVk-k
- * link -> https://www.geeksforgeeks.org/find-k-numbers-occurrences-given-array/
-*/
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-public class test {
-  public static void main(String[] args) {
-    int[] a = { 1, 1, 1, 4, 5, 5, 5, 2, 2, 2, 3 };
-    int k = 2;
-    HashMap<Integer, Integer> map = new HashMap<>();
-
-    for (int i = 0; i < a.length; i++) {
-      map.put(a[i], map.getOrDefault(a[i], 0) + 1);
-    }
-
-    List<List<Integer>> freq = new ArrayList<>();
-
-    for (int i = 0; i < a.length + 1; i++) {
-      freq.add(new ArrayList<>());
-    }
-
-    for (int key : map.keySet()) {
-      freq.get(map.get(key)).add(key);
-    }
-
-    int[] res = new int[2];
-    int count = 0;
-    for (int i = freq.size() - 1; i >= 0; i--) {
-
-      if (freq.get(i).size() > 1) {
-        Collections.sort(freq.get(i), Collections.reverseOrder());
-      }
-
-      for (int ele : freq.get(i)) {
-        if (count >= k)
-          break;
-        res[count++] = ele;
-      }
-    }
-    System.out.println(Arrays.toString(res));
-    System.out.println(freq);
-    System.out.println(map);
-
-  }
-}
-
-
+1
+2 2
+3 3 3
+4 4 4 4
+5 5 5 5 5
 ```
 
-**[⬆ Back to Top](#list-of-problems)**
-
-## 27. Selection Sort
+%
 
 ```java
-import java.util.Arrays;
+
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 12, 5, 34, 67, 9, 55 };
-    int n = arr.length;
-    for (int i = 0; i < n - 1; i++) {
-      int min = i;
-      for (int j = i; j < n; j++) {
-        if (arr[j] < arr[min]) {
-          min = j;
-        }
+    int n = 5;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= i; j++) {
+        System.out.print(i + " ");
       }
-
-      int temp = arr[min];
-      arr[min] = arr[i];
-      arr[i] = temp;
+      System.out.println("");
     }
+  }
+}
+```
 
-    System.out.println(Arrays.toString(arr));
+## Patter printing
 
+```
+* * * * *
+* * * *
+* * *
+* *
+*
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n - i; j++) {
+        System.out.print("* ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+1 2 3 4 5
+1 2 3 4
+1 2 3
+1 2
+1
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= n - i + 1; j++) {
+        System.out.print(j + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n - i - 1; j++) {
+        System.out.print("  ");
+      }
+      for (int k = 0; k < 2 * i + 1; k++) {
+        System.out.print("* ");
+      }
+      for (int l = 0; l < n - i - 1; l++) {
+        System.out.print("  ");
+      }
+      System.out.println("");
+    }
   }
 }
 
 ```
 
-**[⬆ Back to Top](#list-of-problems)**
+## Patter printing
+
+```
+* * * * * * * * *
+  * * * * * * *
+    * * * * *
+      * * *
+        *
+
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < i; j++) {
+        System.out.print("  ");
+      }
+      for (int j = 0; j < 2 * n - (2 * i + 1); j++) {
+        System.out.print("* ");
+      }
+      for (int j = 0; j < i; j++) {
+        System.out.print("  ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *
+* * * * * * * * *
+  * * * * * * *
+    * * * * *
+      * * *
+        *
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    // upside
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n - i - 1; j++) {
+        System.out.print("  ");
+      }
+      for (int k = 0; k < 2 * i + 1; k++) {
+        System.out.print("* ");
+      }
+      for (int l = 0; l < n - i - 1; l++) {
+        System.out.print("  ");
+      }
+      System.out.println("");
+    }
+    // upside down
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < i; j++) {
+        System.out.print("  ");
+      }
+      for (int j = 0; j < 2 * n - (2 * i + 1); j++) {
+        System.out.print("* ");
+      }
+      for (int j = 0; j < i; j++) {
+        System.out.print("  ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+*
+* *
+* * *
+* * * *
+* * * * *
+* * * *
+* * *
+* *
+*
+
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i <= 2 * n - 1; i++) {
+      int star = i;
+      if (i > n)
+        star = 2 * n - i;
+      for (int j = 0; j < star; j++) {
+        System.out.print("* ");
+      }
+      System.out.println("");
+    }
+  }
+}
+
+```
+
+## Patter printing
+
+```
+1
+0 1
+1 0 1
+0 1 0 1
+1 0 1 0 1
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int start;
+    for (int i = 1; i <= n; i++) {
+      if (i % 2 == 0)
+        start = 0;
+      else
+        start = 1;
+      for (int j = 1; j <= i; j++) {
+        System.out.print(start + " ");
+        start = 1 - start;
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+1                 1
+1 2             2 1
+1 2 3         3 2 1
+1 2 3 4     4 3 2 1
+1 2 3 4 5 5 4 3 2 1
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int space = 2 * (n - 1);
+    for (int i = 1; i <= n; i++) {
+      // numbers
+      for (int j = 1; j <= i; j++) {
+        System.out.print(j + " ");
+      }
+      // space
+      for (int j = 1; j <= space; j++) {
+        System.out.print("  ");
+      }
+      // numbers
+      for (int j = i; j >= 1; j--) {
+        System.out.print(j + " ");
+      }
+      space -= 2;
+      System.out.println("");
+    }
+  }
+}
+
+```
+
+## Patter printing
+
+```
+1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int count = 1;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= i; j++) {
+        System.out.print(count++ + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+A
+A B
+A B C
+A B C D
+A B C D E
+```
+
+%
+
+```java
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j <= i; j++) {
+        System.out.print((char) ('A' + j) + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+A B C D E
+A B C D
+A B C
+A B
+A
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < (n - i); j++) {
+        System.out.print((char) ('A' + j) + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+A
+B B
+C C C
+D D D D
+E E E E E
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j <= i; j++) {
+        System.out.print((char) ('A' + i) + " ");
+      }
+      System.out.println("");
+    }
+  }
+}
+
+```
+
+## Patter printing
+
+```
+        A
+      A B A
+    A B C B A
+  A B C D C B A
+A B C D E D C B A
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      // space
+      for (int j = 0; j < n - i - 1; j++) {
+        System.out.print("  ");
+      }
+
+      // char
+      char ch = 'A';
+      int breakPoint = (2 * i + 1) / 2;
+      for (int j = 1; j <= 2 * i + 1; j++) {
+        System.out.print(ch + " ");
+        if (j <= breakPoint)
+          ch = (char) (ch + 1);
+        else
+          ch = (char) (ch - 1);
+      }
+
+      // space
+      for (int j = 0; j < n - i - 1; j++) {
+        System.out.print("  ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+E
+E  D
+E  D  C
+E  D  C  B
+E  D  C  B  A
+```
+
+%
+
+```java
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j <= i; j++) {
+        System.out.print((char) ('A' + (n - j - 1)) + "  ");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+
+## Patter printing
+
+```
+* * * * * * * * * *
+* * * *     * * * *
+* * *         * * *
+* *             * *
+*                 *
+*                 *
+* *             * *
+* * *         * * *
+* * * *     * * * *
+* * * * * * * * * *
+```
+
+%
+
+```java
+
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      // Upside
+      // stars
+      for (int j = 0; j <= n - i - 1; j++) {
+        System.out.print("* ");
+      }
+
+      // space
+      for (int j = 0; j <= 2 * i - 1; j++) {
+        System.out.print("  ");
+      }
+
+      // stars
+      for (int j = 0; j <= n - i - 1; j++) {
+        System.out.print("* ");
+      }
+      System.out.println("");
+
+    }
+    // Upside Down
+    // stars
+    int space2 = 8;
+    for (int i = 0; i < n; i++) {
+
+      for (int j = 0; j <= i; j++) {
+        System.out.print("* ");
+      }
+
+      // space
+      for (int j = 0; j < space2; j++) {
+        System.out.print("  ");
+      }
+
+      // stars
+      for (int j = 0; j <= i; j++) {
+        System.out.print("* ");
+      }
+      space2 -= 2;
+      System.out.println("");
+    }
+
+  }
+}
+```
+
+## Patter printing
+
+```
+*                 *
+* *             * *
+* * *         * * *
+* * * *     * * * *
+* * * * * * * * * *
+* * * *     * * * *
+* * *         * * *
+* *             * *
+*                 *
+```
+
+%
+
+```java
+
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    int space = 2 * n - 2;
+    for (int i = 0; i <= 2 * n - 1; i++) {
+      int stars = i;
+      if (i > n)
+        stars = 2 * n - i;
+      // stars
+      for (int j = 0; j < stars; j++) {
+        System.out.print("* ");
+      }
+      // space
+      for (int j = 0; j < space + 2; j++) {
+        System.out.print("  ");
+      }
+      // stars
+      for (int j = 0; j < stars; j++) {
+        System.out.print("* ");
+      }
+      if (i < n)
+        space -= 2;
+      else
+        space += 2;
+      System.out.println("");
+    }
+
+  }
+}
+```
+
+## Patter printing
+
+```
+* * * * *
+*       *
+*       *
+*       *
+* * * * *
+```
+
+%
+
+```java
+
+
+
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (i == 0 || i == n - 1 || j == 0 || j == n - 1)
+          System.out.print("* ");
+        else
+          System.out.print("  ");
+      }
+      System.out.println("");
+    }
+
+  }
+}
+
+```
