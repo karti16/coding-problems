@@ -35,6 +35,8 @@
 | 25.   | [Reverse array in groups](#25-reverse-array-in-groups)                                                                |
 | 26.   | [Top K Frequent Elements in Array](#26-top-k-frequent-elements-in-array)                                              |
 | 27.   | [Selection Sort](#27-selection-sort)                                                                                  |
+| 28.   | [Bubble sort](#28-bubble-sort)                                                                                        |
+| 29.   | [Insertion Sort](#29-insertion-sort)                                                                                  |
 
 ## 1. Binary Search
 
@@ -1092,17 +1094,67 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 10. title
+## 28. Bubble sort
 
 ```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 12, 5, 34, 67, 9, 55 };
+    int n = arr.length;
+
+    for (int i = n - 1; i >= 1; i--) {
+      int didSwap = 0;
+
+          int temp = arr[j + 1];
+          arr[j + 1] = arr[j];
+          arr[j] = temp;
+          didSwap++;
+        }
+
+        if (didSwap == 0) {
+          break;
+        }
+
+      }
+    }
+
+    System.out.println(Arrays.toString(arr));
+
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 10. title
+## 29. Insertion Sort
 
 ```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 12, 5, 34, 67, 9, 55 };
+    int n = arr.length;
+
+    for (int i = 0; i < n; i++) {
+      int j = i;
+      while (j > 0 && arr[j] < arr[j - 1]) {
+
+        int temp = arr[j - 1];
+        arr[j - 1] = arr[j];
+        arr[j] = temp;
+        j--;
+
+      }
+    }
+
+    System.out.println(Arrays.toString(arr));
+
+  }
+}
 
 ```
 
