@@ -1,55 +1,47 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 1, 4, 3, 5, 7, 2, 9 };
-    int n = arr.length;
-    mergeSort(arr, 0, n - 1);
-    for (int i : arr) {
-      System.out.print(i + " ");
+    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
+    quickSort(arr, 0, arr.length - 1);
+    System.out.println(Arrays.toString(arr));
+
+  }
+
+  static void quickSort(int[] arr, int low, int high) {
+    if (low < high) {
+      int pIndex = partition(arr, low, high);
+      quickSort(arr, low, pIndex - 1);
+      quickSort(arr, pIndex + 1, high);
     }
-
   }
 
-  static void mergeSort(int[] arr, int start, int end) {
-    if (start >= end)
-      return;
-    int mid = start + (end - start) / 2;
-    mergeSort(arr, start, mid);
-    mergeSort(arr, mid + 1, end);
-    merge(arr, start, mid, end);
-  }
+  static int partition(int[] arr, int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
 
-  static void merge(int[] arr, int start, int mid, int end) {
+    while (i < j) {
+      while (arr[i] <= pivot && i <= high - 1) {
+        i++;
+      }
 
-    ArrayList<Integer> temp = new ArrayList<>();
+      while (arr[j] > pivot && j >= low + 1) {
+        j--;
+      }
 
-    int left = start;
-    int right = mid + 1;
-
-    while (left <= mid && right <= end) {
-      if (arr[left] <= arr[right]) {
-        temp.add(arr[left]);
-        left++;
-      } else {
-        temp.add(arr[right]);
-        right++;
+      if (i < j) {
+        int temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
       }
     }
 
-    while (left <= mid) {
-      temp.add(arr[left]);
-      left++;
-    }
+    int temp = arr[low];
+    arr[low] = arr[j];
+    arr[j] = temp;
 
-    while (right <= end) {
-      temp.add(arr[right]);
-      right++;
-    }
-
-    for (int i = start; i < end; i++) {
-      arr[i] = temp.get(i - start);
-    }
-
+    return j;
   }
+
 }
