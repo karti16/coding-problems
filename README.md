@@ -103,7 +103,7 @@ public class Java {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 3. Binary Search in Infinte Array
+## 3. Binary Search in Infinite Array
 
 ```java
  public class Java {
