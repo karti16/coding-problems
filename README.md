@@ -42,6 +42,8 @@
 | 32.   | [Recursive Bubble Sort](#32-recursive-bubble-sort)                                                                    |
 | 33.   | [Recursive Insertion Sort](#33-recursive-insertion-sort)                                                              |
 | 34.   | [Quick Sort](#34-quick-sort)                                                                                          |
+| 35.   | [Find Largest ELement in Array](#35-find-largest-element-in-array)                                                                                          |
+| 36.   | [Second Largest Element in an Array without sorting](#36-second-largest-element-in-an-array-without-sorting)                                                                                          |
 
 ## 1. Binary Search
 
@@ -1395,6 +1397,74 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 35. Find Largest ELement in Array
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 4, 5, 6, 9, 0, 1, 2 };
+    int max = arr[0];
+    for(int i = 0; i < arr.length; i++){
+      if(arr[i] > max){
+        max = arr[i];
+      }
+    }
+
+    System.out.println(max);
+
+  }
+
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 36. Second Largest Element in an Array without sorting
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 4, 5, 6, 9, 0, 7, 1, 2 };
+    int max = arr[0];
+    int max_2 = arr[0];
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] > max) {
+        max_2 = max;
+        max = arr[i];
+      } else if (arr[i] < max && arr[i] != max_2) {
+        max_2 = arr[i];
+      }
+    }
+
+    System.out.println(max + ", " + max_2);
+
+  }
+
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 10. title
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 10. title
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 10. title
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
 ## 10. title
 
 ```java

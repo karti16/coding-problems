@@ -2,46 +2,20 @@ import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
-    quickSort(arr, 0, arr.length - 1);
-    System.out.println(Arrays.toString(arr));
-
-  }
-
-  static void quickSort(int[] arr, int low, int high) {
-    if (low < high) {
-      int pIndex = partition(arr, low, high);
-      quickSort(arr, low, pIndex - 1);
-      quickSort(arr, pIndex + 1, high);
-    }
-  }
-
-  static int partition(int[] arr, int low, int high) {
-    int pivot = arr[low];
-    int i = low;
-    int j = high;
-
-    while (i < j) {
-      while (arr[i] <= pivot && i <= high - 1) {
-        i++;
-      }
-
-      while (arr[j] > pivot && j >= low + 1) {
-        j--;
-      }
-
-      if (i < j) {
-        int temp = arr[j];
-        arr[j] = arr[i];
-        arr[i] = temp;
+    int[] arr = { 4, 5, 6, 9, 0, 7, 1, 2 };
+    int max = arr[0];
+    int max_2 = arr[0];
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] > max) {
+        max_2 = max;
+        max = arr[i];
+      } else if (arr[i] < max && arr[i] != max_2) {
+        max_2 = arr[i];
       }
     }
 
-    int temp = arr[low];
-    arr[low] = arr[j];
-    arr[j] = temp;
+    System.out.println(max + ", " + max_2);
 
-    return j;
   }
 
 }
