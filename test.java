@@ -2,20 +2,23 @@ import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 4, 5, 6, 9, 0, 7, 1, 2 };
-    int max = arr[0];
-    int max_2 = arr[0];
-    for (int i = 0; i < arr.length; i++) {
-      if (arr[i] > max) {
-        max_2 = max;
-        max = arr[i];
-      } else if (arr[i] < max && arr[i] != max_2) {
-        max_2 = arr[i];
-      }
-    }
+    int[] arr = { 1,2,3,4,5,6,7};
+    int k = 3;
+    k = k % arr.length; 
+    reverseArr(arr, 0, arr.length - 1);
+    reverseArr(arr, 0, k - 1);
+    reverseArr(arr, k, arr.length - 1);
 
-    System.out.println(max + ", " + max_2);
-
+    System.out.println(Arrays.toString(arr));
   }
 
+  static void reverseArr(int[] arr, int start, int end ){
+    while(start < end){
+      int temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+      start++;
+      end--;
+    }
+  }
 }

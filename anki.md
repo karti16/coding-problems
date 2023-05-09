@@ -1,109 +1,66 @@
-## 30. Merge Sort
+## 35. Find Largest ELement in Array
 
 ```java
-import java.util.ArrayList;
-
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 1, 4, 3, 5, 7, 2, 9 };
-    int n = arr.length;
-    mergeSort(arr, 0, n - 1);
-    for (int i : arr) {
-      System.out.print(i + " ");
-    }
-
-  }
-
-  static void mergeSort(int[] arr, int start, int end) {
-    if (start >= end)
-      return;
-    int mid = start + (end - start) / 2;
-    mergeSort(arr, start, mid);
-    mergeSort(arr, mid + 1, end);
-    merge(arr, start, mid, end);
-  }
-
-  static void merge(int[] arr, int start, int mid, int end) {
-
-    ArrayList<Integer> temp = new ArrayList<>();
-
-    int left = start;
-    int right = mid + 1;
-
-    while (left <= mid && right <= end) {
-      if (arr[left] <= arr[right]) {
-        temp.add(arr[left]);
-        left++;
-      } else {
-        temp.add(arr[right]);
-        right++;
+    int[] arr = { 4, 5, 6, 9, 0, 1, 2 };
+    int max = arr[0];
+    for(int i = 0; i < arr.length; i++){
+      if(arr[i] > max){
+        max = arr[i];
       }
     }
 
-    while (left <= mid) {
-      temp.add(arr[left]);
-      left++;
-    }
-
-    while (right <= end) {
-      temp.add(arr[right]);
-      right++;
-    }
-
-    for (int i = start; i < end; i++) {
-      arr[i] = temp.get(i - start);
-    }
+    System.out.println(max);
 
   }
+
 }
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+## 36. Second Largest Element in an Array without sorting
 
-## 31. [Subarray with given sum](https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1?page=1&category[]=Arrays&sortBy=submissions)
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 4, 5, 6, 9, 0, 7, 1, 2 };
+    int max = arr[0];
+    int max_2 = arr[0];
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] > max) {
+        max_2 = max;
+        max = arr[i];
+      } else if (arr[i] < max && arr[i] != max_2) {
+        max_2 = arr[i];
+      }
+    }
 
-```Find a continuous sub-array that adds to a given number S
-N = 5, S = 12
-A[] = {1,2,3,7,5}
-Output: 2 4
+    System.out.println(max + ", " + max_2);
+
+  }
+
+}
+
 ```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 37. Check if array is sorted or not
+[Question link](https://practice.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=check-if-an-array-is-sorted)
 
 %
 
 ```java
-import java.util.ArrayList;
-
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 7, 5 };
-    int num = 12;
-    int sum = arr[0];
-    int left = 0;
-    int right = 0;
-    ArrayList<Integer> res = new ArrayList<>();
-    if(num == 0){
-      res.add(-1);
-      return res;
-    }
-    while (right < arr.length) {
-      if (sum == num) {
-        res.add(left);
-        res.add(right);
-        break;
-      }
-      if (sum < num) {
-        if(right < arr.length){
-          sum += arr[++right];
+    int[] arr = { 4, 5, 6, 9, 0, 1, 2 };
+    for (int i = 0; i < arr.length - 1; i++) {
+          if (arr[i] > arr[i + 1]) {
+            System.out.println("Not sorted");
+          }
         }
-        continue;
-      }
-      if (sum > num) {
-        sum -= arr[left++];
-        continue;
-      }
-    }
 
-    System.out.println(res);
+    System.out.println("Sorted");
 
   }
 
@@ -112,119 +69,104 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+## 38. Check if Array Is Sorted and Rotated
 
-## 32. Recursive Bubble Sort
+[Question link](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=t1GLDWqWVQk&t=310s)
+
+%
 
 ```java
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
-    recursiveBubbleSort(arr, arr.length);
-    System.out.println(Arrays.toString(arr));
-
-  }
-
-  static void recursiveBubbleSort(int[] arr, int i) {
-    if (i == 0) {
-      return;
-    }
-    for (int j = 0; j < i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
-        int temp = arr[j + 1];
-        arr[j + 1] = arr[j];
-        arr[j] = temp;
+    int[] arr = { 3, 4, 5, 1, 2 };
+    int count = 0;
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] > arr[(i + 1) % arr.length]) {
+        count++;
       }
     }
-
-    recursiveBubbleSort(arr, --i);
+    if (count <= 1) {
+      System.out.println("Array is sorted and rotated");
+    } else {
+      System.out.println("Array is not sorted / rotated");
+    }
   }
 }
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+## 39. Remove Duplicates from Sorted Array
 
-## 33. Recursive Insertion Sort
+[Question link](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
+
+[Question link](https://practice.geeksforgeeks.org/problems/remove-duplicate-elements-from-sorted-array/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=remove-duplicate-elements-from-sorted-array)
+
+[Video Solution Link](https://youtu.be/37E9ckMDdTk?t=1890)
+
+%
 
 ```java
+// TC -> O(n)
+// SC -> O(1)
 import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
-    recursiveInsertionSort(arr, 0);
-    System.out.println(Arrays.toString(arr));
-
-  }
-
-  static void recursiveInsertionSort(int[] arr, int i) {
-    if (i >= arr.length) {
-      return;
-    }
-    for (int j = i; j > 0; j--) {
-      if (arr[j] < arr[j - 1]) {
-        int temp = arr[j - 1];
-        arr[j - 1] = arr[j];
-        arr[j] = temp;
-      }
-    }
-
-    recursiveInsertionSort(arr, ++i);
-  }
-}
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 34. Quick Sort
-
-```java
-import java.util.Arrays;
-
-public class test {
-  public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
-    quickSort(arr, 0, arr.length - 1);
-    System.out.println(Arrays.toString(arr));
-
-  }
-
-  static void quickSort(int[] arr, int low, int high) {
-    if (low < high) {
-      int pIndex = partition(arr, low, high);
-      quickSort(arr, low, pIndex - 1);
-      quickSort(arr, pIndex + 1, high);
-    }
-  }
-
-  static int partition(int[] arr, int low, int high) {
-    int pivot = arr[low];
-    int i = low;
-    int j = high;
-
-    while (i < j) {
-      while (arr[i] <= pivot && i <= high - 1) {
+    int[] arr = { 1,1,2,2,3,4,4 };
+    int i = 0;
+    int j = 1;
+    while(j < arr.length){
+      if(arr[i] != arr[j]){
+        arr[i+1] = arr[j];
         i++;
       }
-
-      while (arr[j] > pivot && j >= low + 1) {
-        j--;
-      }
-
-      if (i < j) {
-        int temp = arr[j];
-        arr[j] = arr[i];
-        arr[i] = temp;
-      }
+      j++;
     }
 
-    int temp = arr[low];
-    arr[low] = arr[j];
-    arr[j] = temp;
+    System.out.println(Arrays.toString(arr));
+  }
+}
+```
 
-    return j;
+**[⬆ Back to Top](#list-of-problems)**
+## 10. Rotate Array by k positions
+
+[Question link](https://leetcode.com/problems/rotate-array/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=BHr381Guz3Y)
+
+%
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1,2,3,4,5,6,7};
+    int k = 3;
+    k = k % arr.length;
+
+    reverseArr(arr, 0, arr.length - 1);
+    reverseArr(arr, 0, k - 1);
+    reverseArr(arr, k, arr.length - 1);
+
+    System.out.println(Arrays.toString(arr));
   }
 
+  static void reverseArr(int[] arr, int start, int end ){
+    while(start < end){
+      int temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+      start++;
+      end--;
+    }
+  }
 }
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
