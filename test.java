@@ -1,24 +1,22 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1,2,3,4,5,6,7};
-    int k = 3;
-    k = k % arr.length; 
-    reverseArr(arr, 0, arr.length - 1);
-    reverseArr(arr, 0, k - 1);
-    reverseArr(arr, k, arr.length - 1);
+    int[] arr = { 1, 4, 3 };
+    int n = 4;
+    int xor1 = 0;
+    int xor2 = 0;
 
-    System.out.println(Arrays.toString(arr));
-  }
-
-  static void reverseArr(int[] arr, int start, int end ){
-    while(start < end){
-      int temp = arr[start];
-      arr[start] = arr[end];
-      arr[end] = temp;
-      start++;
-      end--;
+    for (int i = 1; i <= n; i++) {
+      xor1 ^= i;
     }
+
+    for (int i = 0; i < arr.length; i++) {
+      xor2 ^= arr[i];
+    }
+
+    System.out.println(xor1 ^ xor2);
+
   }
 }
