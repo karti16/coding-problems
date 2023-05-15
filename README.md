@@ -53,6 +53,7 @@
 | 43.   | [Union of Two Sorted Arrays](#43-union-of-two-sorted-arrays)                                                                                          |
 | 44.   | [Find common numbers in two sorted arrays](#44-find-common-numbers-in-two-sorted-arrays)                                                                                          |
 | 45.   | [Find Missing Number in array](#45-find-missing-number-in-array)                                                                                          |
+| 46.   | [Find Max Consecutive '1's](#46-find-max-consecutive-1s)                                                                                          |
 
 ## 1. Binary Search
 
@@ -1812,6 +1813,57 @@ public class test {
 
   }
 }
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 46. Find Max Consecutive '1's
+
+[Question link](https://leetcode.com/problems/max-consecutive-ones/description/)
+
+[Video Solution Link](https://youtu.be/bYWLJb3vCWY?t=1132)
+
+%
+
+```java
+
+// TC -> O(n)
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1 };
+    int n = arr.length;
+
+    int max = 0;
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+      if (arr[i] == 1) {
+        count++;
+        max = Math.max(count, max);
+      }
+      if (arr[i] != 1) {
+        count = 0;
+      }
+    }
+
+    System.out.println(max);
+
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 10. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+%
+
+```java
+
 
 ```
 

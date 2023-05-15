@@ -3,20 +3,28 @@ import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 4, 3 };
-    int n = 4;
-    int xor1 = 0;
-    int xor2 = 0;
-
-    for (int i = 1; i <= n; i++) {
-      xor1 ^= i;
-    }
+    int[] arr = { 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1 };
+    int max_flips = 1;
+    int ans = 0;
+    int flips = 0;
+    int j = 0;
 
     for (int i = 0; i < arr.length; i++) {
-      xor2 ^= arr[i];
+      if (arr[i] == 0) {
+        flips++;
+      }
+
+      if (flips > max_flips) {
+        if (arr[j] == 0) {
+          flips--;
+          j++;
+        }
+      }
+
+      ans = Math.max(ans, i - j + 1);
     }
 
-    System.out.println(xor1 ^ xor2);
+    System.out.println(ans);
 
   }
 }
