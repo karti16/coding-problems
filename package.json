@@ -1,0 +1,16 @@
+{
+  "name": "coding-problems",
+  "version": "1.0.0",
+  "description": "1. [Pattern Problems](./pattern.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "anki": "mdanki anki.md anki.apkg"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mdanki": "^1.1.2"
+  }
+}

@@ -54,6 +54,10 @@
 | 44.   | [Find common numbers in two sorted arrays](#44-find-common-numbers-in-two-sorted-arrays)                                                                                          |
 | 45.   | [Find Missing Number in array](#45-find-missing-number-in-array)                                                                                          |
 | 46.   | [Find Max Consecutive '1's](#46-find-max-consecutive-1s)                                                                                          |
+| 47.   | [Maximize Number of 1's](#47-maximize-number-of-1s)                                                                                          |
+| 48.   | [Find the element that appears once](#48-find-the-element-that-appears-once)                                                                                          |
+| 49.   | [Longest Sub-Array with Sum K](#49-longest-sub-array-with-sum-k)                                                                                          |
+| 50.   | [Longest Sub-Array with Sum K (0, +ve numbers)](#50-longest-sub-array-with-sum-k-0-ve-numbers)                                                                                          |
 
 ## 1. Binary Search
 
@@ -1261,7 +1265,7 @@ public class test {
     ArrayList<Integer> res = new ArrayList<>();
     if(num == 0){
       res.add(-1);
-      return res;
+      System.out.println(res);
     }
     while (right < arr.length) {
       if (sum == num) {
@@ -1854,16 +1858,149 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
-## 10. title
+## 47. Maximize Number of 1's
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/maximize-number-of-1s0905/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=maximize-number-of-1s)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=hzueK-imcXg&t=920s&pp=ygUWbWF4aW1pemUgbnVtYmVyIG9mIDEncw%3D%3D)
 
 %
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1 };
+    int max_flips = 2;
+    int ans = 0;
+    int flips = 0;
+    int j = 0;
 
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] == 0) {
+        flips++;
+      }
+
+      while (flips > max_flips) {
+        if (arr[j] == 0) {
+          flips--;
+        }
+        j++;
+      }
+
+      ans = Math.max(ans, i - j + 1);
+    }
+
+    System.out.println(ans);
+
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 48. Find the element that appears once
+
+[Question link](https://practice.geeksforgeeks.org/problems/element-appearing-once2552/0?company[]=Qualcomm&company[]=Qualcomm&difficulty[]=1&page=1&query=company[]Qualcommdifficulty[]1page1company[]Qualcomm&utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=element-appearing-once)
+
+[Video Solution Link](https://youtu.be/bYWLJb3vCWY?t=1377)
+
+%
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 1, 2, 5, 5 };
+    int xor = 0;
+    for (int i : arr)
+      xor ^= i;
+
+    System.out.println(xor);
+
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 49. Longest Sub-Array with Sum K (-ve, 0, +ve numbers)
+
+[Question link](https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-sub-array-with-sum-k)
+
+[Video Solution Link](https://www.youtube.com/watch?v=frf7qxiN2qU)
+
+%
+
+```java
+import java.util.HashMap;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 1, 1, 1, -1, 1, 1 };
+    int k = 3;
+    int sum = 0;
+    int maxLen = 0;
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < arr.length; i++) {
+      sum += arr[i];
+      if (sum == k) {
+        maxLen = Math.max(maxLen, i + 1);
+      }
+
+      if (!map.containsKey(sum)) {
+        map.put(sum, i);
+      }
+
+      int rem = sum - k;
+
+      if (map.containsKey(rem)) {
+        if (maxLen < (i - map.get(rem))) {
+          maxLen = i - map.get(rem);
+        }
+      }
+    }
+    
+    System.out.println(maxLen);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+## 50. Longest Sub-Array with Sum K (0, +ve numbers)
+
+[Question link]()
+
+[Video Solution Link](https://youtu.be/frf7qxiN2qU?t=1740)
+
+%
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 1, 1, 1, 0, 1, 1 };
+    int k = 3;
+    int sum = arr[0];
+    int maxLen = 0;
+    int left = 0, right = 0;
+
+    while (right < arr.length) {
+      while (left <= right && sum > k) {
+        sum -= arr[left++];
+      }
+
+      if (sum == k) {
+        maxLen = Math.max(maxLen, right - left + 1);
+      }
+      
+      right++;
+      if (right < arr.length) {
+        sum += arr[right];
+      }
+
+    }
+
+    System.out.println(maxLen);
+  }
+}
 
 ```
 
