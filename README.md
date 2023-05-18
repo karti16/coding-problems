@@ -42,22 +42,26 @@
 | 32.   | [Recursive Bubble Sort](#32-recursive-bubble-sort)                                                                    |
 | 33.   | [Recursive Insertion Sort](#33-recursive-insertion-sort)                                                              |
 | 34.   | [Quick Sort](#34-quick-sort)                                                                                          |
-| 35.   | [Find Largest ELement in Array](#35-find-largest-element-in-array)                                                                                          |
-| 36.   | [Second Largest Element in an Array without sorting](#36-second-largest-element-in-an-array-without-sorting)                                                                                          |
-| 37.   | [Check if array is sorted or not](#37-check-if-array-is-sorted-or-not)                                                                                          |
-| 38.   | [Check if Array Is Sorted and Rotated](#38-check-if-array-is-sorted-and-rotated)                                                                                          |
-| 39.   | [Remove Duplicates from Sorted Array](#39-remove-duplicates-from-sorted-array)                                                                                          |
-| 40.   | [Rotate Array by k positions](#40-rotate-array-by-k-positions)                                                                                          |
-| 41.   | [Quick Left Rotation](#41-quick-left-rotation)                                                                                          |
-| 42.   | [Move all zeroes to end of array](#42-move-all-zeroes-to-end-of-array)                                                                                          |
-| 43.   | [Union of Two Sorted Arrays](#43-union-of-two-sorted-arrays)                                                                                          |
-| 44.   | [Find common numbers in two sorted arrays](#44-find-common-numbers-in-two-sorted-arrays)                                                                                          |
-| 45.   | [Find Missing Number in array](#45-find-missing-number-in-array)                                                                                          |
-| 46.   | [Find Max Consecutive '1's](#46-find-max-consecutive-1s)                                                                                          |
-| 47.   | [Maximize Number of 1's](#47-maximize-number-of-1s)                                                                                          |
-| 48.   | [Find the element that appears once](#48-find-the-element-that-appears-once)                                                                                          |
-| 49.   | [Longest Sub-Array with Sum K](#49-longest-sub-array-with-sum-k)                                                                                          |
-| 50.   | [Longest Sub-Array with Sum K (0, +ve numbers)](#50-longest-sub-array-with-sum-k-0-ve-numbers)                                                                                          |
+| 35.   | [Find Largest ELement in Array](#35-find-largest-element-in-array)                                                    |
+| 36.   | [Second Largest Element in an Array without sorting](#36-second-largest-element-in-an-array-without-sorting)          |
+| 37.   | [Check if array is sorted or not](#37-check-if-array-is-sorted-or-not)                                                |
+| 38.   | [Check if Array Is Sorted and Rotated](#38-check-if-array-is-sorted-and-rotated)                                      |
+| 39.   | [Remove Duplicates from Sorted Array](#39-remove-duplicates-from-sorted-array)                                        |
+| 40.   | [Rotate Array by k positions](#40-rotate-array-by-k-positions)                                                        |
+| 41.   | [Quick Left Rotation](#41-quick-left-rotation)                                                                        |
+| 42.   | [Move all zeroes to end of array](#42-move-all-zeroes-to-end-of-array)                                                |
+| 43.   | [Union of Two Sorted Arrays](#43-union-of-two-sorted-arrays)                                                          |
+| 44.   | [Find common numbers in two sorted arrays](#44-find-common-numbers-in-two-sorted-arrays)                              |
+| 45.   | [Find Missing Number in array](#45-find-missing-number-in-array)                                                      |
+| 46.   | [Find Max Consecutive '1's](#46-find-max-consecutive-1s)                                                              |
+| 47.   | [Maximize Number of 1's](#47-maximize-number-of-1s)                                                                   |
+| 48.   | [Find the element that appears once](#48-find-the-element-that-appears-once)                                          |
+| 49.   | [Longest Sub-Array with Sum K](#49-longest-sub-array-with-sum-k)                                                      |
+| 50.   | [Longest Sub-Array with Sum K (0, +ve numbers)](#50-longest-sub-array-with-sum-k-0-ve-numbers)                        |
+| 51.   | [Find all pairs with a given sum](#51-find-all-pairs-with-a-given-sum)                                                |
+| 52.   | [Two Sum](#52-two-sum)                                                                                                |
+| 53.   | [Sort Colors / Sort an array of 0s, 1s and 2s](#53-sort-colors--sort-an-array-of-0s-1s-and-2s)                        |
+| 54.   | [Majority Element](#54-majority-element)                                                                              |
 
 ## 1. Binary Search
 
@@ -1432,6 +1436,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 36. Second Largest Element in an Array without sorting
 
 ```java
@@ -1458,7 +1463,9 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 37. Check if array is sorted or not
+
 [Question link](https://practice.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=check-if-an-array-is-sorted)
 
 %
@@ -1482,6 +1489,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 38. Check if Array Is Sorted and Rotated
 
 [Question link](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/description/)
@@ -1511,6 +1519,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 39. Remove Duplicates from Sorted Array
 
 [Question link](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
@@ -1545,6 +1554,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 40. Rotate Array by k positions
 
 [Question link](https://leetcode.com/problems/rotate-array/)
@@ -1583,6 +1593,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 41. Quick Left Rotation
 
 [Question link](https://practice.geeksforgeeks.org/problems/quick-left-rotation3806/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=quick-left-rotation)
@@ -1600,7 +1611,7 @@ public class test {
   public static void main(String[] args) {
     int[] arr = { 1,2,3,4,5,6,7};
     int k = 3;
-    k = arr.length - (k % arr.length); 
+    k = arr.length - (k % arr.length);
 
     reverseArr(arr, 0, arr.length - 1);
     reverseArr(arr, 0, k - 1);
@@ -1622,6 +1633,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 42. Move all zeroes to end of array
 
 [Question link](https://practice.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=move-all-zeroes-to-end-of-array)
@@ -1629,8 +1641,6 @@ public class test {
 [Question link](https://leetcode.com/problems/move-zeroes/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=aayNRwUN3Do)
-
-
 
 %
 
@@ -1640,9 +1650,9 @@ import java.util.Arrays;
 public class test {
   public static void main(String[] args) {
     int[] arr = {1, 0, 9, 3, 5, 0, 0, 4};
-    
+
     int left = 0;
- 
+
 
     for ( int right = 0; right < arr.length; right++){
       if(arr[right] != 0){
@@ -1660,6 +1670,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 43. Union of Two Sorted Arrays
 
 [Question link](https://practice.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=union-of-two-sorted-arrays)
@@ -1722,6 +1733,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 44. Find common numbers in two sorted arrays
 
 [Question link]()
@@ -1753,7 +1765,7 @@ public class test {
       } else if (arr2[j] < arr1[i]) {
         j++;
       } else {
-        
+
         result.add(arr1[i]);
         i++;
         j++;
@@ -1767,6 +1779,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 45. Find Missing Number in array
 
 [Question link](https://practice.geeksforgeeks.org/problems/missing-number4257/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=missing-number)
@@ -1821,6 +1834,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 46. Find Max Consecutive '1's
 
 [Question link](https://leetcode.com/problems/max-consecutive-ones/description/)
@@ -1858,6 +1872,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 47. Maximize Number of 1's
 
 [Question link](https://practice.geeksforgeeks.org/problems/maximize-number-of-1s0905/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=maximize-number-of-1s)
@@ -1898,6 +1913,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 48. Find the element that appears once
 
 [Question link](https://practice.geeksforgeeks.org/problems/element-appearing-once2552/0?company[]=Qualcomm&company[]=Qualcomm&difficulty[]=1&page=1&query=company[]Qualcommdifficulty[]1page1company[]Qualcomm&utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=element-appearing-once)
@@ -1921,6 +1937,7 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 49. Longest Sub-Array with Sum K (-ve, 0, +ve numbers)
 
 [Question link](https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-sub-array-with-sum-k)
@@ -1958,13 +1975,14 @@ public class test {
         }
       }
     }
-    
+
     System.out.println(maxLen);
   }
 }
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
 ## 50. Longest Sub-Array with Sum K (0, +ve numbers)
 
 [Question link]()
@@ -1990,7 +2008,7 @@ public class test {
       if (sum == k) {
         maxLen = Math.max(maxLen, right - left + 1);
       }
-      
+
       right++;
       if (right < arr.length) {
         sum += arr[right];
@@ -2005,7 +2023,249 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
-## 10. title
+
+## 51. Find all pairs with a given sum
+
+[Question link](https://practice.geeksforgeeks.org/problems/find-all-pairs-whose-sum-is-x5808/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=find-all-pairs-whose-sum-is-x)
+
+[Video Solution Link](https://www.youtube.com/watch?v=QsadUO5JYGY)
+
+%
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+class pair {
+  int first, second;
+
+  public pair(int first, int second) {
+    this.first = first;
+    this.second = second;
+  }
+}
+
+public class test {
+  public static void main(String[] args) {
+    int[] A = { 1, 2, 4, 5, 7 };
+    int[] B = { 5, 6, 3, 4, 8 };
+
+    int target = 9;
+    ArrayList<pair> res = new ArrayList<>();
+    Set<Integer> set = new HashSet<Integer>();
+
+    for (int a : A) {
+      set.add(a);
+    }
+
+    Arrays.sort(A);
+
+    for (int b : B) {
+      if (set.contains(target - b)) {
+        pair p = new pair(target - b, b);
+        res.add(p);
+      }
+    }
+
+    for (pair a : res) {
+      System.out.println("[ " + a.first + ", " + a.second + " ]");
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 52. Two Sum
+
+[Question link](https://leetcode.com/problems/two-sum/)
+
+[Video Solution Link]()
+
+%
+
+```java
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 2, 4, 5, 7 };
+    int target = 12;
+    int[] ans = { -1, -1 };
+    HashMap<Integer, Integer> list = new HashMap<>();
+    for (int i = 0; i < nums.length; i++) {
+      int bal = target - nums[i];
+      if (list.containsKey(bal)) {
+        ans[0] = list.get(bal);
+        ans[1] = i;
+      } else {
+        list.put(nums[i], i);
+      }
+    }
+    System.out.println(Arrays.toString(ans));
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 53. Sort Colors / Sort an array of 0s, 1s and 2s
+
+[Question link](https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=sort-an-array-of-0s-1s-and-2s)
+
+[Question link](https://leetcode.com/problems/sort-colors/description/)
+
+[Video Solution Link](https://youtu.be/tp8JIuCXBaU)
+
+%
+
+```java
+// TC -> O(N)
+// SC -> O(1)
+
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 0, 0, 1, 0, 2, 2, 1, 1, 0 };
+    int low = 0, mid = 0, high = arr.length - 1;
+    while (mid <= high) {
+      if (arr[mid] == 0) {
+        swap(arr, low, mid);
+        low++;
+        mid++;
+
+      } else if (arr[mid] == 1) {
+        mid++;
+      } else {
+        swap(arr, mid, high);
+        high--;
+      }
+    }
+
+    System.out.println(Arrays.toString(arr));
+  }
+
+  static void swap(int[] arr, int num1, int num2) {
+    int temp = arr[num1];
+    arr[num1] = arr[num2];
+    arr[num2] = temp;
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 54. Majority Element
+
+[Question link](https://practice.geeksforgeeks.org/problems/majority-element-1587115620/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=majority-element)
+
+[Question link](https://leetcode.com/problems/majority-element/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=nP_ns3uSh80&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=22)
+
+%
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 3, 2, 3 };
+
+    int count = 0;
+    int ele = arr[0];
+
+    for (int i = 0; i < arr.length; i++) {
+      if (count == 0) {
+        count = 1;
+        ele = arr[i];
+      } else if (arr[i] == ele) {
+        count++;
+      } else {
+        count--;
+      }
+    }
+
+    int count_1 = 0;
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] == ele)
+        count_1++;
+    }
+
+    System.out.println(count_1 > arr.length / 2 ? ele : -1);
+
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+%
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+%
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+%
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+%
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
 
 [Question link]()
 

@@ -1,30 +1,28 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 1, 2, 3, 1, 1, 1, 0, 1, 1 };
-    int k = 3;
-    int sum = arr[0];
-    int maxLen = 0;
-    int left = 0, right = 0;
+    int[] arr = { 3, 2, 3 };
 
-    while (right < arr.length) {
-      while (left <= right && sum > k) {
-        sum -= arr[left++];
-      }
+    int count = 0;
+    int ele = arr[0];
 
-      if (sum == k) {
-        maxLen = Math.max(maxLen, right - left + 1);
+    for (int i = 0; i < arr.length; i++) {
+      if (count == 0) {
+        count = 1;
+        ele = arr[i];
+      } else if (arr[i] == ele) {
+        count++;
+      } else {
+        count--;
       }
-      
-      right++;
-      if (right < arr.length) {
-        sum += arr[right];
-      }
-
     }
 
-    System.out.println(maxLen);
+    int count_1 = 0;
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] == ele)
+        count_1++;
+    }
+
+    System.out.println(count_1 > arr.length / 2 ? ele : -1);
+
   }
 }
