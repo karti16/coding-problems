@@ -1,6 +1,6 @@
 # Coding-challenge
 
-## Problems and solution from leetcode and other similar sites.
+## Problems and solution fromeetcode and other similar sites.
 
 1. [Pattern Problems](./pattern.md)
 
@@ -62,6 +62,7 @@
 | 52.   | [Two Sum](#52-two-sum)                                                                                                |
 | 53.   | [Sort Colors / Sort an array of 0s, 1s and 2s](#53-sort-colors--sort-an-array-of-0s-1s-and-2s)                        |
 | 54.   | [Majority Element](#54-majority-element)                                                                              |
+| 55.   | [Maximum Subarray](#55-maximum-subarray)                                                                              |
 
 ## 1. Binary Search
 
@@ -2205,16 +2206,35 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 55. Maximum Subarray
 
-[Question link]()
+[Question link](https://leetcode.com/problems/maximum-subarray/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=5WZl3MMT0Eg)
 
 %
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, -2, 5 };
 
+    int max = Integer.MIN_VALUE;
+    int sum = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+
+      if (sum < 0) {
+        sum = 0;
+      }
+      sum += arr[i];
+      max = Math.max(max, sum);
+    }
+
+    System.out.println(sum);
+
+  }
+}
 
 ```
 
