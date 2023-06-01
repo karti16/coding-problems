@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "anki": "mdanki anki.md anki.apkg"
+    "anki": "mdanki anki.md anki.apkg",
+    "codesnap": "carbon-now test.java --to-clipboard",
+    "install-carbon": "npm i -g carbon-now-cli"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "mdanki": "^1.1.2"
+  },
+  "dependencies": {
+    "carbon-now-cli": "^2.0.0"
   }
 }

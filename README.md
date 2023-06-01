@@ -6,63 +6,66 @@
 
 ## List of Problems
 
-| S. no | Problem                                                                                                               |
-| ----- | --------------------------------------------------------------------------------------------------------------------- |
-| 1.    | [Binary Search](#1-binary-search)                                                                                     |
-| 2.    | [Array Linear Search](#2-array-linear-search)                                                                         |
-| 3.    | [Binary Search in Infinite Array](#3-binary-search-in-infinte-array)                                                  |
-| 4.    | [Ceil and floor of a number from array](#4-ceil-and-floor-of-a-number-from-array)                                     |
-| 5.    | [Count Numbers with Even Number of Digits](#5-count-numbers-with-even-number-of-digits)                               |
-| 6.    | [Find First and Last Position of Element in Sorted Array](#6-find-first-and-last-position-of-element-in-sorted-array) |
-| 7.    | [Find in 2d sorted Array](#7-find-in-2d-sorted-array)                                                                 |
-| 8.    | [Print words in X shape](#8-print-words-in-x-shape)                                                                   |
-| 9.    | [Find some of weights of number](#10-find-some-of-weights-of-numbers)                                                 |
-| 10.   | [Search substring in 2d array](#10-search-substring-in-2d-array)                                                      |
-| 11.   | [Evaluate 9×9 sudoko](#11-evaluate-9×9-sudoko)                                                                        |
-| 12.   | [Alternate sorting](#12-alternate-sorting)                                                                            |
-| 13.   | [Reverse The number 123 to 321](#13-reverse-the-number-123-to-321)                                                    |
-| 14.   | [Check palindrome](#14-check-palindrome)                                                                              |
-| 15.   | [Check if number is Armstrong number](#15-check-if-number-is-armstrong-number)                                        |
-| 16.   | [Print all Divisor of a number](#16-print-all-divisor-of-a-number)                                                    |
-| 17.   | [Check number is Prime or not](#17-check-number-is-prime-or-not)                                                      |
-| 18.   | [Find GCD / HCF of two numbers](#18-find-gcd--hcf-of-two-numbers)                                                     |
-| 19.   | [Print number 1 to N using recursion](#19-print-number-1-to-n-using-recursion)                                        |
-| 20.   | [Find all factorial numbers less than or equal to N](#20-find-all-factorial-numbers-less-than-or-equal-to-n)          |
-| 21.   | [Reverse an array](#21-reverse-an-array)                                                                              |
-| 22.   | [Reverse an array using Recursion](#22-reverse-an-array-using-recursion)                                              |
-| 23.   | [Check palindrome with recursion](#23-check-palindrome-with-recursion)                                                |
-| 24.   | [Return array of fibonacci number till N](#24-return-array-of-fibonacci-number-till-n)                                |
-| 25.   | [Reverse array in groups](#25-reverse-array-in-groups)                                                                |
-| 26.   | [Top K Frequent Elements in Array](#26-top-k-frequent-elements-in-array)                                              |
-| 27.   | [Selection Sort](#27-selection-sort)                                                                                  |
-| 28.   | [Bubble sort](#28-bubble-sort)                                                                                        |
-| 29.   | [Insertion Sort](#29-insertion-sort)                                                                                  |
-| 30.   | [Merge Sort](#30-merge-sort)                                                                                          |
-| 31.   | [Subarray with given sum](#31-subarray-with-given-sum)                                                                |
-| 32.   | [Recursive Bubble Sort](#32-recursive-bubble-sort)                                                                    |
-| 33.   | [Recursive Insertion Sort](#33-recursive-insertion-sort)                                                              |
-| 34.   | [Quick Sort](#34-quick-sort)                                                                                          |
-| 35.   | [Find Largest ELement in Array](#35-find-largest-element-in-array)                                                    |
-| 36.   | [Second Largest Element in an Array without sorting](#36-second-largest-element-in-an-array-without-sorting)          |
-| 37.   | [Check if array is sorted or not](#37-check-if-array-is-sorted-or-not)                                                |
-| 38.   | [Check if Array Is Sorted and Rotated](#38-check-if-array-is-sorted-and-rotated)                                      |
-| 39.   | [Remove Duplicates from Sorted Array](#39-remove-duplicates-from-sorted-array)                                        |
-| 40.   | [Rotate Array by k positions](#40-rotate-array-by-k-positions)                                                        |
-| 41.   | [Quick Left Rotation](#41-quick-left-rotation)                                                                        |
-| 42.   | [Move all zeroes to end of array](#42-move-all-zeroes-to-end-of-array)                                                |
-| 43.   | [Union of Two Sorted Arrays](#43-union-of-two-sorted-arrays)                                                          |
-| 44.   | [Find common numbers in two sorted arrays](#44-find-common-numbers-in-two-sorted-arrays)                              |
-| 45.   | [Find Missing Number in array](#45-find-missing-number-in-array)                                                      |
-| 46.   | [Find Max Consecutive '1's](#46-find-max-consecutive-1s)                                                              |
-| 47.   | [Maximize Number of 1's](#47-maximize-number-of-1s)                                                                   |
-| 48.   | [Find the element that appears once](#48-find-the-element-that-appears-once)                                          |
-| 49.   | [Longest Sub-Array with Sum K](#49-longest-sub-array-with-sum-k)                                                      |
-| 50.   | [Longest Sub-Array with Sum K (0, +ve numbers)](#50-longest-sub-array-with-sum-k-0-ve-numbers)                        |
-| 51.   | [Find all pairs with a given sum](#51-find-all-pairs-with-a-given-sum)                                                |
-| 52.   | [Two Sum](#52-two-sum)                                                                                                |
-| 53.   | [Sort Colors / Sort an array of 0s, 1s and 2s](#53-sort-colors--sort-an-array-of-0s-1s-and-2s)                        |
-| 54.   | [Majority Element](#54-majority-element)                                                                              |
-| 55.   | [Maximum Subarray](#55-maximum-subarray)                                                                              |
+| S. no | Problem                                                                                                                                                                                  |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.    | [Binary Search](#1-binary-search)                                                                                                                                                        |
+| 2.    | [Array Linear Search](#2-array-linear-search)                                                                                                                                            |
+| 3.    | [Binary Search in Infinite Array](#3-binary-search-in-infinte-array)                                                                                                                     |
+| 4.    | [Ceil and floor of a number from array](#4-ceil-and-floor-of-a-number-from-array)                                                                                                        |
+| 5.    | [Count Numbers with Even Number of Digits](#5-count-numbers-with-even-number-of-digits)                                                                                                  |
+| 6.    | [Find First and Last Position of Element in Sorted Array](#6-find-first-and-last-position-of-element-in-sorted-array)                                                                    |
+| 7.    | [Find in 2d sorted Array](#7-find-in-2d-sorted-array)                                                                                                                                    |
+| 8.    | [Print words in X shape](#8-print-words-in-x-shape)                                                                                                                                      |
+| 9.    | [Find some of weights of number](#10-find-some-of-weights-of-numbers)                                                                                                                    |
+| 10.   | [Search substring in 2d array](#10-search-substring-in-2d-array)                                                                                                                         |
+| 11.   | [Evaluate 9×9 sudoko](#11-evaluate-9×9-sudoko)                                                                                                                                           |
+| 12.   | [Alternate sorting](#12-alternate-sorting)                                                                                                                                               |
+| 13.   | [Reverse The number 123 to 321](#13-reverse-the-number-123-to-321)                                                                                                                       |
+| 14.   | [Check palindrome](#14-check-palindrome)                                                                                                                                                 |
+| 15.   | [Check if number is Armstrong number](#15-check-if-number-is-armstrong-number)                                                                                                           |
+| 16.   | [Print all Divisor of a number](#16-print-all-divisor-of-a-number)                                                                                                                       |
+| 17.   | [Check number is Prime or not](#17-check-number-is-prime-or-not)                                                                                                                         |
+| 18.   | [Find GCD / HCF of two numbers](#18-find-gcd--hcf-of-two-numbers)                                                                                                                        |
+| 19.   | [Print number 1 to N using recursion](#19-print-number-1-to-n-using-recursion)                                                                                                           |
+| 20.   | [Find all factorial numbers less than or equal to N](#20-find-all-factorial-numbers-less-than-or-equal-to-n)                                                                             |
+| 21.   | [Reverse an array](#21-reverse-an-array)                                                                                                                                                 |
+| 22.   | [Reverse an array using Recursion](#22-reverse-an-array-using-recursion)                                                                                                                 |
+| 23.   | [Check palindrome with recursion](#23-check-palindrome-with-recursion)                                                                                                                   |
+| 24.   | [Return array of fibonacci number till N](#24-return-array-of-fibonacci-number-till-n)                                                                                                   |
+| 25.   | [Reverse array in groups](#25-reverse-array-in-groups)                                                                                                                                   |
+| 26.   | [Top K Frequent Elements in Array](#26-top-k-frequent-elements-in-array)                                                                                                                 |
+| 27.   | [Selection Sort](#27-selection-sort)                                                                                                                                                     |
+| 28.   | [Bubble sort](#28-bubble-sort)                                                                                                                                                           |
+| 29.   | [Insertion Sort](#29-insertion-sort)                                                                                                                                                     |
+| 30.   | [Merge Sort](#30-merge-sort)                                                                                                                                                             |
+| 31.   | [Subarray with given sum](#31-subarray-with-given-sum)                                                                                                                                   |
+| 32.   | [Recursive Bubble Sort](#32-recursive-bubble-sort)                                                                                                                                       |
+| 33.   | [Recursive Insertion Sort](#33-recursive-insertion-sort)                                                                                                                                 |
+| 34.   | [Quick Sort](#34-quick-sort)                                                                                                                                                             |
+| 35.   | [Find Largest ELement in Array](#35-find-largest-element-in-array)                                                                                                                       |
+| 36.   | [Second Largest Element in an Array without sorting](#36-second-largest-element-in-an-array-without-sorting)                                                                             |
+| 37.   | [Check if array is sorted or not](#37-check-if-array-is-sorted-or-not)                                                                                                                   |
+| 38.   | [Check if Array Is Sorted and Rotated](#38-check-if-array-is-sorted-and-rotated)                                                                                                         |
+| 39.   | [Remove Duplicates from Sorted Array](#39-remove-duplicates-from-sorted-array)                                                                                                           |
+| 40.   | [Rotate Array by k positions](#40-rotate-array-by-k-positions)                                                                                                                           |
+| 41.   | [Quick Left Rotation](#41-quick-left-rotation)                                                                                                                                           |
+| 42.   | [Move all zeroes to end of array](#42-move-all-zeroes-to-end-of-array)                                                                                                                   |
+| 43.   | [Union of Two Sorted Arrays](#43-union-of-two-sorted-arrays)                                                                                                                             |
+| 44.   | [Find common numbers in two sorted arrays](#44-find-common-numbers-in-two-sorted-arrays)                                                                                                 |
+| 45.   | [Find Missing Number in array](#45-find-missing-number-in-array)                                                                                                                         |
+| 46.   | [Find Max Consecutive '1's](#46-find-max-consecutive-1s)                                                                                                                                 |
+| 47.   | [Maximize Number of 1's](#47-maximize-number-of-1s)                                                                                                                                      |
+| 48.   | [Find the element that appears once](#48-find-the-element-that-appears-once)                                                                                                             |
+| 49.   | [Longest Sub-Array with Sum K](#49-longest-sub-array-with-sum-k)                                                                                                                         |
+| 50.   | [Longest Sub-Array with Sum K (0, +ve numbers)](#50-longest-sub-array-with-sum-k-0-ve-numbers)                                                                                           |
+| 51.   | [Find all pairs with a given sum](#51-find-all-pairs-with-a-given-sum)                                                                                                                   |
+| 52.   | [Two Sum](#52-two-sum)                                                                                                                                                                   |
+| 53.   | [Sort Colors / Sort an array of 0s, 1s and 2s](#53-sort-colors--sort-an-array-of-0s-1s-and-2s)                                                                                           |
+| 54.   | [Majority Element](#54-majority-element)                                                                                                                                                 |
+| 55.   | [Maximum Subarray](#55-maximum-subarray)                                                                                                                                                 |
+| 56.   | [Best Time to Buy and Sell Stock](#56-best-time-to-buy-and-sell-stock)                                                                                                                   |
+| 57.   | [Rearrange Array Elements by Sign with same number of positive and negative elements](#57-rearrange-array-elements-by-sign-with-same-number-of-positive-and-negative-elements)           |
+| 58.   | [Rearrange Array Elements by Sign with different number of positive and negative elements](#58-rearrange-array-elements-by-sign-with-different-number-of-positive-and-negative-elements) |
 
 ## 1. Binary Search
 
@@ -2240,46 +2243,120 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 56. Best Time to Buy and Sell Stock
 
-[Question link]()
+[Question link](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=eMSfBgbiEjk)
 
 %
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] prices = { 7, 1, 5, 3, 6, 4 };
+    int minPrice = Integer.MAX_VALUE;
+    int maxPro = 0;
 
+    for (int i = 0; i < prices.length; i++) {
+      minPrice = Math.min(minPrice, prices[i]);
+      maxPro = Math.max(maxPro, prices[i] - minPrice);
+    }
+
+    System.out.println(maxPro);
+  }
+
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 57. Rearrange Array Elements by Sign with same number of positive and negative elements
 
-[Question link]()
+[Question link](https://leetcode.com/problems/rearrange-array-elements-by-sign/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=h4aBagy4Uok)
 
 %
 
 ```java
+import java.util.Arrays;
 
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 3, 1, -2, -5, 2, -4 };
+    int[] res = new int[arr.length];
+    int max = 0;
+    int min = 1;
 
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] > 0) {
+        res[max] = arr[i];
+        max += 2;
+      } else {
+        res[min] = arr[i];
+        min += 2;
+      }
+
+    }
+
+    System.out.println(Arrays.toString(res));
+  }
+
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 58. Rearrange Array Elements by Sign with different number of positive and negative elements
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/array-of-alternate-ve-and-ve-nos1401/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=array-of-alternate-ve-and-ve-nos)
 
-[Video Solution Link]()
+[Video Solution Link](https://youtu.be/h4aBagy4Uok?t=928)
 
 %
 
 ```java
+import java.util.ArrayList;
+import java.util.Arrays;
 
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { -5, -2, 5, 2, 4, 7, 1, 8, 0, -8 };
+
+    ArrayList<Integer> pos = new ArrayList<>();
+    ArrayList<Integer> neg = new ArrayList<>();
+
+    for (int i = 0; i < arr.length; i++) {
+      if (arr[i] >= 0) {
+        pos.add(arr[i]);
+      } else {
+        neg.add(arr[i]);
+      }
+    }
+
+    for (int i = 0; i < Math.min(pos.size(), neg.size()); i++) {
+      arr[i * 2] = pos.get(i);
+      arr[i * 2 + 1] = neg.get(i);
+    }
+
+    int index = Math.min(pos.size(), neg.size()) * 2;
+
+    if (pos.size() > neg.size()) {
+      for (int i = neg.size(); i < pos.size(); i++) {
+        arr[index++] = pos.get(i);
+      }
+    } else {
+      for (int i = pos.size(); i < neg.size(); i++) {
+        arr[index++] = neg.get(i);
+      }
+    }
+
+    System.out.println(Arrays.toString(arr));
+  }
+
+}
 
 ```
 
