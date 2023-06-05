@@ -67,7 +67,10 @@
 | 57.   | [Rearrange Array Elements by Sign with same number of positive and negative elements](#57-rearrange-array-elements-by-sign-with-same-number-of-positive-and-negative-elements)           |
 | 58.   | [Rearrange Array Elements by Sign with different number of positive and negative elements](#58-rearrange-array-elements-by-sign-with-different-number-of-positive-and-negative-elements) |
 | 59.   | [Print all permutation of an array](#59-print-all-permutation-of-an-array)                                                                                                               |
-| 60.   | [Print all combination of numbers for the given target](#60-print-all-combination-of-numbers-for-the-given-target)                                                                       |
+| 60.   | [Print all combination of numbers that add up to for the given target](#60-print-all-combination-of-numbers-that-add-up-to-for-the-given-target)                                         |
+| 61.   | [Count all the combination of numbers that can be formed for the given target](#61-count-all-the-combination-of-numbers-that-can-be-formed-for-the-given-target)                         |
+| 62.   | [Find the next permutation of the given array](#62-find-the-next-permutation-of-the-given-array)                                                                                         |
+| 62.   | [Leaders in an array](#63-leaders-in-an-array)                                                                                                                                           |
 
 ## 1. Binary Search
 
@@ -2414,7 +2417,7 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 60. Print all combination of numbers for the given target
+## 60. Print all combination of numbers that add up to for the given target
 
 [Question link]()
 
@@ -2470,45 +2473,156 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 61. Count all the combination of numbers that can be formed for the given target
 
 [Question link]()
 
-[Video Solution Link]()
+[Video Solution Link](https://youtu.be/eQCS_v3bw0Q?t=1421)
 
 %
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int target = 10;
+    int n = arr.length;
+    int count = printPermutation(0, arr, n, target, 0);
+    System.out.println(count);
+  }
+
+  static int printPermutation(int i, int[] arr, int n, int target, int sum) {
+
+    if (i == n) { // if i = n print list
+      if (sum == target) { // check if sum = target
+        return 1;
+      }
+      return 0;
+    }
+
+    sum += arr[i]; // add num to sum
+    int l = printPermutation(i + 1, arr, n, target, sum); // call recursion // take
+
+    sum -= arr[i]; // sun num from sum
+    int r = printPermutation(i + 1, arr, n, target, sum); // call recursion // not take
+
+    return l + r;
+  }
+}
+
+// 10
+
+// [1, 2, 3, 4]
+// [1, 2, 7]
+// [1, 3, 6]
+// [1, 4, 5]
+// [1, 9]
+// [2, 3, 5]
+// [2, 8]
+// [3, 7]
+// [4, 6]
+// [10]
 
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 62. Find the next permutation of the given array
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/next-permutation5226/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=next-permutation)
 
-[Video Solution Link]()
+[Question link](https://leetcode.com/problems/next-permutation/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=JDOXKqF60RQ)
 
 %
 
 ```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 2, 1, 5, 4, 3, 0, 0 };
+    int index = -1;
+    int n = arr.length;
+
+    for (int i = n - 2; i >= 0; i--) {
+      if (arr[i] < arr[i + 1]) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index == -1) {
+      reverse(arr, 0, n - 1);
+    } else {
+
+      for (int i = n - 1; i >= 0; i--) {
+        if (arr[i] > arr[index]) {
+          swap(arr, i, index);
+          reverse(arr, index + 1, n - 1);
+          break;
+        }
+
+      }
+    }
+
+    System.out.println(Arrays.toString(arr)); // [2, 3, 0, 0, 1, 4, 5]
+
+  }
+
+  static void swap(int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+  }
+
+  static void reverse(int[] nums, int start, int end) {
+    int i = start;
+    int j = end;
+    while (i < j) {
+      swap(nums, i, j);
+      i++;
+      j--;
+    }
+  }
+
+}
 
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 63. Leaders in an array
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=leaders-in-an-array)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=cHrH9CQ8pmY)
 
 %
 
 ```java
+import java.util.ArrayList;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 10, 22, 12, 3, 0, 6 };
+    int max = Integer.MIN_VALUE;
+    ArrayList<Integer> leader = new ArrayList<>();
+
+    for (int i = arr.length - 1; i >= 0; i--) {
+      if (arr[i] >= max) {
+        max = arr[i];
+        leader.add(arr[i]);
+      }
+    }
+    // Collections.sort(leader, Collections.reverseOrder()); // if needed in
+    // reverseSorted
+    System.out.println(leader); // [6, 12, 22]
+  }
+}
 
 
 ```
