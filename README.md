@@ -70,7 +70,13 @@
 | 60.   | [Print all combination of numbers that add up to for the given target](#60-print-all-combination-of-numbers-that-add-up-to-for-the-given-target)                                         |
 | 61.   | [Count all the combination of numbers that can be formed for the given target](#61-count-all-the-combination-of-numbers-that-can-be-formed-for-the-given-target)                         |
 | 62.   | [Find the next permutation of the given array](#62-find-the-next-permutation-of-the-given-array)                                                                                         |
-| 62.   | [Leaders in an array](#63-leaders-in-an-array)                                                                                                                                           |
+| 63.   | [Leaders in an array](#63-leaders-in-an-array)                                                                                                                                           |
+| 64.   | [Longest Consecutive Sequence](#64-longest-consecutive-sequence)                                                                                                                         |
+| 65.   | [Set Matrix Zeroes](#65-set-matrix-zeroes)                                                                                                                                               |
+| 66.   | [Make Zeroes](#66-make-zeroes)                                                                                                                                                           |
+| 67.   | [Rotate by 90 degree](#67-rotate-by-90-degree)                                                                                                                                           |
+| 68.   | [Rotate Image (clock wise)](#68-rotate-image-clock-wise)                                                                                                                                 |
+| 69.   | [Rotate Image (anti-clock wise)](#69-rotate-image-anti-clock-wise)                                                                                                                       |
 
 ## 1. Binary Search
 
@@ -1263,8 +1269,6 @@ A[] = {1,2,3,7,5}
 Output: 2 4
 ```
 
-%
-
 ```java
 import java.util.ArrayList;
 
@@ -1477,8 +1481,6 @@ public class test {
 
 [Question link](https://practice.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=check-if-an-array-is-sorted)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -1504,8 +1506,6 @@ public class test {
 [Question link](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/description/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=t1GLDWqWVQk&t=310s)
-
-%
 
 ```java
 public class test {
@@ -1537,8 +1537,6 @@ public class test {
 
 [Video Solution Link](https://youtu.be/37E9ckMDdTk?t=1890)
 
-%
-
 ```java
 // TC -> O(n)
 // SC -> O(1)
@@ -1569,8 +1567,6 @@ public class test {
 [Question link](https://leetcode.com/problems/rotate-array/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=BHr381Guz3Y)
-
-%
 
 ```java
 import java.util.Arrays;
@@ -1608,8 +1604,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/quick-left-rotation3806/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=quick-left-rotation)
 
 [Video Solution Link](https://www.youtube.com/watch?v=BHr381Guz3Y)
-
-%
 
 ```java
 // TC -> O(2n)
@@ -1651,8 +1645,6 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=aayNRwUN3Do)
 
-%
-
 ```java
 import java.util.Arrays;
 
@@ -1685,8 +1677,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=union-of-two-sorted-arrays)
 
 [Video Solution Link](https://youtu.be/wvcQg43_V8U?t=2588)
-
-%
 
 ```java
 // TC -> O(n1 + n2)
@@ -1749,8 +1739,6 @@ public class test {
 
 [Video Solution Link](https://youtu.be/wvcQg43_V8U?t=3564)
 
-%
-
 ```java
 
 import java.util.ArrayList;
@@ -1794,8 +1782,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/missing-number4257/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=missing-number)
 
 [Video Solution Link](https://youtu.be/bYWLJb3vCWY?t=72)
-
-%
 
 ```java
 public class test {
@@ -1850,8 +1836,6 @@ public class test {
 
 [Video Solution Link](https://youtu.be/bYWLJb3vCWY?t=1132)
 
-%
-
 ```java
 
 // TC -> O(n)
@@ -1887,8 +1871,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/maximize-number-of-1s0905/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=maximize-number-of-1s)
 
 [Video Solution Link](https://www.youtube.com/watch?v=hzueK-imcXg&t=920s&pp=ygUWbWF4aW1pemUgbnVtYmVyIG9mIDEncw%3D%3D)
-
-%
 
 ```java
 public class test {
@@ -1929,8 +1911,6 @@ public class test {
 
 [Video Solution Link](https://youtu.be/bYWLJb3vCWY?t=1377)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -1952,8 +1932,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-sub-array-with-sum-k)
 
 [Video Solution Link](https://www.youtube.com/watch?v=frf7qxiN2qU)
-
-%
 
 ```java
 import java.util.HashMap;
@@ -1998,8 +1976,6 @@ public class test {
 
 [Video Solution Link](https://youtu.be/frf7qxiN2qU?t=1740)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -2038,8 +2014,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/find-all-pairs-whose-sum-is-x5808/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=find-all-pairs-whose-sum-is-x)
 
 [Video Solution Link](https://www.youtube.com/watch?v=QsadUO5JYGY)
-
-%
 
 ```java
 import java.util.ArrayList;
@@ -2094,8 +2068,6 @@ public class test {
 
 [Video Solution Link]()
 
-%
-
 ```java
 import java.util.Arrays;
 import java.util.HashMap;
@@ -2130,8 +2102,6 @@ public class test {
 [Question link](https://leetcode.com/problems/sort-colors/description/)
 
 [Video Solution Link](https://youtu.be/tp8JIuCXBaU)
-
-%
 
 ```java
 // TC -> O(N)
@@ -2179,8 +2149,6 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=nP_ns3uSh80&list=PLgUwDviBIf0oF6QL8m22w1hIDC1vJ_BHz&index=22)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -2220,8 +2188,6 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=5WZl3MMT0Eg)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -2254,8 +2220,6 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=eMSfBgbiEjk)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -2282,8 +2246,6 @@ public class test {
 [Question link](https://leetcode.com/problems/rearrange-array-elements-by-sign/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=h4aBagy4Uok)
-
-%
 
 ```java
 import java.util.Arrays;
@@ -2319,8 +2281,6 @@ public class test {
 [Question link](https://practice.geeksforgeeks.org/problems/array-of-alternate-ve-and-ve-nos1401/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=array-of-alternate-ve-and-ve-nos)
 
 [Video Solution Link](https://youtu.be/h4aBagy4Uok?t=928)
-
-%
 
 ```java
 import java.util.ArrayList;
@@ -2373,8 +2333,6 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=AxNNVECce8c&list=PLgUwDviBIf0rGlzIn_7rsaR2FQ5e6ZOL9&index=6&t=207s)
 
-%
-
 ```java
 import java.util.ArrayList;
 
@@ -2422,8 +2380,6 @@ public class test {
 [Question link]()
 
 [Video Solution Link](https://www.youtube.com/watch?v=eQCS_v3bw0Q&list=PLgUwDviBIf0rGlzIn_7rsaR2FQ5e6ZOL9&index=7)
-
-%
 
 ```java
 import java.util.ArrayList;
@@ -2479,8 +2435,6 @@ public class test {
 
 [Video Solution Link](https://youtu.be/eQCS_v3bw0Q?t=1421)
 
-%
-
 ```java
 public class test {
   public static void main(String[] args) {
@@ -2535,8 +2489,6 @@ public class test {
 [Question link](https://leetcode.com/problems/next-permutation/description/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=JDOXKqF60RQ)
-
-%
 
 ```java
 import java.util.Arrays;
@@ -2601,8 +2553,6 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=cHrH9CQ8pmY)
 
-%
-
 ```java
 import java.util.ArrayList;
 
@@ -2629,13 +2579,394 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 64. Longest Consecutive Sequence
+
+[Question link](https://practice.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/0?problemType=functional&page=1&query=problemTypefunctionalpage1&utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=longest-consecutive-subsequence)
+
+[Question link](https://leetcode.com/problems/longest-consecutive-sequence/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=oO5uLE7EUlM)
+
+```java
+import java.util.HashSet;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 102, 4, 100, 1, 101, 3, 2, 1, 1 };
+    int largest = Integer.MIN_VALUE;
+    int counter = 0;
+
+    HashSet<Integer> set = new HashSet<>();
+    for (int a : arr)
+      set.add(a);
+
+    for (int s : set) {
+      if (!set.contains(s - 1)) {
+        counter = 1;
+        while (set.contains(s + 1)) {
+          counter++;
+          s++;
+        }
+        largest = Math.max(largest, counter);
+      }
+    }
+
+    System.out.println(largest); // 4
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 65. Set Matrix Zeroes
+
+[Question link](https://leetcode.com/problems/set-matrix-zeroes/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=N0MgLvceX7M)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 1, 1, 1 },
+        { 1, 0, 1, 1 },
+        { 1, 1, 0, 1 },
+        { 0, 1, 1, 1 }
+    };
+
+    int n = matrix.length;
+    int m = matrix[0].length;
+    int col0 = 1;
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        if (matrix[i][j] == 0) {
+          matrix[i][0] = 0;
+          if (j != 0) {
+            matrix[0][j] = 0;
+          } else {
+            col0 = 0;
+          }
+        }
+      }
+    }
+
+    for (int i = 1; i < n; i++) {
+      for (int j = 1; j < m; j++) {
+        if (matrix[i][j] != 0) {
+          if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+            matrix[i][j] = 0;
+          }
+        }
+      }
+    }
+
+    if (matrix[0][0] == 0) {
+      for (int j = 0; j < m; j++) {
+        matrix[0][j] = 0;
+      }
+    }
+    if (col0 == 0) {
+      for (int i = 0; i < n; i++) {
+        matrix[i][0] = 0;
+      }
+    }
+
+    for (int[] a : matrix) {
+      System.out.println(Arrays.toString(a));
+    }
+    // [0, 0, 0, 1]
+    // [0, 0, 0, 0]
+    // [0, 0, 0, 0]
+    // [0, 0, 0, 0]
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 66. Make Zeroes
+
+[Question link](https://practice.geeksforgeeks.org/problems/make-zeroes4042/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=make-zeroes)
+
+[Video Solution Link](https://www.youtube.com/watch?v=-_DjhG0yxn8)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 2, 3, 4 },
+        { 5, 6, 0, 7 },
+        { 8, 9, 4, 6 },
+        { 8, 4, 5, 2 }
+    };
+
+    int n = matrix.length;
+    int m = matrix[0].length;
+
+    int[][] copy = new int[n][];
+
+    for (int i = 0; i < matrix.length; i++) {
+      copy[i] = new int[matrix[i].length];
+      System.arraycopy(matrix[i], 0, copy[i], 0, matrix[i].length);
+    }
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        if (copy[i][j] == 0) {
+
+          if (i + 1 < n) {
+            matrix[i][j] += copy[i + 1][j];
+            matrix[i + 1][j] = 0;
+          }
+          if (i - 1 >= 0) {
+            matrix[i][j] += copy[i - 1][j];
+            matrix[i - 1][j] = 0;
+          }
+          if (j + 1 < m) {
+            matrix[i][j] += copy[i][j + 1];
+            matrix[i][j + 1] = 0;
+          }
+          if (j - 1 >= 0) {
+            matrix[i][j] += copy[i][j - 1];
+            matrix[i][j - 1] = 0;
+          }
+
+        }
+      }
+    }
+
+    for (int[] a : matrix) {
+      System.out.println(Arrays.toString(a));
+    }
+    // [1, 2, 0, 4]
+    // [5, 0, 20, 0]
+    // [8, 9, 0, 6]
+    // [8, 4, 5, 2]
+
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 67. Rotate by 90 degree
+
+[Question link](https://practice.geeksforgeeks.org/problems/rotate-by-90-degree-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=rotate-by-90-degree)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Z0R2u6gd3GU)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 }
+    };
+
+    for (int i = 0; i < matrix.length - 1; i++) {
+      for (int j = i + 1; j < matrix.length; j++) {
+        swap(matrix, i, j);
+      }
+    }
+
+    for (int i = 0; i < matrix.length; i++) {
+      reverse(matrix[i], 0, matrix.length - 1);
+    }
+
+    for (int[] a : matrix) {
+      System.out.println(Arrays.toString(a));
+    }
+
+    // [7, 4, 1]
+    // [8, 5, 2]
+    // [9, 6, 3]
+
+  }
+
+  static void swap(int[][] arr, int i, int j) {
+    int temp = arr[i][j];
+    arr[i][j] = arr[j][i];
+    arr[j][i] = temp;
+  }
+
+  static void reverse(int[] arr, int l, int r) {
+    while (l < r) {
+      int temp = arr[l];
+      arr[l] = arr[r];
+      arr[r] = temp;
+      l++;
+      r--;
+    }
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 68. Rotate Image (clock wise)
+
+[Question link](https://leetcode.com/problems/rotate-image/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=fMSJSS7eO1w)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 }
+    };
+
+    int l = 0;
+    int r = matrix.length - 1;
+
+    while (l < r) {
+      for (int i = 0; i < r - l; i++) {
+        int top = l;
+        int bottom = r;
+        int topLeft = matrix[top][l + i];
+
+        // move bottom left into top left
+        matrix[top][l + i] = matrix[bottom - i][l];
+
+        // move bottom right into bottom left
+        matrix[bottom - i][l] = matrix[bottom][r - i];
+
+        // move top right into bottom right
+        matrix[bottom][r - i] = matrix[top + i][r];
+
+        // move top left into top right
+        matrix[top + i][r] = topLeft;
+      }
+      l++;
+      r--;
+    }
+    for (int[] a : matrix) {
+      System.out.println(Arrays.toString(a));
+    }
+    // [7, 4, 1]
+    // [8, 5, 2]
+    // [9, 6, 3]
+  }
+}
+
+
+
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 69. Rotate Image (anti-clock wise)
+
+[Question link](https://practice.geeksforgeeks.org/problems/rotate-by-90-degree-1587115621/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=rotate-by-90-degree)
+
+[Video Solution Link](https://www.youtube.com/watch?v=fMSJSS7eO1w)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 }
+    };
+
+    int l = 0;
+    int r = matrix.length - 1;
+
+    while (l < r) {
+      for (int i = 0; i < r - l; i++) {
+        int top = l;
+        int bottom = r;
+        int topRight = matrix[top][r - i];
+
+        // move bottom right into top right
+        matrix[top][r - i] = matrix[bottom - i][r];
+
+        // move bottom left into bottom right
+        matrix[bottom - i][r] = matrix[bottom][l + i];
+
+        // move top left into bottom left
+        matrix[bottom][l + i] = matrix[top + i][l];
+
+        // move top right into top left
+        matrix[top + i][l] = topRight;
+
+      }
+      l++;
+      r--;
+    }
+    for (int[] a : matrix) {
+      System.out.println(Arrays.toString(a));
+    }
+    // [3, 6, 9]
+    // [2, 5, 8]
+    // [1, 4, 7]
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
 ## 51. title
 
 [Question link]()
 
 [Video Solution Link]()
 
-%
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
 
 ```java
 

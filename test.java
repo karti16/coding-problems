@@ -1,19 +1,43 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 10, 22, 12, 3, 0, 6 };
-    int max = Integer.MIN_VALUE;
-    ArrayList<Integer> leader = new ArrayList<>();
+    int[][] matrix = {
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 }
+    };
 
-    for (int i = arr.length - 1; i >= 0; i--) {
-      if (arr[i] >= max) {
-        max = arr[i];
-        leader.add(arr[i]);
+    int l = 0;
+    int r = matrix.length - 1;
+
+    while (l < r) {
+      for (int i = 0; i < r - l; i++) {
+        int top = l;
+        int bottom = r;
+        int topRight = matrix[top][r - i];
+
+        // move bottom right into top right
+        matrix[top][r - i] = matrix[bottom - i][r];
+
+        // move bottom left into bottom right
+        matrix[bottom - i][r] = matrix[bottom][l + i];
+
+        // move top left into bottom left
+        matrix[bottom][l + i] = matrix[top + i][l];
+
+        // move top right into top left
+        matrix[top + i][l] = topRight;
+
       }
+      l++;
+      r--;
     }
-    // Collections.sort(leader, Collections.reverseOrder()); // if needed in
-    // reverseSorted
-    System.out.println(leader); // [6, 12, 22]
+    for (int[] a : matrix) {
+      System.out.println(Arrays.toString(a));
+    }
+    // [3, 6, 9]
+    // [2, 5, 8]
+    // [1, 4, 7]
   }
 }
