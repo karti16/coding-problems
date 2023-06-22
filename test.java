@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class test {
   public static void main(String[] args) {
@@ -8,36 +9,64 @@ public class test {
         { 7, 8, 9 }
     };
 
-    int l = 0;
-    int r = matrix.length - 1;
+    int k = 4;
+    int counter = 0;
+    int num = -1;
 
-    while (l < r) {
-      for (int i = 0; i < r - l; i++) {
-        int top = l;
-        int bottom = r;
-        int topRight = matrix[top][r - i];
+    List<Integer> res = new ArrayList<>();
 
-        // move bottom right into top right
-        matrix[top][r - i] = matrix[bottom - i][r];
+    int top = 0;
+    int left = 0;
+    int right = matrix[0].length - 1;
+    int bottom = matrix.length - 1;
 
-        // move bottom left into bottom right
-        matrix[bottom - i][r] = matrix[bottom][l + i];
-
-        // move top left into bottom left
-        matrix[bottom][l + i] = matrix[top + i][l];
-
-        // move top right into top left
-        matrix[top + i][l] = topRight;
-
+    while (left <= right && top <= bottom) {
+      // top row
+      for (int i = left; i <= right; i++) {
+        res.add(matrix[top][i]);
+        counter++;
+        if (counter == k) {
+          num = matrix[top][i];
+        }
       }
-      l++;
-      r--;
+      top++;
+
+      // right col
+      for (int i = top; i <= bottom; i++) {
+        res.add(matrix[i][right]);
+        counter++;
+        if (counter == k) {
+          num = matrix[i][right];
+        }
+      }
+      right--;
+
+      if (!(left <= right && top <= bottom)) {
+        break;
+      }
+
+      // bottom row
+      for (int i = right; i >= left; i--) {
+        res.add(matrix[bottom][i]);
+        counter++;
+        if (counter == k) {
+          num = matrix[bottom][i];
+        }
+      }
+      bottom--;
+
+      // left col
+      for (int i = bottom; i >= top; i--) {
+        res.add(matrix[i][left]);
+        counter++;
+        if (counter == k) {
+          num = matrix[i][left];
+        }
+      }
+      left++;
+
     }
-    for (int[] a : matrix) {
-      System.out.println(Arrays.toString(a));
-    }
-    // [3, 6, 9]
-    // [2, 5, 8]
-    // [1, 4, 7]
+    System.out.println(num); // 6
+    System.out.println(res); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
   }
 }

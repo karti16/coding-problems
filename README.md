@@ -77,6 +77,8 @@
 | 67.   | [Rotate by 90 degree](#67-rotate-by-90-degree)                                                                                                                                           |
 | 68.   | [Rotate Image (clock wise)](#68-rotate-image-clock-wise)                                                                                                                                 |
 | 69.   | [Rotate Image (anti-clock wise)](#69-rotate-image-anti-clock-wise)                                                                                                                       |
+| 70.   | [Spiral Matrix](#70-spiral-matrix)                                                                                                                                                       |
+| 71.   | [Find the Kth element which will obtain while traversing the matrix spirally](#71-find-the-kth-element-which-will-obtain-while-traversing-the-matrix-spirally)                           |
 
 ## 1. Binary Search
 
@@ -2936,26 +2938,154 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 70. Spiral Matrix
 
-[Question link]()
+[Question link](https://leetcode.com/problems/spiral-matrix/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=BJnMZNwUk1M&t=317s)
+
+[Video Solution Link](https://www.youtube.com/watch?v=3Zv-s9UUrFM)
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 }
+    };
+
+    List<Integer> res = new ArrayList<>();
+
+    int top = 0;
+    int left = 0;
+    int right = matrix[0].length - 1;
+    int bottom = matrix.length - 1;
+
+    while (left <= right && top <= bottom) {
+      // top row
+      for (int i = left; i <= right; i++) {
+        res.add(matrix[top][i]);
+      }
+      top++;
+
+      // right col
+      for (int i = top; i <= bottom; i++) {
+        res.add(matrix[i][right]);
+      }
+      right--;
+
+      if (!(left <= right && top <= bottom)) {
+        break;
+      }
+
+      // bottom row
+      for (int i = right; i >= left; i--) {
+        res.add(matrix[bottom][i]);
+      }
+      bottom--;
+
+      // left col
+      for (int i = bottom; i >= top; i--) {
+        res.add(matrix[i][left]);
+      }
+      left++;
+
+    }
+
+    System.out.println(res); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
+  }
+}
 
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 71. Find the Kth element which will obtain while traversing the matrix spirally
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/cd61add036272faa69c6814e34aa7007d5a25aa6/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=spiral_matrix)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=BJnMZNwUk1M&t=317s)
+
+[Video Solution Link](https://www.youtube.com/watch?v=3Zv-s9UUrFM)
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 2, 3 },
+        { 4, 5, 6 },
+        { 7, 8, 9 }
+    };
+
+    int k = 4;
+    int counter = 0;
+    int num = -1;
+
+    List<Integer> res = new ArrayList<>();
+
+    int top = 0;
+    int left = 0;
+    int right = matrix[0].length - 1;
+    int bottom = matrix.length - 1;
+
+    while (left <= right && top <= bottom) {
+      // top row
+      for (int i = left; i <= right; i++) {
+        res.add(matrix[top][i]);
+        counter++;
+        if (counter == k) {
+          num = matrix[top][i];
+        }
+      }
+      top++;
+
+      // right col
+      for (int i = top; i <= bottom; i++) {
+        res.add(matrix[i][right]);
+        counter++;
+        if (counter == k) {
+          num = matrix[i][right];
+        }
+      }
+      right--;
+
+      if (!(left <= right && top <= bottom)) {
+        break;
+      }
+
+      // bottom row
+      for (int i = right; i >= left; i--) {
+        res.add(matrix[bottom][i]);
+        counter++;
+        if (counter == k) {
+          num = matrix[bottom][i];
+        }
+      }
+      bottom--;
+
+      // left col
+      for (int i = bottom; i >= top; i--) {
+        res.add(matrix[i][left]);
+        counter++;
+        if (counter == k) {
+          num = matrix[i][left];
+        }
+      }
+      left++;
+
+    }
+    System.out.println(num); // 6
+    System.out.println(res); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
+  }
+}
 
 
 ```
