@@ -1,8 +1,9 @@
 # Coding-challenge
 
-## Problems and solution fromeetcode and other similar sites.
+## Problems and solution from Leetcode and other similar sites.
 
 1. [Pattern Problems](./pattern.md)
+2. [JavaScript LeetCode Question](./Code/Javascript/problems.md)
 
 ## List of Problems
 
