@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "anki": "mdanki anki.md anki.apkg",
+    "js": "nodemon javascript.js",
     "codesnap": "carbon-now test.java --to-clipboard",
     "install-carbon": "npm i -g carbon-now-cli"
   },
@@ -16,6 +17,7 @@
     "mdanki": "^1.1.2"
   },
   "dependencies": {
-    "carbon-now-cli": "^2.0.0"
+    "carbon-now-cli": "^2.0.0",
+    "nodemon": "^2.0.22"
   }
 }
