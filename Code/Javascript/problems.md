@@ -13,6 +13,8 @@
 | 7.    | [Debounce](#7-debounce)                         |
 | 8.    | [Throttle](#8-throttle)                         |
 | 9.    | [Objects Deep Equal](#9-objects-deep-equal)     |
+| 10.   | [Objects to JSON](#10-objects-to-json)          |
+| 11.   | [JSON to Matrix](#11-json-to-matrix)            |
 
 ## 1. Function Composition
 
@@ -409,6 +411,152 @@ function areDeeplyEqual(o1, o2) {
 console.log(areDeeplyEqual(a1, a2));
 console.log(areDeeplyEqual(b1, b2));
 console.log(areDeeplyEqual(c1, c2));
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 10. Objects to JSON
+
+[Question link]()
+
+[Video Solution Link](https://www.youtube.com/watch?v=f94fUbHU-FY&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=18)
+
+```javascript
+const obj = {
+  name: 'karthik',
+  age: 27,
+  address: {
+    street: '10th street',
+    houseNo: 12,
+  },
+  marks: [1, 2, 3, '4'],
+};
+
+const res = jsonStringify(obj);
+console.log(res);
+
+function jsonStringify(obj) {
+  // null || undefined
+  if (obj === null || obj === undefined) {
+    return String(obj);
+  }
+
+  // Arrays
+  if (Array.isArray(obj)) {
+    const values = obj.map((i) => jsonStringify(i));
+    return `[${values.join(',')}]`;
+  }
+
+  // Objects
+  if (typeof obj === 'object') {
+    const keys = Object.keys(obj);
+    const keyValPair = keys.map((k) => `"${k}":${jsonStringify(obj[k])}`);
+    return `{${keyValPair.join(',')}}`;
+  }
+
+  // Strings
+  if (typeof obj === 'string') {
+    return `"${obj}"`;
+  }
+
+  return String(obj);
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 11. JSON to Matrix
+
+[Question link]()
+
+[Video Solution Link](https://www.youtube.com/watch?v=LJwgAMHGcI0&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=19)
+
+```javascript
+const arr = [
+  { b: 1, a: 2 },
+  { b: 3, a: { c: 5, d: 9 } },
+];
+
+const res = jsonToMatrix(arr);
+console.log(res);
+
+function jsonToMatrix(arr) {
+  const keySet = new Set();
+
+  for (const obj of arr) {
+    getKeys(obj, '');
+  }
+
+  const keys = Array.from(keySet).sort();
+  const res = [keys];
+
+  for (const obj of arr) {
+    const keyToVal = {};
+    getValues(obj, '', keyToVal);
+    const row = [];
+    for (const key of keys) {
+      if (key in keyToVal) {
+        row.push(keyToVal[key]);
+      } else {
+        row.push('');
+      }
+    }
+    res.push(row);
+  }
+
+  return res;
+
+  function getKeys(obj, path) {
+    console.log(obj);
+    for (const key in obj) {
+      const newPath = path ? `${path}.${key}` : key;
+      if (isObject(obj[key])) {
+        getKeys(obj[key], newPath);
+      } else {
+        keySet.add(newPath);
+      }
+    }
+  }
+
+  function getValues(obj, path, keyToVal) {
+    for (const key in obj) {
+      const newPath = path ? `${path}.${key}` : key;
+      if (isObject(obj[key])) {
+        getValues(obj[key], newPath, keyToVal);
+      } else {
+        keyToVal[newPath] = obj[key];
+      }
+    }
+  }
+
+  function isObject(obj) {
+    return obj !== null && typeof obj === 'object';
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 1. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```javascript
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 1. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```javascript
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
