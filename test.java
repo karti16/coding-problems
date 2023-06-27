@@ -3,70 +3,47 @@ import java.util.List;
 
 public class test {
   public static void main(String[] args) {
-    int[][] matrix = {
-        { 1, 2, 3 },
-        { 4, 5, 6 },
-        { 7, 8, 9 }
-    };
+    int[] nums = { 2, 2, 1, 3 };
+    int n1 = Integer.MIN_VALUE;
+    int n2 = Integer.MIN_VALUE;
+    int c1 = 0;
+    int c2 = 0;
 
-    int k = 4;
-    int counter = 0;
-    int num = -1;
+    for (int num : nums) {
+      if (c1 == 0 && n2 != num) {
+        c1 = 1;
+        n1 = num;
+      } else if (c2 == 0 && n1 != num) {
+        c2 = 1;
+        n2 = num;
+      } else if (n2 == num) {
+        c2++;
+      } else if (n1 == num) {
+        c1++;
+      } else {
+        c1--;
+        c2--;
+      }
+    }
 
     List<Integer> res = new ArrayList<>();
-
-    int top = 0;
-    int left = 0;
-    int right = matrix[0].length - 1;
-    int bottom = matrix.length - 1;
-
-    while (left <= right && top <= bottom) {
-      // top row
-      for (int i = left; i <= right; i++) {
-        res.add(matrix[top][i]);
-        counter++;
-        if (counter == k) {
-          num = matrix[top][i];
-        }
-      }
-      top++;
-
-      // right col
-      for (int i = top; i <= bottom; i++) {
-        res.add(matrix[i][right]);
-        counter++;
-        if (counter == k) {
-          num = matrix[i][right];
-        }
-      }
-      right--;
-
-      if (!(left <= right && top <= bottom)) {
-        break;
-      }
-
-      // bottom row
-      for (int i = right; i >= left; i--) {
-        res.add(matrix[bottom][i]);
-        counter++;
-        if (counter == k) {
-          num = matrix[bottom][i];
-        }
-      }
-      bottom--;
-
-      // left col
-      for (int i = bottom; i >= top; i--) {
-        res.add(matrix[i][left]);
-        counter++;
-        if (counter == k) {
-          num = matrix[i][left];
-        }
-      }
-      left++;
-
+    c1 = 0;
+    c2 = 0;
+    for (int num : nums) {
+      if (num == n1)
+        c1++;
+      if (num == n2)
+        c2++;
     }
-    System.out.println(num); // 6
-    System.out.println(res); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+    int minCount = (int) nums.length / 3 + 1;
+    if (c1 >= minCount)
+      res.add(n1);
+    if (c2 >= minCount)
+      res.add(n2);
+
+    System.out.println(res);
+
   }
+
 }

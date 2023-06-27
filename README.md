@@ -80,6 +80,10 @@
 | 69.   | [Rotate Image (anti-clock wise)](#69-rotate-image-anti-clock-wise)                                                                                                                       |
 | 70.   | [Spiral Matrix](#70-spiral-matrix)                                                                                                                                                       |
 | 71.   | [Find the Kth element which will obtain while traversing the matrix spirally](#71-find-the-kth-element-which-will-obtain-while-traversing-the-matrix-spirally)                           |
+| 72.   | [Pascal's Triangle](#72-pascals-triangle)                                                                                                                                                |
+| 73.   | [Find element at specific Row and column of the pascal's triangle](#73-find-element-at-specific-row-and-column-of-the-pascals-triangle)                                                  |
+| 74.   | [Print specific row of the pascal triangle](#74-print-specific-row-of-the-pascal-triangle)                                                                                               |
+| 75.   | [Majority Element II](#75-majority-element-ii)                                                                                                                                           |
 
 ## 1. Binary Search
 
@@ -3087,6 +3091,233 @@ public class test {
     System.out.println(res); // [1, 2, 3, 6, 9, 8, 7, 4, 5]
   }
 }
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 72. Pascal's Triangle
+
+[Question link](https://leetcode.com/problems/pascals-triangle/description/)
+
+[Video Solution Link](https://youtube.com/watch?v=nPVEaB3AjUM)
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int n = 5;
+    List<List<Integer>> ls = new ArrayList<List<Integer>>();
+    ls.add(new ArrayList<Integer>(Arrays.asList(1)));
+
+    for (int i = 0; i < n - 1; i++) {
+      List<Integer> row = new ArrayList<>();
+      List<Integer> temp = new ArrayList<>(ls.get(i));
+      temp.add(0, 0);
+      temp.add(0);
+      for (int j = 0; j <= ls.get(ls.size() - 1).size(); j++) {
+        row.add(temp.get(j) + temp.get(j + 1));
+      }
+      ls.add(row);
+
+    }
+    System.out.println(ls);
+    // [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+
+  }
+}
+
+// -----------------------------------------------------------
+
+import java.util.ArrayList;
+
+public class test {
+  public static void main(String[] args) {
+    int row = 6;
+    for (int i = 1; i <= row; i++) {
+
+      ArrayList<Long> result = new ArrayList<>();
+      pascalTriangle(i, result);
+      System.out.println(result);
+    }
+
+  }
+
+  static int pascalTriangle(int row, ArrayList<Long> result) {
+    for (int c = 1; c <= row; c++) {
+      long element = nCr(row - 1, c - 1);
+      result.add(element);
+    }
+    return 0;
+  }
+
+  static long nCr(int n, int r) {
+    long res = 1;
+    for (int i = 0; i < r; i++) {
+      res = res * (n - i);
+      res = res / (i + 1);
+    }
+    return res;
+  }
+}
+
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 73. Find element at specific Row and column of the pascal's triangle
+
+[Question link]()
+
+[Video Solution Link](https://youtu.be/bR7mQgwQ_o8?t=233)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int r = 5;
+    int c = 4;
+
+    int result = pascalTriangle(r, c);
+    System.out.println(result);
+
+  }
+
+  static int pascalTriangle(int r, int c) {
+    int element = (int) nCr(r, c);
+    return element;
+  }
+
+  static long nCr(int n, int c) {
+    int res = 1;
+    for (int i = 0; i < 4; i++) {
+      res = res * (n - i);
+      res = res / (i + 1);
+    }
+    return res;
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 74. Print specific row of the pascal triangle
+
+[Question link]()
+
+[Video Solution Link](https://youtu.be/bR7mQgwQ_o8?t=765)
+
+```java
+import java.util.ArrayList;
+
+public class test {
+  public static void main(String[] args) {
+    int row = 6;
+    ArrayList<Long> result = new ArrayList<>();
+    pascalTriangle(row, result);
+    System.out.println(result);
+
+  }
+
+  static int pascalTriangle(int row, ArrayList<Long> result) {
+    for (int c = 1; c <= row; c++) {
+      long element = nCr(row - 1, c - 1);
+      result.add(element);
+    }
+    return 0;
+  }
+
+  static long nCr(int n, int r) {
+    long res = 1;
+    for (int i = 0; i < r; i++) {
+      res = res * (n - i);
+      res = res / (i + 1);
+    }
+    return res;
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 75. Majority Element II
+
+[Question link](https://leetcode.com/problems/majority-element-ii/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=vwZj1K0e9U8)
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 2, 2, 1, 3 };
+    int n1 = Integer.MIN_VALUE;
+    int n2 = Integer.MIN_VALUE;
+    int c1 = 0;
+    int c2 = 0;
+
+    for (int num : nums) {
+      if (c1 == 0 && n2 != num) {
+        c1 = 1;
+        n1 = num;
+      } else if (c2 == 0 && n1 != num) {
+        c2 = 1;
+        n2 = num;
+      } else if (n2 == num) {
+        c2++;
+      } else if (n1 == num) {
+        c1++;
+      } else {
+        c1--;
+        c2--;
+      }
+    }
+
+    List<Integer> res = new ArrayList<>();
+    c1 = 0;
+    c2 = 0;
+    for (int num : nums) {
+      if (num == n1)
+        c1++;
+      if (num == n2)
+        c2++;
+    }
+
+    int minCount = (int) nums.length / 3 + 1;
+    if (c1 >= minCount)
+      res.add(n1);
+    if (c2 >= minCount)
+      res.add(n2);
+
+    System.out.println(res);
+
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
 
 
 ```
