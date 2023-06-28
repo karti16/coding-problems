@@ -2,19 +2,26 @@
 
 ## List of Problems
 
-| S. no | Problem                                         |
-| ----- | ----------------------------------------------- |
-| 1.    | [Function Composition](#1-function-composition) |
-| 2.    | [Curried Function](#2-curried-function)         |
-| 3.    | [Sleep](#3-sleep)                               |
-| 4.    | [Promise Time Limit](#4-promise-time-limit)     |
-| 5.    | [Promise Pool](#5-promise-pool)                 |
-| 6.    | [Cache With Time Limit](#5-promise-pool)        |
-| 7.    | [Debounce](#7-debounce)                         |
-| 8.    | [Throttle](#8-throttle)                         |
-| 9.    | [Objects Deep Equal](#9-objects-deep-equal)     |
-| 10.   | [Objects to JSON](#10-objects-to-json)          |
-| 11.   | [JSON to Matrix](#11-json-to-matrix)            |
+| S. no | Problem                                                              |
+| ----- | -------------------------------------------------------------------- |
+| 1.    | [Function Composition](#1-function-composition)                      |
+| 2.    | [Curried Function](#2-curried-function)                              |
+| 3.    | [Sleep](#3-sleep)                                                    |
+| 4.    | [Promise Time Limit](#4-promise-time-limit)                          |
+| 5.    | [Promise Pool](#5-promise-pool)                                      |
+| 6.    | [Cache With Time Limit](#5-promise-pool)                             |
+| 7.    | [Debounce](#7-debounce)                                              |
+| 8.    | [Throttle](#8-throttle)                                              |
+| 9.    | [Objects Deep Equal](#9-objects-deep-equal)                          |
+| 10.   | [Objects to JSON](#10-objects-to-json)                               |
+| 11.   | [JSON to Matrix](#11-json-to-matrix)                                 |
+| 12.   | [Difference Between Two Objects](#12-difference-between-two-objects) |
+| 13.   | [Chunk Array](#13-chunk-array)                                       |
+| 14.   | [Flatten Deeply Nested Array](#14-flatten-deeply-nested-array)       |
+| 15.   | [Event Emitter](#15-event-emitter)                                   |
+| 16.   | [Array Wrapper](#16-array-wrapper)                                   |
+| 17.   | [Generate Fibonacci Sequence](#17-generate-fibonacci-sequence)       |
+| 18.   | [Nested Array Generator](#18-nested-array-generator)                 |
 
 ## 1. Function Composition
 
@@ -537,14 +544,267 @@ function jsonToMatrix(arr) {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 1. title
+## 12. Difference Between Two Objects
 
 [Question link]()
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=gH7oZs1WZfg&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=20)
 
 ```javascript
+const obj1 = {
+  a: 1,
+  v: 3,
+  x: [],
+  z: {
+    a: null,
+  },
+};
 
+const obj2 = {
+  a: 2,
+  v: 4,
+  x: [],
+  z: {
+    a: 2,
+  },
+};
+
+const res = objDiff(obj1, obj2);
+console.log(res);
+
+function objDiff(o1, o2) {
+  // only care about common keys
+  // If both primitive and diff, then diff
+  if (!isObject(o1) || !isObject(o2)) {
+    // both primitive
+    return o1 === o2 ? {} : [o1, o2];
+  }
+  // If one is obj and other isnt, then diff
+  if (!isObject(o1) || !isObject(o2)) {
+    // one is primitive
+    return [o1, o2];
+  }
+  // If one is array and one is object, then diff
+  if (Array.isArray(o1) !== Array.isArray(o2)) {
+    return [o1, o2];
+  }
+  // If both arr, or both object, then recursion
+  const diff = {};
+  for (const key in o1) {
+    if (o2.hasOwnProperty(key)) {
+      const res = objDiff(o1[key], o2[key]);
+      if (Object.keys(res).length > 0) {
+        diff[key] = res;
+      }
+    }
+  }
+
+  return diff;
+
+  function isObject(obj) {
+    return obj !== null && typeof obj === 'object';
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 13. Chunk Array
+
+[Question link](https://leetcode.com/problems/chunk-array/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=VUN-O3B9ceY&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=21)
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const res = chunk(arr, 3);
+console.log(res);
+
+function chunk(arr, size) {
+  const res = [];
+  let subArray = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    subArray.push(arr[i]);
+    if (subArray.length === size) {
+      res.push(subArray);
+      subArray = [];
+    }
+  }
+  if (subArray.length) {
+    res.push(subArray);
+  }
+  return res;
+}
+
+function chunk1(arr, size) {
+  const res = [];
+  for (let i = 0; i < arr.length; i += size) {
+    let sub = arr.slice(i, i + size);
+    res.push(sub);
+  }
+  return res;
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 14. Flatten Deeply Nested Array
+
+[Question link](https://leetcode.com/problems/flatten-deeply-nested-array/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=_DetLPKtFNk&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=22)
+
+```javascript
+const arr = [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]];
+const depth = 1;
+
+const result = flatten(arr, depth);
+console.log(result);
+
+function flatten(arr, n) {
+  const res = [];
+
+  function helper(arr, depth) {
+    for (const val of arr) {
+      if (Array.isArray(val) && depth < n) {
+        helper(val, depth + 1);
+      } else {
+        res.push(val);
+      }
+    }
+
+    return res;
+  }
+
+  return helper(arr, 0);
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 15. Event Emitter
+
+[Question link](https://leetcode.com/problems/event-emitter/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=M69bjWFarU0&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=27)
+
+```javascript
+class EventEmitter {
+  eventMap = {};
+
+  subscribe(event, cb) {
+    if (!this.eventMap.hasOwnProperty(event)) {
+      this.eventMap[event] = new Set();
+    }
+    this.eventMap[event].add(cb);
+
+    return {
+      unsubscribe: () => {
+        this.eventMap[event].delete(cb);
+      },
+    };
+  }
+
+  emit(event, args = []) {
+    const res = [];
+    (this.eventMap[event] ?? []).forEach((cb) => res.push(cb(...args)));
+    return res;
+  }
+}
+
+const emitter = new EventEmitter();
+const sub = emitter.subscribe('onClick', callbackFun);
+console.log(emitter.emit('onClick'));
+sub.unsubscribe();
+console.log(emitter.emit('onClick'));
+
+function callbackFun() {
+  return '99';
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 16. Array Wrapper
+
+[Question link](https://leetcode.com/problems/array-wrapper/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=XoGjPdPTAVA&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=28)
+
+```javascript
+const ArrayWrapper = function (nums) {
+  this.nums = nums;
+};
+
+ArrayWrapper.prototype.valueOf = function () {
+  return this.nums.reduce((a, c) => a + c, 0);
+};
+
+ArrayWrapper.prototype.toString = function () {
+  return JSON.stringify(this.nums);
+};
+
+const arr1 = new ArrayWrapper([1, 2]);
+const arr2 = new ArrayWrapper([3, 4]);
+
+console.log(arr1 + arr2);
+console.log(String(arr1));
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 17. Generate Fibonacci Sequence
+
+[Question link](https://leetcode.com/problems/generate-fibonacci-sequence/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=T643rQ70Jlk&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=29)
+
+```javascript
+const fibGenerator = function* () {
+  let n1 = 0;
+  let n2 = 1;
+  while (true) {
+    yield n1;
+    [n1, n2] = [n2, n1 + n2];
+  }
+};
+
+const gen = fibGenerator();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
+console.log(gen.next().value); // 5
+console.log(gen.next().value); // 8
+console.log(gen.next().value); // 13
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 18. Nested Array Generator
+
+[Question link](https://leetcode.com/problems/nested-array-generator/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=yo-J1jQaZYU&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=30)
+
+```javascript
+var inorderTraversal = function* (arr) {
+  for (const n of arr) {
+    if (Array.isArray(n)) {
+      yield* inorderTraversal(n);
+    } else {
+      yield n;
+    }
+  }
+};
+
+const gen = inorderTraversal([1, [2, 3]]);
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // 3
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
