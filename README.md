@@ -84,6 +84,7 @@
 | 73.   | [Find element at specific Row and column of the pascal's triangle](#73-find-element-at-specific-row-and-column-of-the-pascals-triangle)                                                  |
 | 74.   | [Print specific row of the pascal triangle](#74-print-specific-row-of-the-pascal-triangle)                                                                                               |
 | 75.   | [Majority Element II](#75-majority-element-ii)                                                                                                                                           |
+| 76.   | [Two Sum II - Input Array Is Sorted](#76-two-sum-ii---input-array-is-sorted)                                                                                                             |
 
 ## 1. Binary Search
 
@@ -3311,14 +3312,35 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 76. Two Sum II - Input Array Is Sorted
 
-[Question link]()
+[Question link](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=cQ1Oz4ckceM)
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 3, 4, 5, 7, 10, 11 };
+    int target = 9;
 
+    int left = 0;
+    int right = nums.length - 1;
+
+    while (left < right) {
+      int sum = nums[left] + nums[right];
+      if (sum > target) {
+        right--;
+      } else if (sum < target) {
+        left++;
+      } else {
+        break;
+      }
+    }
+
+    System.out.println(left + ", " + right); // 2, 3
+  }
+}
 
 ```
 
