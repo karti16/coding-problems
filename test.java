@@ -1,22 +1,27 @@
+import java.util.HashMap;
+
 public class test {
   public static void main(String[] args) {
-    int[] nums = { 1, 3, 4, 5, 7, 10, 11 };
-    int target = 9;
+    int[] nums = { 15, -2, 2, -8, 1, 7, 10, 23 };
+    int k = 0;
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int sum = 0;
+    int maxLen = 0;
 
-    int left = 0;
-    int right = nums.length - 1;
-
-    while (left < right) {
-      int sum = nums[left] + nums[right];
-      if (sum > target) {
-        right--;
-      } else if (sum < target) {
-        left++;
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      if (sum == k) {
+        maxLen = i + 1;
       } else {
-        break;
+        if (map.get(sum) != null) {
+          maxLen = Math.max(maxLen, i - map.get(sum));
+        } else {
+          map.put(sum, i);
+        }
       }
     }
 
-    System.out.println(left + ", " + right);
+    System.out.println(maxLen);
   }
+
 }

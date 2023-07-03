@@ -17,6 +17,7 @@
     "mdanki": "^1.1.2"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "carbon-now-cli": "^2.0.0",
     "nodemon": "^2.0.22"
   }

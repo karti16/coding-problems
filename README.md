@@ -85,6 +85,10 @@
 | 74.   | [Print specific row of the pascal triangle](#74-print-specific-row-of-the-pascal-triangle)                                                                                               |
 | 75.   | [Majority Element II](#75-majority-element-ii)                                                                                                                                           |
 | 76.   | [Two Sum II - Input Array Is Sorted](#76-two-sum-ii---input-array-is-sorted)                                                                                                             |
+| 77.   | [3Sum](#77-3sum)                                                                                                                                                                         |
+| 78.   | [3Sum Closest](#78-3sum-closest)                                                                                                                                                         |
+| 79.   | [4Sum](#79-4sum)                                                                                                                                                                         |
+| 80.   | [Largest subarray with 0 sum (with -ve, 0 elements)](#80-largest-subarray-with-0-sum-with--ve-0-elements)                                                                                |
 
 ## 1. Binary Search
 
@@ -3341,6 +3345,273 @@ public class test {
     System.out.println(left + ", " + right); // 2, 3
   }
 }
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 77. 3Sum
+
+[Question link](https://leetcode.com/problems/3sum/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=jzZsG8n2R9A)
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { -1, 0, 1, 2, -1, -4 };
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    Arrays.sort(nums);
+    System.out.println(Arrays.toString(nums));
+    for (int i = 0; i < nums.length; i++) {
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
+      int left = i + 1;
+      int right = nums.length - 1;
+
+      while (left < right) {
+        int threeSum = nums[i] + nums[left] + nums[right];
+        if (threeSum > 0) {
+          right--;
+        } else if (threeSum < 0) {
+          left++;
+        } else {
+          res.add(new ArrayList<Integer>(Arrays.asList(nums[i], nums[left], nums[right])));
+          left++;
+          while (nums[left] == nums[left - 1] && left < right) {
+            left++;
+          }
+        }
+      }
+    }
+
+    System.out.println(res); // [[-1, -1, 2], [-1, 0, 1]]
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 78. 3Sum Closest
+
+[Question link](https://leetcode.com/problems/3sum-closest/)
+
+[Question link](https://practice.geeksforgeeks.org/problems/3-sum-closest/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=3-sum-closest)
+
+[Video Solution Link](https://www.youtube.com/watch?v=qBr2hq4daWE)
+
+```java
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { -1, 0, 1, 2, -1, -4 };
+    int target = 1;
+    int result = nums[0] + nums[1] + nums[nums.length - 1];
+    Arrays.sort(nums);
+    for (int i = 0; i < nums.length; i++) {
+
+      int left = i + 1;
+      int right = nums.length - 1;
+
+      while (left < right) {
+        int threeSum = nums[i] + nums[left] + nums[right];
+        if (threeSum > target) {
+          right--;
+        } else {
+          left++;
+        }
+
+        if (Math.abs(threeSum - target) < Math.abs(result - target)) {
+          result = threeSum;
+        }
+      }
+    }
+
+    System.out.println(result); // 1
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 79. 4sum
+
+[Question link](https://leetcode.com/problems/4sum/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=EYeR-_1NRlQ)
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 0, -1, 0, -2, 2 };
+    int target = 0;
+    int n = nums.length;
+    Arrays.sort(nums);
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+
+    for (int i = 0; i < n - 3; i++) {
+      for (int j = i + 1; j < n - 2; j++) {
+        int left = j + 1;
+        int right = n - 1;
+
+        while (left < right) {
+          long sum = (long) nums[left] + nums[right] + nums[i] + nums[j];
+          if (sum > target) {
+            right--;
+
+          } else if (sum < target) {
+            left++;
+          } else {
+            res.add(new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[left],
+                nums[right])));
+
+            left++;
+            right--;
+            while (left < right && nums[left] == nums[left - 1]) {
+              left++;
+            }
+            while (left < right && nums[right] == nums[right - 1]) {
+              right--;
+            }
+          }
+        }
+      }
+    }
+
+    System.out.println(res); // [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+
+  }
+}
+// -------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 0, -1, 0, -2, 2 };
+    int target = 0;
+    Arrays.sort(nums);
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    ArrayList<Integer> quad = new ArrayList<>();
+
+    kSum(4, 0, target, res, quad, nums);
+    System.out.println(res);
+  }
+
+  static void kSum(int k, int start, int target, List<List<Integer>> res, ArrayList<Integer> quad, int[] nums) {
+    if (k != 2) {
+      for (int i = start; i < nums.length - k + 1; i++) {
+        if (i != start && nums[i] == nums[i - 1]) {
+          continue;
+        }
+        quad.add(nums[i]);
+        kSum(k - 1, i + 1, target - nums[i], res, quad, nums);
+        quad.remove(quad.size() - 1);
+      }
+      return;
+    }
+
+    int left = start;
+    int right = nums.length - 1;
+
+    while (left < right) {
+      long sum = (long) nums[left] + nums[right];
+      if (sum > target) {
+        right--;
+
+      } else if (sum < target) {
+        left++;
+      } else {
+        quad.add(nums[left]);
+        quad.add(nums[right]);
+        res.add(new ArrayList<>(quad));
+        quad.remove(quad.size() - 1);
+        quad.remove(quad.size() - 1);
+
+        left++;
+        right--;
+        while (left < right && nums[left] == nums[left - 1]) {
+          left++;
+        }
+        while (left < right && nums[right] == nums[right - 1]) {
+          right--;
+        }
+      }
+    }
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 80. Largest subarray with 0 sum (with -ve, 0 elements)
+
+[Question link](https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1?category[]=Hash&category[]=Hash&company[]=Amazon&company[]=Amazon&page=1&query=category[]Hashcompany[]Amazonpage1company[]Amazoncategory[]Hash&utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=largest-subarray-with-0-sum)
+
+[Video Solution Link](https://www.youtube.com/watch?v=xmguZ6GbatA)
+
+```java
+import java.util.HashMap;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 15, -2, 2, -8, 1, 7, 10, 23 };
+    int k = 0;
+    HashMap<Integer, Integer> map = new HashMap<>();
+    int sum = 0;
+    int maxLen = 0;
+
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      if (sum == k) {
+        maxLen = i + 1;
+      } else {
+        if (map.get(sum) != null) {
+          maxLen = Math.max(maxLen, i - map.get(sum));
+        } else {
+          map.put(sum, i);
+        }
+      }
+    }
+
+    System.out.println(maxLen); // 5
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
 
 ```
 
