@@ -7,15 +7,16 @@ const token =
 const config = {
   headers: { Authorization: `Bearer ${token}`, ['Content-Type']: 'application/json' },
 };
+const url = 'http://localhost:4000/devTesting/costPriceCheck';
 function trans_item_id() {
-  return axios.post('http://localhost:4000/priceList/testtest', { type: 'trans_item_id' }, config);
+  return axios.post(url, { type: 'trans_item_id' }, config);
 }
 
 function sale_trans_id() {
-  return axios.post('http://localhost:4000/priceList/testtest', { type: 'sale_trans_id' }, config);
+  return axios.post(url, { type: 'sale_trans_id' }, config);
 }
 function both_sale_trans_id() {
-  return axios.post('http://localhost:4000/priceList/testtest', { type: 'both_sale_trans_id' }, config);
+  return axios.post(url, { type: 'both_sale_trans_id' }, config);
 }
 
 Promise.all([trans_item_id(), sale_trans_id(), both_sale_trans_id()])
@@ -47,7 +48,7 @@ Promise.all([trans_item_id(), sale_trans_id(), both_sale_trans_id()])
     }
 
     console.log({ trueCounter, falseCounter });
-    const a = res.flatMap((i) => [i.sP.sale_trans_id, i.tP.trans_item_id]).sort((a, b) => a - b);
+    const a = res.flatMap((i) => [i.sP.sale_trans_id, i.tP.trans_item_id]).sort((a, b) => a - b); //i.tP.trans_item_id
 
     for (let i = 0; i < a.length; i += 5) {
       console.log(a.slice(i, i + 5));

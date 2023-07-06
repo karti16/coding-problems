@@ -89,6 +89,11 @@
 | 78.   | [3Sum Closest](#78-3sum-closest)                                                                                                                                                         |
 | 79.   | [4Sum](#79-4sum)                                                                                                                                                                         |
 | 80.   | [Largest subarray with 0 sum (with -ve, 0 elements)](#80-largest-subarray-with-0-sum-with--ve-0-elements)                                                                                |
+| 81.   | [Remove Invalid Parentheses](#81-remove-invalid-parentheses)                                                                                                                             |
+| 82.   | [Print numbers up to n with number system which as 3 & 4](#82-print-numbers-up-to-n-with-number-system-which-as-3--4)                                                                    |
+| 83.   | [Subarray with given XOR](#83-subarray-with-given-xor)                                                                                                                                   |
+| 84.   | [Merge Intervals](#84-merge-intervals)                                                                                                                                                   |
+| 85.   | [Merge Sorted Array](#85-merge-sorted-array)                                                                                                                                             |
 
 ## 1. Binary Search
 
@@ -3604,13 +3609,237 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 81. Remove Invalid Parentheses
+
+[Question link](https://leetcode.com/problems/remove-invalid-parentheses/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=cdQxSP6Dim8)
+
+```java
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Stack;
+
+public class test {
+  public static void main(String[] args) {
+    String str = "()())()";
+    int removals = findNoOfRemovals(str);
+    ArrayList<String> res = new ArrayList<>();
+    HashMap<String, Boolean> map = new HashMap<>();
+    removeInvalidParenthesis(str, res, map, removals);
+    System.out.println(res);
+  }
+
+  static void removeInvalidParenthesis(String str, ArrayList<String> res, HashMap<String, Boolean> map, int removals) {
+
+    if (map.get(str) != null) {
+      return;
+    }
+    map.put(str, true);
+
+    if (removals == 0) {
+      int removalsNeeded = findNoOfRemovals(str);
+      if (removalsNeeded == 0) {
+        res.add(str);
+      }
+      return;
+    }
+
+    for (int i = 0; i < str.length(); i++) {
+      String s1 = str.substring(0, i);
+      String s2 = str.substring(i + 1);
+      String join = s1 + s2;
+      removeInvalidParenthesis(join, res, map, removals - 1);
+
+    }
+
+  };
+
+  static int findNoOfRemovals(String str) {
+    Stack<Character> stk = new Stack<>();
+    for (char ch : str.toCharArray()) {
+      if (ch == '(') {
+        stk.push(ch);
+      } else if (ch == ')') {
+        if (stk.size() != 0 && stk.peek() == '(') {
+          stk.pop();
+        } else {
+          stk.push(ch);
+        }
+      }
+    }
+    return stk.size();
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 82. Print numbers up to n with number system which as 3 & 4
 
 [Question link]()
 
 [Video Solution Link]()
 
 ```java
+
+public class test {
+  public static void main(String[] args) {
+    for (int i = 1; i <= 15; i++) {
+      findNthNumber(i);
+      System.out.println();
+    }
+
+  }
+
+  static void findNthNumber(int n) {
+    if (n == 1 || n == 2) {
+      System.out.print((n - 1) + 3);
+      return;
+    }
+    n--;
+    findNthNumber(n / 2);
+    System.out.print((n % 2) + 3);
+  }
+
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 83. Subarray with given XOR
+
+[Question link](https://www.interviewbit.com/problems/subarray-with-given-xor/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=eZr-6p0B7ME)
+
+```java
+import java.util.HashMap;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 4, 2, 2, 6, 4 };
+    int k = 6;
+    HashMap<Integer, Integer> map = new HashMap<>();
+    map.put(0, 1);
+    int count = 0;
+    int xr = 0;
+
+    for (int n : nums) {
+      xr = xr ^ n;
+      int x = xr ^ k;
+      count += map.get(x) == null ? 0 : map.get(x);
+      map.merge(xr, 1, Integer::sum);
+    }
+    System.out.println(count);
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 84. Merge Intervals
+
+[Question link](https://leetcode.com/problems/merge-intervals/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=qKczfGUrFY4)
+
+[Video Solution Link](https://www.youtube.com/watch?v=44H3cEC2fFM)
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[][] nums = { { 1, 3 }, { 15, 18 }, { 2, 6 }, { 8, 10 }, };
+
+    Arrays.sort(nums, Comparator.comparingDouble(o -> o[0]));
+
+    List<int[]> res = new ArrayList<>();
+    int[] current_interval = nums[0];
+    res.add(current_interval);
+
+    for (int[] interval : nums) {
+      int current_begin = current_interval[0];
+      int current_end = current_interval[1];
+      int next_begin = interval[0];
+      int next_end = interval[1];
+
+      if (current_end >= next_begin) {
+        current_interval[1] = Math.max(current_end, next_end);
+      } else {
+        current_interval = interval;
+        res.add(current_interval);
+      }
+    }
+
+    for (int[] a : res) {
+      System.out.println(Arrays.toString(a));
+    }
+    // [1, 6]
+    // [8, 10]
+    // [15, 18
+
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 85. Merge Sorted Array
+
+[Question link](https://leetcode.com/problems/merge-sorted-array/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=P1Ic85RarKY&t=240s)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+    int m = 3;
+    int[] nums2 = { 2, 5, 6 };
+    int n = 3;
+
+    int last = m + n - 1;
+
+    while (m > 0 && n > 0) {
+      if (nums1[m - 1] > nums2[n - 1]) {
+        nums1[last] = nums1[m - 1];
+        m -= 1;
+      } else {
+        nums1[last] = nums2[n - 1];
+        n -= 1;
+      }
+      last -= 1;
+    }
+
+    while (n > 0) {
+      nums1[last] = nums2[n - 1];
+      last -= 1;
+      n -= 1;
+    }
+
+    System.out.println(Arrays.toString(nums1));
+    // [1, 2, 2, 3, 5, 6]
+
+  }
+
+}
 
 
 ```

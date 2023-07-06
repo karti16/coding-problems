@@ -1,27 +1,34 @@
-import java.util.HashMap;
+import java.util.Arrays;
 
 public class test {
   public static void main(String[] args) {
-    int[] nums = { 15, -2, 2, -8, 1, 7, 10, 23 };
-    int k = 0;
-    HashMap<Integer, Integer> map = new HashMap<>();
-    int sum = 0;
-    int maxLen = 0;
+    int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+    int m = 3;
+    int[] nums2 = { 2, 5, 6 };
+    int n = 3;
 
-    for (int i = 0; i < nums.length; i++) {
-      sum += nums[i];
-      if (sum == k) {
-        maxLen = i + 1;
+    int last = m + n - 1;
+
+    while (m > 0 && n > 0) {
+      if (nums1[m - 1] > nums2[n - 1]) {
+        nums1[last] = nums1[m - 1];
+        m -= 1;
       } else {
-        if (map.get(sum) != null) {
-          maxLen = Math.max(maxLen, i - map.get(sum));
-        } else {
-          map.put(sum, i);
-        }
+        nums1[last] = nums2[n - 1];
+        n -= 1;
       }
+      last -= 1;
     }
 
-    System.out.println(maxLen);
+    while (n > 0) {
+      nums1[last] = nums2[n - 1];
+      last -= 1;
+      n -= 1;
+    }
+
+    System.out.println(Arrays.toString(nums1));
+    // [1, 2, 2, 3, 5, 6]
+
   }
 
 }
