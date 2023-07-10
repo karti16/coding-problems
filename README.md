@@ -94,6 +94,8 @@
 | 83.   | [Subarray with given XOR](#83-subarray-with-given-xor)                                                                                                                                   |
 | 84.   | [Merge Intervals](#84-merge-intervals)                                                                                                                                                   |
 | 85.   | [Merge Sorted Array](#85-merge-sorted-array)                                                                                                                                             |
+| 86.   | [Merge Without Extra Space](#86-merge-without-extra-space)                                                                                                                               |
+| 87.   | [Find Missing And Repeating Numbers](#87-find-missing-and-repeating-numbers)                                                                                                             |
 
 ## 1. Binary Search
 
@@ -3840,6 +3842,153 @@ public class test {
   }
 
 }
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 86. Merge Without Extra Space
+
+[Question link](https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays-1587115620/1?company[]=Synopsys&company[]=Synopsys&page=1&query=company[]Synopsyspage1company[]Synopsys&utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=merge-two-sorted-arrays)
+
+[Video Solution Link](https://www.youtube.com/watch?v=n7uwj04E0I4&t=1519s)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums1 = { 1, 3, 5, 7 };
+    int[] nums2 = { 0, 2, 6, 8, 9 };
+
+    int n1 = nums1.length - 1;
+    int n2 = 0;
+
+    while (n1 > 0 && n2 < nums2.length) {
+      if (nums1[n1] > nums2[n2]) {
+        int temp = nums1[n1];
+        nums1[n1] = nums2[n2];
+        nums2[n2] = temp;
+      }
+      n1--;
+      n2++;
+    }
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+
+    System.out.println(Arrays.toString(nums1));
+    System.out.println(Arrays.toString(nums2));
+    // [0, 1, 2, 3]
+    // [5, 6, 7, 8, 9]
+  }
+}
+
+// -------------------------------------------------
+
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr1 = { 1, 3, 5, 7 };
+    int[] arr2 = { 0, 2, 6, 8, 9 };
+
+    int n1 = arr1.length;
+    int n2 = arr2.length;
+
+    int len = n1 + n2;
+
+    int gap = (len / 2) + (len % 2);
+
+    while (gap > 0) {
+      int left = 0;
+      int right = left + gap;
+
+      while (right < len) {
+        // arr1 and arr2
+        if (left < n1 && right >= n1) {
+          swap(arr1, arr2, left, right - n1);
+        }
+        // arr2 and arr2
+        else if (left >= n1) {
+          swap(arr2, arr2, left - n1, right - n1);
+        }
+        // arr1 and arr1
+        else {
+          swap(arr1, arr1, left, right);
+        }
+        left++;
+        right++;
+      }
+
+      if (gap == 1)
+        break;
+      gap = (gap / 2) + (gap % 2);
+    }
+
+    System.out.println(Arrays.toString(arr1));
+    System.out.println(Arrays.toString(arr2));
+
+    // [0, 1, 2, 3]
+    // [5, 6, 7, 8, 9]
+  }
+
+  static void swap(int[] arr1, int[] arr2, int n1, int n2) {
+    if (arr1[n1] > arr2[n2]) {
+      int temp = arr1[n1];
+      arr1[n1] = arr2[n2];
+      arr2[n2] = temp;
+    }
+  }
+}
+
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 87. Find Missing And Repeating Numbers
+
+[Question link](https://www.codingninjas.com/studio/problems/missing-and-repeating-numbers_6828164?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Video Solution Link](https://www.youtube.com/watch?v=2D0D8HE6uak)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 4, 2 };
+    int n = arr.length;
+    int[] hashArr = new int[n + 1];
+
+    for (int i = 0; i < arr.length; i++) {
+      hashArr[arr[i]]++;
+    }
+
+    for (int i = 1; i < hashArr.length; i++) {
+      if (hashArr[i] == 2) {
+        System.out.println("Repeating number : " + i);
+      }
+
+      if (hashArr[i] == 0) {
+        System.out.println("Missing number : " + i);
+      }
+    }
+  }
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
 
 
 ```
