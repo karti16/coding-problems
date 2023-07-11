@@ -96,34 +96,66 @@
 | 85.   | [Merge Sorted Array](#85-merge-sorted-array)                                                                                                                                             |
 | 86.   | [Merge Without Extra Space](#86-merge-without-extra-space)                                                                                                                               |
 | 87.   | [Find Missing And Repeating Numbers](#87-find-missing-and-repeating-numbers)                                                                                                             |
+| 88.   | [Find Lower Bound & Upper Bound in sorted Array](#88-find-lower-bound--upper-bound-in-sorted-array)                                                                                      |
+| 89.   | [Search Insert Position](#89-search-insert-position)                                                                                                                                     |
+| 90.   | [Count Number of occurrence in sorted array using binary search](#90-count-number-of-occurrence-in-sorted-array-using-binary-search)                                                     |
+| 91.   | [Search in Rotated Sorted Array II](#91-search-in-rotated-sorted-array-ii)                                                                                                               |
 
 ## 1. Binary Search
 
+[Question link](https://leetcode.com/problems/binary-search/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=t1GLDWqWVQk&t=310s)
+
 ```java
-	public class Java {
-    public static void main(String args[]) {
-        int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8 };
-        int target = 3;
-        System.out.println(binarySearch(arr, target));
-    }
+public class Java {
+public static void main(String args[]) {
+    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8 };
+    int target = 3;
+    System.out.println(binarySearch(arr, target));
+}
 
-    static int binarySearch(int[] arr, int target) {
-        int start = 0;
-        int end = arr.length - 1;
-        while (start <= end) {
-            int mid = (start + end) / 2;
+static int binarySearch(int[] arr, int target) {
+    int start = 0;
+    int end = arr.length - 1;
+    while (start <= end) {
+        int mid = (start + end) / 2;
 
-            if (target < arr[mid]) {
-                end = mid - 1;
-            } else if (target > arr[mid]) {
-                start = mid + 1;
-            } else {
-                return mid;
-            }
+        if (target < arr[mid]) {
+            end = mid - 1;
+        } else if (target > arr[mid]) {
+            start = mid + 1;
+        } else {
+            return mid;
         }
-        return -1;
-      }
     }
+    return -1;
+  }
+}
+    // ----------------
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    int target = 3;
+    int res = binarySearch(arr, 0, arr.length - 1, target);
+    System.out.println(res);
+  }
+
+  static int binarySearch(int[] arr, int low, int high, int target) {
+    if (low > high) {
+      return -1;
+    }
+    int mid = (low + high) / 2;
+
+    if (arr[mid] == target) {
+      return mid;
+    } else if (target < arr[mid]) {
+      return binarySearch(arr, low, mid - 1, target);
+    } else {
+      return binarySearch(arr, mid + 1, high, target);
+    }
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -3977,6 +4009,226 @@ public class test {
   }
 }
 
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 88. Find Lower Bound & Upper Bound in sorted Array
+
+[Question link](https://www.codingninjas.com/studio/problems/lower-bound_8165382?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Question link](https://www.codingninjas.com/studio/problems/implement-upper-bound_8165383?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Video Solution Link](https://www.youtube.com/watch?v=6zhGS79oQ4k)
+
+```java
+// Lower Bound
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 3, 5, 8, 8, 10, 10, 11 };
+    int target = 8;
+    int ans = arr.length;
+
+    int low = 0;
+    int high = arr.length - 1;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+
+      if (arr[mid] >= target) {
+        ans = mid;
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+
+    System.out.println(ans);
+  }
+
+}
+
+// Upper Bound
+
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 3, 5, 8, 8, 10, 10, 11 };
+    int target = 9;
+    int ans = 0;
+
+    int low = 0;
+    int high = arr.length - 1;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+
+      if (arr[mid] > target) {  // modification. changed >= to >
+        ans = mid;
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+
+    System.out.println(ans);
+  }
+
+}
+
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 89. Search Insert Position
+
+[Question link](https://leetcode.com/problems/search-insert-position/description/)
+
+[Video Solution Link](https://youtu.be/6zhGS79oQ4k?t=1187)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 3, 5, 8, 8, 10, 10, 11 };
+    int target = 9;
+    int ans = 0;
+
+    int low = 0;
+    int high = arr.length - 1;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+
+      if (arr[mid] >= target) {
+        ans = mid;
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+
+    System.out.println(ans);
+  }
+
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 90. Count Number of occurrence in sorted array using binary search
+
+[Question link](https://www.codingninjas.com/studio/problems/occurrence-of-x-in-a-sorted-array_630456?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf)
+
+[Video Solution Link](https://youtu.be/hjR1IYVx9lY?t=1426)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 3, 4, 5, 5, 5, 6, 7 };
+    int target = 5;
+
+    int[] result = findFirstAndLast(nums, target);
+    if (result[0] == -1) {
+      System.out.println(0);
+    } else {
+      int totalOccurrence = result[1] - result[0] + 1;
+      System.out.println(totalOccurrence);
+    }
+  }
+
+  static int[] findFirstAndLast(int[] nums, int target) {
+    int[] ans = { -1, -1 };
+
+    ans[0] = search(nums, target, true);
+    if (ans[0] != -1) {
+      ans[1] = search(nums, target, false);
+    }
+
+    return ans;
+
+  }
+
+  static int search(int[] nums, int target, boolean findFirstIndex) {
+    int ans = -1;
+    int start = 0;
+    int end = nums.length - 1;
+    while (start <= end) {
+      int mid = start + (end - start) / 2;
+
+      if (target < nums[mid]) {
+        end = mid - 1;
+      } else if (target > nums[mid]) {
+        start = mid + 1;
+      } else {
+        ans = mid;
+        if (findFirstIndex) {
+          end = mid - 1;
+        } else {
+          start = mid + 1;
+        }
+      }
+    }
+    return ans;
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 91. Search in Rotated Sorted Array II
+
+[Question link](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=w2G2W8l__pc)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 3, 4, 5, 5, 5, 6, 7 };
+    int target = 5;
+
+    boolean result = search(nums, target);
+    System.out.println(result);
+  }
+
+  static boolean search(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length - 1;
+    int mid;
+    while (left <= right) {
+      mid = left + (right - left) / 2;
+      if (nums[mid] == target)
+        return true;
+
+      if (nums[left] == nums[mid] && nums[mid] == nums[right]) {
+        left += 1;
+        right -= 1;
+        continue;
+      }
+      // condition for left side is sort
+      if (nums[left] <= nums[mid]) {
+        if (target >= nums[left] && target <= nums[mid]) {
+          right = mid - 1;
+        } else {
+          left = mid + 1;
+        }
+      } else {
+        if (target >= nums[mid] && target <= nums[right]) {
+          left = mid + 1;
+        } else {
+          right = mid - 1;
+        }
+      }
+    }
+    return false;
+  }
+}
 
 ```
 
