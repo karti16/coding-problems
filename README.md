@@ -100,6 +100,12 @@
 | 89.   | [Search Insert Position](#89-search-insert-position)                                                                                                                                     |
 | 90.   | [Count Number of occurrence in sorted array using binary search](#90-count-number-of-occurrence-in-sorted-array-using-binary-search)                                                     |
 | 91.   | [Search in Rotated Sorted Array II](#91-search-in-rotated-sorted-array-ii)                                                                                                               |
+| 92.   | [Find Minimum in Rotated Sorted Array](#92-find-minimum-in-rotated-sorted-array)                                                                                                         |
+| 93.   | [Find Minimum in Rotated Sorted Array](#93-number-of-times-array-is-rotated)                                                                                                             |
+| 94.   | [Single Element in a Sorted Array](#94-single-element-in-a-sorted-array)                                                                                                                 |
+| 95.   | [Find Peak Element](#95-find-peak-element)                                                                                                                                               |
+| 96.   | [Square Root of a number using binary search](#96-square-root-of-a-number-using-binary-search)                                                                                           |
+| 97.   | [Find Nth Root Of M (BS)](#97-find-nth-root-of-m-bs)                                                                                                                                     |
 
 ## 1. Binary Search
 
@@ -4234,14 +4240,256 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 92. Find Minimum in Rotated Sorted Array
 
-[Question link]()
+[Question link](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=nhEMDKMB44g)
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 3, 4, 5, 1, 2 };
+    int min = Integer.MAX_VALUE;
+    int low = 0;
+    int high = nums.length - 1;
 
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+
+      if (nums[low] <= nums[high]) {
+        min = Math.min(min, nums[low]);
+        break;
+      }
+
+      if (nums[low] <= nums[mid]) {
+        // sorted
+        min = Math.min(min, nums[low]);
+        low = mid + 1;
+      } else {
+        min = Math.min(min, nums[mid]);
+        high = mid - 1;
+      }
+    }
+
+    System.out.println(min); // 1
+  }
+
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 93. Number of times array is rotated
+
+[Question link](https://www.codingninjas.com/studio/problems/rotation_7449070?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Video Solution Link](https://www.youtube.com/watch?v=jtSiWTPLwd0)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 3, 4, 5, 1, 2 };
+    int min = Integer.MAX_VALUE;
+    int ind = 0;
+    int low = 0;
+    int high = nums.length - 1;
+
+    while (low < high) {
+      int mid = low + (high - low) / 2;
+
+      if (nums[low] <= nums[high]) {
+        if (nums[low] < min) {
+          min = nums[low];
+          ind = low;
+        }
+        break;
+      }
+
+      if (nums[low] <= nums[mid]) {
+        // sorted
+        if (nums[low] < min) {
+          min = nums[low];
+          ind = low;
+        }
+        low = mid + 1;
+      } else {
+        if (nums[mid] < min) {
+          min = nums[mid];
+          ind = mid;
+        }
+        high = mid - 1;
+      }
+    }
+
+    System.out.println(ind); // 3
+  }
+
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 94. Single Element in a Sorted Array
+
+[Question link](https://leetcode.com/problems/single-element-in-a-sorted-array/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=AZOmHuHadxQ)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 1, 2, 3, 3, 4, 4, 8, 8 };
+    int n = nums.length - 1;
+
+    if (nums.length == 1) {
+      System.out.println(nums[0]);
+    }
+
+    if (nums[0] != nums[1]) {
+      System.out.println(nums[0]);
+    }
+
+    if (nums[n] != nums[n - 1]) {
+      System.out.println(nums[n]);
+    }
+
+    int low = 1;
+    int high = n - 2;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      if (nums[mid] != nums[mid + 1] && nums[mid] != nums[mid - 1]) {
+        System.out.println(nums[mid]);
+      }
+      // (even, odd) -> single element on the right side, left side can be eliminated
+      // (odd, even) -> single element on the left side, right side can be eliminated
+
+      if ((mid % 2 == 1 && nums[mid] == nums[mid - 1]) || (mid % 2 == 0 && nums[mid] == nums[mid + 1])) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 95. Find Peak Element
+
+[Question link](https://leetcode.com/problems/find-peak-element/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=cXxmbemS6XM)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 2, 3, 5, 6, 4 };
+    int n = nums.length;
+
+    if (nums.length == 1) {
+      System.out.println(0);
+    }
+
+    if (nums[0] > nums[1]) {
+      System.out.println(0);
+    }
+
+    if (nums[n - 1] > nums[n - 2]) {
+      System.out.println(n - 1);
+    }
+
+    int low = 1;
+    int high = n - 2;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      if (nums[mid] > nums[mid + 1] && nums[mid] > nums[mid - 1]) {
+        System.out.println(mid);
+        break;
+      } else if (nums[mid] > nums[mid - 1]) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+
+    }
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 96. Square Root of a number using binary search
+
+[Question link](https://www.codingninjas.com/studio/problems/square-root-integral_893351?leftPanelTab=0%3Futm_source%3Dstriver&utm_medium=website&utm_campaign=a_zcoursetuf)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Bsv3FPUX_BA)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int n = 28;
+
+    int low = 1;
+    int high = n;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int val = mid * mid;
+      if (val <= n) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    System.out.println(high);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 97. Find Nth Root Of M (BS)
+
+[Question link](https://www.codingninjas.com/studio/problems/nth-root-of-m_1062679?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Video Solution Link](https://www.youtube.com/watch?v=rjEJeYCasHs)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int n = 27;
+    int m = 3;
+
+    System.out.println(nThRoot(n, m));
+
+  }
+
+  static int nThRoot(int n, int m) {
+    int low = 1;
+    int high = n;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int val = (int) Math.pow(mid, m);
+      if (val == n) {
+        return (mid);
+      } else if (val < n) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    return (-1);
+  }
+}
 
 ```
 
