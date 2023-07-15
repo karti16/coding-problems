@@ -1,12 +1,11 @@
-import java.util.Arrays;
-
 public class test {
   public static void main(String[] args) {
     int[] bloomDay = { 1, 10, 3, 10, 2 };
     int m = 3;
     int k = 1;
+    long val = (long) m * (long) k;
 
-    if (m * k >= bloomDay.length) {
+    if (val > bloomDay.length) {
       System.out.println("Not possible");
     }
 
