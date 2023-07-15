@@ -106,6 +106,7 @@
 | 95.   | [Find Peak Element](#95-find-peak-element)                                                                                                                                               |
 | 96.   | [Square Root of a number using binary search](#96-square-root-of-a-number-using-binary-search)                                                                                           |
 | 97.   | [Find Nth Root Of M (BS)](#97-find-nth-root-of-m-bs)                                                                                                                                     |
+| 98.   | [Koko Eating Bananas](#98-koko-eating-bananas)                                                                                                                                           |
 
 ## 1. Binary Search
 
@@ -4490,6 +4491,106 @@ public class test {
     return (-1);
   }
 }
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 98. Koko Eating Bananas
+
+[Question link](https://leetcode.com/problems/koko-eating-bananas/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=qyfekrNni90)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] piles = { 3, 6, 7, 11 };
+    int h = 8;
+
+    int low = 1;
+    int high = findMax(piles);
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int totalH = speed(piles, mid);
+      if (totalH <= h) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    System.out.println(low); // 4
+
+  }
+
+  static int speed(int[] arr, int hourly) {
+    int total = 0;
+    for (int a : arr) {
+      total += Math.ceil((double) a / (double) hourly);
+    }
+    return total;
+  }
+
+  static int findMax(int[] arr) {
+    int max = Integer.MIN_VALUE;
+    for (int a : arr) {
+      max = Math.max(a, max);
+    }
+    return max;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
 
 ```
 
