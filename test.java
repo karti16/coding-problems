@@ -1,47 +1,27 @@
 public class test {
   public static void main(String[] args) {
-    int[] bloomDay = { 1, 10, 3, 10, 2 };
-    int m = 3;
-    int k = 1;
-    long val = (long) m * (long) k;
-
-    if (val > bloomDay.length) {
-      System.out.println("Not possible");
-    }
-
-    int[] temp = findMaxMin(bloomDay);
-    int low = temp[0];
-    int high = temp[1];
+    int[] arr = { 1, 2, 5, 9 };
+    int threshold = 6;
+    int low = 1;
+    int high = findMaxMin(arr)[1];
 
     while (low <= high) {
       int mid = low + (high - low) / 2;
-      if (possible(bloomDay, mid, m, k)) {
+      if (checkPossible(arr, mid, threshold)) {
         high = mid - 1;
-
       } else {
         low = mid + 1;
       }
     }
-
     System.out.println(low);
-
   }
 
-  static boolean possible(int[] arr, int day, int m, int k) {
-    int count = 0;
-    int noOfBoq = 0;
-
+  static boolean checkPossible(int[] arr, int mid, int threshold) {
+    int sum = 0;
     for (int a : arr) {
-      if (a <= day) {
-        count++;
-      } else {
-        noOfBoq += count / k;
-        count = 0;
-      }
+      sum += Math.ceil((double) a / (double) mid);
     }
-    noOfBoq += count / k;
-    return noOfBoq >= m;
-
+    return sum <= threshold;
   }
 
   static int[] findMaxMin(int[] arr) {
