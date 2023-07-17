@@ -109,6 +109,8 @@
 | 98.   | [Koko Eating Bananas](#98-koko-eating-bananas)                                                                                                                                           |
 | 99.   | [Minimum Number of Days to Make m Bouquets](#99-minimum-number-of-days-to-make-m-bouquets)                                                                                               |
 | 100.  | [Find the Smallest Divisor Given a Threshold](#100-find-the-smallest-divisor-given-a-threshold)                                                                                          |
+| 101.  | [Capacity To Ship Packages Within D Days](#101-capacity-to-ship-packages-within-d-days)                                                                                                  |
+| 102.  | [Kth Missing Positive Number](#102-kth-missing-positive-number)                                                                                                                          |
 
 ## 1. Binary Search
 
@@ -4655,27 +4657,89 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 101. Capacity To Ship Packages Within D Days
 
-[Question link]()
+[Question link](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=MG-Ac4TAvTY)
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] weights = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int days = 5;
+    int low = findMaxAndSum(weights)[0];
+    int high = findMaxAndSum(weights)[1];
 
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      if (checkPossible(weights, mid, days)) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
+    }
+    System.out.println(low);
 
+  }
+
+  static boolean checkPossible(int[] weights, int mid, int days) {
+    int daysCount = 1;
+    int load = 0;
+    for (int a : weights) {
+      if (load + a > mid) {
+        daysCount++;
+        load = a;
+      } else {
+        load += a;
+      }
+    }
+    return daysCount <= days;
+  }
+
+  static int[] findMaxAndSum(int[] arr) {
+    int[] ans = { Integer.MIN_VALUE, 0 };
+    for (int a : arr) {
+      ans[0] = Math.max(a, ans[0]);
+      ans[1] += a;
+    }
+    return ans;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 102. Kth Missing Positive Number
 
-[Question link]()
+[Question link](https://leetcode.com/problems/kth-missing-positive-number/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=uZ0N_hZpyps)
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 2, 3, 4, 7, 11 };
+    int k = 5;
+    int low = 0;
+    int high = arr.length - 1;
+    int missing = 0;
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      missing = arr[mid] - (mid + 1);
 
+      if (missing < k) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    int ans = low + k;
+    System.out.println(ans);
+
+  }
+}
 
 ```
 
