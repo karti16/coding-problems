@@ -1,23 +1,39 @@
+import java.util.Arrays;
+
 public class test {
   public static void main(String[] args) {
-    int[] arr = { 2, 3, 4, 7, 11 };
-    int k = 5;
-    int low = 0;
-    int high = arr.length - 1;
-    int missing = 0;
+
+    int[] arr = { 1, 2, 3 };
+    Arrays.sort(arr);
+    int cows = 2;
+
+    int low = 1;
+    int high = arr[arr.length - 1] - arr[0];
+
     while (low <= high) {
       int mid = low + (high - low) / 2;
-      missing = arr[mid] - (mid + 1);
-
-      if (missing < k) {
+      if (isPossible(arr, mid, cows)) {
         low = mid + 1;
       } else {
         high = mid - 1;
       }
     }
+    System.out.println(high);
+  }
 
-    int ans = low + k;
-    System.out.println(ans);
+  static boolean isPossible(int[] arr, int distance, int cows) {
+    int cowCount = 1;
+    int last = arr[0];
 
+    for (int a : arr) {
+      if (a - last >= distance) {
+        cowCount++;
+        last = a;
+      }
+      if (cowCount == cows) {
+        return true;
+      }
+    }
+    return false;
   }
 }

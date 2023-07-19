@@ -111,6 +111,9 @@
 | 100.  | [Find the Smallest Divisor Given a Threshold](#100-find-the-smallest-divisor-given-a-threshold)                                                                                          |
 | 101.  | [Capacity To Ship Packages Within D Days](#101-capacity-to-ship-packages-within-d-days)                                                                                                  |
 | 102.  | [Kth Missing Positive Number](#102-kth-missing-positive-number)                                                                                                                          |
+| 103.  | [Allocate Books](#103-allocate-books)                                                                                                                                                    |
+| 104.  | [Split Array Largest Sum](#104-split-array-largest-sum)                                                                                                                                  |
+| 105.  | [Aggressive Cows](#105-aggressive-cows)                                                                                                                                                  |
 
 ## 1. Binary Search
 
@@ -4745,6 +4748,186 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 103. Allocate Books
+
+[Question link](https://www.codingninjas.com/studio/problems/allocate-books_1090540?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Z0hwjftStI4)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 12, 34, 67, 90 };
+    int noOfBooks = 4;
+    int noOfStud = 2;
+    int[] temp = findMaxAndSum(arr);
+    int low = temp[0];
+    int high = temp[1];
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int students = isPossible(arr, mid);
+      if (students > noOfStud) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    System.out.println(low);
+  }
+
+  static int isPossible(int[] arr, int mid) {
+    int studentCount = 1;
+    int pagesCount = 0;
+
+    for (int a : arr) {
+      if (pagesCount + a <= mid) {
+        pagesCount += a;
+      } else {
+        studentCount++;
+        pagesCount = a;
+      }
+    }
+
+    return studentCount;
+  }
+
+  static int[] findMaxAndSum(int[] arr) {
+    int sum = 0;
+    int max = Integer.MIN_VALUE;
+
+    for (int a : arr) {
+      max = Math.max(max, a);
+      sum += a;
+    }
+
+    return new int[] { max, sum };
+  }
+
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 104. Split Array Largest Sum
+
+[Question link](https://leetcode.com/problems/split-array-largest-sum/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Z0hwjftStI4)
+
+[Video Solution Link](https://www.youtube.com/watch?v=thUd_WJn6wk)
+
+```java
+public class test {
+  public static void main(String[] args) {
+
+    int[] arr = { 7, 2, 5, 10, 8 };
+    int split = 2;
+    int[] temp = findMaxAndSum(arr);
+    int low = temp[0];
+    int high = temp[1];
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int noOfSplits = isPossible(arr, mid);
+      if (noOfSplits > split) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    System.out.println(low);
+  }
+
+  static int isPossible(int[] arr, int mid) {
+    int count = 1;
+    int sum = 0;
+
+    for (int a : arr) {
+      if (sum + a <= mid) {
+        sum += a;
+      } else {
+        count++;
+        sum = a;
+      }
+    }
+
+    return count;
+  }
+
+  static int[] findMaxAndSum(int[] arr) {
+    int sum = 0;
+    int max = Integer.MIN_VALUE;
+
+    for (int a : arr) {
+      max = Math.max(max, a);
+      sum += a;
+    }
+
+    return new int[] { max, sum };
+  }
+
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 105. Aggressive Cows
+
+[Question link](https://www.codingninjas.com/studio/problems/aggressive-cows_1082559?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
+
+[Video Solution Link](https://www.youtube.com/watch?v=R_Mfw4ew-Vo)
+
+```java
+import java.util.Arrays;
+
+public class test {
+  public static void main(String[] args) {
+
+    int[] arr = { 1, 2, 3 };
+    Arrays.sort(arr);
+    int cows = 2;
+
+    int low = 1;
+    int high = arr[arr.length - 1] - arr[0];
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      if (isPossible(arr, mid, cows)) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    System.out.println(high);
+  }
+
+  static boolean isPossible(int[] arr, int distance, int cows) {
+    int cowCount = 1;
+    int last = arr[0];
+
+    for (int a : arr) {
+      if (a - last >= distance) {
+        cowCount++;
+        last = a;
+      }
+      if (cowCount == cows) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
 ## 51. title
 
 [Question link]()
@@ -4753,6 +4936,70 @@ public class test {
 
 ```java
 
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
 
 ```
 
