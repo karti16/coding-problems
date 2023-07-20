@@ -5056,14 +5056,87 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 109. Minimize Max Distance to Gas Station
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/minimise-max-distance_7541449?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=kMSBvlZ-_HA)
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 13, 17, 23 };
+    int n = arr.length;
+    int k = 5;
 
+    double low = 0;
+    double high = 0;
+
+    for (int i = 0; i < n - 1; i++) {
+      high = Math.max(arr[i + 1] - arr[i], high);
+    }
+
+    double diff = 1e-6;
+    while (high - low > diff) {
+      double mid = (low + high) / 2;
+      int cnt = checkNoOfGasStationRequired(arr, mid);
+      if (cnt > k) {
+        low = mid;
+      } else {
+        high = mid;
+      }
+    }
+
+    System.out.println(high);
+
+  }
+
+  static int checkNoOfGasStationRequired(int[] arr, double dist) {
+    int cnt = 0;
+    for (int i = 0; i < arr.length - 1; i++) {
+      int numberBetween = (int) ((arr[i + 1] - arr[i]) / dist);
+      if ((arr[i + 1] - arr[i]) / dist == numberBetween * dist) {
+        numberBetween--;
+      }
+      cnt += numberBetween;
+    }
+    return cnt;
+  }
+}
+
+// --------------------------------
+public class test {
+  public static void main(String[] args) {
+    int[] arr = { 1, 13, 17, 23 };
+    int n = arr.length;
+    int k = 5;
+    int[] howMany = new int[n - 1];
+
+    for (int gasStation = 1; gasStation <= k; gasStation++) {
+      double maxSection = -1;
+      int maxInd = -1;
+
+      for (int i = 0; i < n - 1; i++) {
+        double diff = arr[i + 1] - arr[i];
+        double sectionLength = diff / ((double) howMany[i] + 1);
+        if (sectionLength > maxSection) {
+          maxSection = sectionLength;
+          maxInd = i;
+        }
+      }
+      howMany[maxInd]++;
+    }
+    double maxAns = -1;
+
+    for (int i = 0; i < n - 1; i++) {
+      double diff = arr[i + 1] - arr[i];
+      double sectionLength = diff / ((double) howMany[i] + 1);
+      maxAns = Math.max(maxAns, sectionLength);
+    }
+
+    System.out.println(maxAns);
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
