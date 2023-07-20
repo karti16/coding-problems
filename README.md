@@ -114,6 +114,9 @@
 | 103.  | [Allocate Books](#103-allocate-books)                                                                                                                                                    |
 | 104.  | [Split Array Largest Sum](#104-split-array-largest-sum)                                                                                                                                  |
 | 105.  | [Aggressive Cows](#105-aggressive-cows)                                                                                                                                                  |
+| 106.  | [Find All Duplicates in an Array (1 to N)](#106-find-all-duplicates-in-an-array-1-to-n)                                                                                                  |
+| 107.  | [Find duplicates in an array (0 to N-1)](#107-find-duplicates-in-an-array-0-to-n-1)                                                                                                      |
+| 108.  | [Median of Two Sorted Arrays](#108-median-of-two-sorted-arrays)                                                                                                                          |
 
 ## 1. Binary Search
 
@@ -4809,7 +4812,6 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
-**[⬆ Back to Top](#list-of-problems)**
 
 ## 104. Split Array Largest Sum
 
@@ -4874,7 +4876,6 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
-**[⬆ Back to Top](#list-of-problems)**
 
 ## 105. Aggressive Cows
 
@@ -4926,6 +4927,133 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+## 106. Find All Duplicates in an Array (1 to N)
+
+[Question link](https://leetcode.com/problems/find-all-duplicates-in-an-array/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=aMsSF1Il3IY)
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 1, 2, 3, 4, 5, 4, 5, 8 };
+    List<Integer> res = new ArrayList<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      int index = Math.abs(nums[i]) - 1;
+      if (nums[index] < 0)
+        res.add(index + 1);
+      nums[index] = -nums[index];
+    }
+
+    System.out.println(res);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 107. Find duplicates in an array (0 to N-1)
+
+[Question link](https://practice.geeksforgeeks.org/problems/find-duplicates-in-an-array/1?page=1&company[]=Zoho&sortBy=submissions)
+
+[Video Solution Link](https://www.youtube.com/watch?v=ElkrgmAXDRo&t=389s)
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class test {
+  public static void main(String[] args) {
+    int[] nums = { 0, 1, 2, 2, 3 };
+    int n = 5;
+
+    ArrayList<Integer> res = new ArrayList<>();
+
+    for (int i = 0; i < nums.length; i++) {
+      int index = nums[i] % n;
+      nums[index] += n;
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      if ((nums[i] / n) >= 2) {
+        res.add(i);
+      }
+    }
+
+    Collections.sort(res);
+
+    if (res.size() == 0) {
+      res.add(-1);
+      System.out.println(res);
+    } else {
+      System.out.println(res);
+    }
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 108. Median of Two Sorted Arrays
+
+[Question link](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=NTop3VTjmxk)
+
+```java
+public class test {
+  public static void main(String[] args) {
+    int[] arr1 = { 1, 2 };
+    int[] arr2 = { 3, 4 };
+
+    double res = findMedian(arr1, arr2);
+    System.out.println(res); // 2.5
+  }
+
+  static double findMedian(int[] arr1, int[] arr2) {
+    if (arr2.length < arr1.length)
+      return findMedian(arr2, arr1);
+
+    int n1 = arr1.length;
+    int n2 = arr2.length;
+
+    int low = 0;
+    int high = n1;
+
+    while (low <= high) {
+      int cut1 = (low + high) / 2;
+      int cut2 = (n1 + n2 + 1) / 2 - cut1;
+
+      int left1 = cut1 == 0 ? Integer.MIN_VALUE : arr1[cut1 - 1];
+      int left2 = cut2 == 0 ? Integer.MIN_VALUE : arr2[cut2 - 1];
+
+      int right1 = cut1 == n1 ? Integer.MAX_VALUE : arr1[cut1];
+      int right2 = cut2 == n2 ? Integer.MAX_VALUE : arr2[cut2];
+
+      if (left1 <= right2 && left2 <= right1) {
+        if ((n1 + n2) % 2 == 0) {
+          return ((Math.min(right1, right2) + Math.max(left1, left2)) / 2.0);
+        } else {
+          return Math.max(left1, left2);
+        }
+      } else if (left1 > right2) {
+        high = cut1 - 1;
+      } else {
+        low = cut1 + 1;
+      }
+
+    }
+
+    return 0.0;
+  }
+}
+```
+
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 51. title
@@ -4939,7 +5067,6 @@ public class test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
-**[⬆ Back to Top](#list-of-problems)**
 
 ## 51. title
 
@@ -4951,46 +5078,6 @@ public class test {
 
 ```
 
-**[⬆ Back to Top](#list-of-problems)**
-**[⬆ Back to Top](#list-of-problems)**
-
-## 51. title
-
-[Question link]()
-
-[Video Solution Link]()
-
-```java
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-**[⬆ Back to Top](#list-of-problems)**
-
-## 51. title
-
-[Question link]()
-
-[Video Solution Link]()
-
-```java
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-**[⬆ Back to Top](#list-of-problems)**
-
-## 51. title
-
-[Question link]()
-
-[Video Solution Link]()
-
-```java
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 51. title
