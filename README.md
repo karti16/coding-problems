@@ -120,6 +120,9 @@
 | 109.  | [Minimize Max Distance to Gas Station](#109-minimize-max-distance-to-gas-station)                                                                                                        |
 | 110.  | [K-th Element of Two Sorted Arrays](#110-k-th-element-of-two-sorted-arrays)                                                                                                              |
 | 111.  | [Number of 1 Bits](#111-number-of-1-bits)                                                                                                                                                |
+| 112.  | [Row with max 1's](#112-row-with-max-1s)                                                                                                                                                 |
+| 113.  | [Search a 2D Matrix](#113-search-a-2d-matrix)                                                                                                                                            |
+| 114.  | [Search a 2D Matrix II](#114-search-a-2d-matrix-ii)                                                                                                                                      |
 
 ## 1. Binary Search
 
@@ -5233,37 +5236,176 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 112. Row with max 1's
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/row-of-a-matrix-with-maximum-ones_982768?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=SsOEcfwDwSQ)
 
 ```java
+public class test {
+  public static void main(String[] args) {
+    int[][] arr = {
+        { 0, 1, 1 },
+        { 0, 0, 0 },
+        { 0, 1, 1 }
+    };
+
+    int n = arr.length;
+    int m = arr[0].length;
+    int maxRow = -1;
+
+    int i = 0;
+    int j = m - 1;
+
+    while (i < n && j >= 0) {
+      if (arr[i][j] == 1) {
+        maxRow = i;
+        j--;
+      } else {
+        i++;
+      }
+    }
+
+    System.out.println(maxRow);
+
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 113. Search a 2D Matrix
+
+[Question link](https://leetcode.com/problems/search-a-2d-matrix/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=eT0UqrYuqbg)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Ber2pi2C0j0)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    int[][] arr = {
+        { 1, 3, 5, 7 },
+        { 10, 11, 16, 20 },
+        { 23, 30, 34, 60 }
+    };
+    int target = 30;
+    int n = arr.length;
+    int m = arr[0].length;
+    int top = 0;
+    int bot = n - 1;
+
+    while (top <= bot) {
+      int row = (top + bot) / 2;
+      if (target > arr[row][m - 1]) {
+        top = row + 1;
+      } else if (target < arr[row][0]) {
+        bot = row - 1;
+      } else {
+        break;
+      }
+    }
+    if (bot < top) {
+      System.out.println("No not found");
+    }
+
+    int row = (top + bot) / 2;
+    int left = 0;
+    int right = m - 1;
+    while (left <= right) {
+      int mid = (left + right) / 2;
+      if (target > arr[row][mid]) {
+        left = mid + 1;
+      } else if (target < arr[row][mid]) {
+        right = mid - 1;
+      } else {
+        System.out.println(row + "," + mid);
+        break;
+      }
+    }
+
+  }
+}
+
+// ------------------------------------------
+
+public class test {
+
+  public static void main(String[] args) {
+    int[][] arr = {
+        { 1, 3, 5, 7 },
+        { 10, 11, 16, 20 },
+        { 23, 30, 34, 60 }
+    };
+
+    int target = 1;
+    int n = arr.length;
+    int m = arr[0].length;
+    int left = 0;
+    int right = n * m - 1;
+
+    while (left <= right) {
+      int mid = (left + right) / 2;
+      int midElement = arr[mid / m][mid % m];
+      if (target > midElement) {
+        left = mid + 1;
+      } else if (target < midElement) {
+        right = mid - 1;
+      } else {
+        System.out.println((mid / m) + "," + (mid % m));
+        break;
+      }
+    }
+
+  }
+}
+
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 114. Search a 2D Matrix II
 
-[Question link]()
+[Question link](https://leetcode.com/problems/search-a-2d-matrix-ii/description/)
 
-[Video Solution Link]()
-
-```java
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 51. title
-
-[Question link]()
-
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=xxvPcn9eoS0)
 
 ```java
+public class test {
+
+  public static void main(String[] args) {
+    int[][] matrix = {
+        { 1, 4, 7, 11, 15 },
+        { 2, 5, 8, 12, 19 },
+        { 3, 6, 9, 16, 22 },
+        { 10, 13, 14, 17, 24 },
+        { 18, 21, 23, 26, 30 }
+    };
+
+    int target = 16;
+    int n = matrix.length;
+    int m = matrix[0].length;
+    int row = n - 1;
+    int col = 0;
+
+    while (row >= 0 && col < m) {
+      if (matrix[row][col] == target) {
+        System.out.println(row + "," + col);
+        break;
+
+      } else if (matrix[row][col] < target) {
+        col++;
+      } else {
+        row--;
+      }
+    }
+
+  }
+}
 
 ```
 
