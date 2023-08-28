@@ -123,6 +123,16 @@
 | 112.  | [Row with max 1's](#112-row-with-max-1s)                                                                                                                                                 |
 | 113.  | [Search a 2D Matrix](#113-search-a-2d-matrix)                                                                                                                                            |
 | 114.  | [Search a 2D Matrix II](#114-search-a-2d-matrix-ii)                                                                                                                                      |
+| 115.  | [Remove Outermost Parentheses](#115-remove-outermost-parentheses)                                                                                                                        |
+| 116.  | [Maximum Nesting Depth of the Parentheses](#116-maximum-nesting-depth-of-the-parentheses)                                                                                                |
+| 117.  | [Reverse Words in a String](#117-reverse-words-in-a-string)                                                                                                                              |
+| 118.  | [Largest Odd Number in String](#118-largest-odd-number-in-string)                                                                                                                        |
+| 119.  | [Longest Common Prefix](#119-longest-common-prefix)                                                                                                                                      |
+| 120.  | [Isomorphic Strings](#120-isomorphic-strings)                                                                                                                                            |
+| 121.  | [Rotate String](#121-rotate-string)                                                                                                                                                      |
+| 122.  | [Valid Anagram](#122-valid-anagram)                                                                                                                                                      |
+| 123.  | [Sort Characters By Frequency](#123-sort-characters-by-frequency)                                                                                                                        |
+| 124.  | [Roman to Integer](#124-roman-to-integer)                                                                                                                                                |
 
 ## 1. Binary Search
 
@@ -5406,6 +5416,383 @@ public class test {
 
   }
 }
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 115. Remove Outermost Parentheses
+
+[Question link](https://leetcode.com/problems/remove-outermost-parentheses/description/)
+
+[Video Solution Link]()
+
+```java
+import java.util.Stack;
+
+public class test {
+
+  public static void main(String[] args) {
+    String str = "(()())(())";
+    Stack<Character> bracket = new Stack<>();
+    StringBuilder s = new StringBuilder("");
+
+    for (int i = 0; i < str.length(); i++) {
+      if (str.charAt(i) == '(') {
+        if (bracket.size() > 0) {
+          s.append(str.charAt(i));
+        }
+        bracket.add(str.charAt(i));
+      } else {
+        bracket.pop();
+        if (bracket.size() > 0) {
+          s.append(str.charAt(i));
+        }
+      }
+    }
+
+    System.out.println(s.toString());
+
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 116. Maximum Nesting Depth of the Parentheses
+
+[Question link](https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=kUp-gqHzk6c)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String str = "(()())(())";
+    int depth = 0;
+    int open = 0;
+    for (char c : str.toCharArray()) {
+      if (c == '(') {
+        open++;
+      }
+      if (c == ')') {
+        open--;
+      }
+      depth = Math.max(depth, open);
+    }
+
+    System.out.println(depth); // 2
+
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 117. Reverse Words in a String
+
+[Question link](https://leetcode.com/problems/reverse-words-in-a-string/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=tX-ZcKTNwYk)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String str = "hello   world!";
+    String[] words = str.split(" +");
+    StringBuilder sb = new StringBuilder();
+
+    for (int i = words.length - 1; i >= 0; i--) {
+      sb.append(words[i]);
+      sb.append(" ");
+    }
+
+    System.out.println(sb.toString().trim()); // world! hello
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 118. Largest Odd Number in String
+
+[Question link](https://leetcode.com/problems/largest-odd-number-in-string/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=FWU19QBTGag)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String num = "52";
+
+    for (int i = num.length() - 1; i >= 0; i--) {
+      int c = num.charAt(i);
+      if (c % 2 == 1) {
+        System.out.println(num.substring(0, i + 1));
+        break;
+      }
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 119. Longest Common Prefix
+
+[Question link](https://leetcode.com/problems/longest-common-prefix/description/)
+
+[Solution Link](https://leetcode.com/problems/longest-common-prefix/solutions/3273176/python3-c-java-19-ms-beats-99-91/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=0sWShKIJoo4)
+
+```java
+import java.util.Arrays;
+
+public class test {
+
+  public static void main(String[] args) {
+    String[] words = { "flower", "flow", "flight" };
+    StringBuilder ans = new StringBuilder();
+    Arrays.sort(words);
+    String first = words[0];
+    String last = words[words.length - 1];
+    for (int i = 0; i < Math.min(first.length(), last.length()); i++) {
+      if (first.charAt(i) != last.charAt(i)) {
+        break;
+      }
+      ans.append(first.charAt(i));
+    }
+    System.out.println(ans.toString());
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 120. Isomorphic Strings
+
+[Question link](https://leetcode.com/problems/isomorphic-strings/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=7yF-U1hLEqQ&t=337s)
+
+```java
+import java.util.HashMap;
+
+public class test {
+
+  public static void main(String[] args) {
+    String s = "foo";
+    String t = "bar";
+    boolean flag = true;
+    HashMap<Character, Character> mapST = new HashMap<>();
+    HashMap<Character, Character> mapTS = new HashMap<>();
+    for (int i = 0; i < s.length(); i++) {
+      char c1 = s.charAt(i);
+      char c2 = t.charAt(i);
+      if ((mapST.get(c1) != null && mapST.get(c1) != c2) || (mapTS.get(c2) != null
+          && mapTS.get(c2) != c1)) {
+        flag = false;
+        break;
+      }
+
+      mapST.put(c1, c2);
+      mapTS.put(c2, c1);
+    }
+
+    System.out.println(flag ? "true" : "false");
+
+  }
+}
+
+// --------------------------
+
+public class test {
+
+  public static void main(String[] args) {
+    String s = "foo";
+    String t = "bar";
+    boolean flag = true;
+
+    int[] map1 = new int[256];
+    int[] map2 = new int[256];
+    for (int idx = 0; idx < s.length(); idx++) {
+      if (map1[s.charAt(idx)] != map2[t.charAt(idx)]) {
+        flag = false;
+        break;
+
+      }
+      map1[s.charAt(idx)] = idx + 1;
+      map2[t.charAt(idx)] = idx + 1;
+    }
+
+    System.out.println(flag ? "true" : "false");
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 121. Rotate String
+
+[Question link](https://leetcode.com/problems/rotate-string/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=kP2cpOPNYRc)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String s = "abcde";
+    String goal = "bcdea";
+
+    boolean res = (s.length() == goal.length() && (s + s).contains(goal));
+
+    System.out.println(res);
+
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 122. Valid Anagram
+
+[Question link](https://leetcode.com/problems/valid-anagram/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=IRN1VcA8CGc)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String s = "anagram";
+    String t = "nagaram";
+    boolean flag = true;
+    int[] char_count = new int[26];
+
+    for (int i = 0; i < s.length(); i++) {
+      char_count[s.charAt(i) - 'a']++;
+      char_count[t.charAt(i) - 'a']--;
+    }
+
+    for (int c : char_count) {
+      if (c != 0) {
+        flag = false;
+      }
+    }
+
+    System.out.println(flag ? "Anagram" : "Not a Anagram");
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 123. Sort Characters By Frequency
+
+[Question link](https://leetcode.com/problems/sort-characters-by-frequency/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=trFw8IDw2Vg)
+
+```java
+import java.util.HashMap;
+import java.util.PriorityQueue;
+
+public class test {
+
+  public static void main(String[] args) {
+    String s = "tree";
+
+    HashMap<Character, Integer> map = new HashMap<>();
+
+    for (char c : s.toCharArray()) {
+      int count = map.getOrDefault(c, 0) + 1;
+      map.put(c, count);
+    }
+
+    PriorityQueue<Character> maxHeap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
+    maxHeap.addAll(map.keySet());
+
+    StringBuilder sb = new StringBuilder();
+    while (!maxHeap.isEmpty()) {
+      char currentChar = maxHeap.remove();
+      for (int i = 0; i < map.get(currentChar); i++) {
+        sb.append(currentChar);
+      }
+    }
+
+    System.out.println(sb.toString()); //eert
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 124. Roman to Integer
+
+[Question link](https://leetcode.com/problems/roman-to-integer/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=3jdxYj3DD98)
+
+```java
+import java.util.HashMap;
+
+public class test {
+
+  public static void main(String[] args) {
+    int[] r1 = { 1, 5, 10, 50, 100, 500, 1000 };
+    char[] r2 = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
+
+    HashMap<Character, Integer> roman = new HashMap<>();
+
+    for (int i = 0; i < r1.length; i++) {
+      roman.put(r2[i], r1[i]);
+    }
+
+    String str = "MCMXCIV";
+    int num = 0;
+
+    int len = str.length();
+
+    for (int i = 0; i < len; i++) {
+
+      if (i + 1 < len && roman.get(str.charAt(i)) < roman.get(str.charAt(i + 1))) {
+        num -= roman.get(str.charAt(i));
+      } else {
+        num += roman.get(str.charAt(i));
+
+      }
+
+    }
+
+    System.out.println(num); //1994
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
 
 ```
 

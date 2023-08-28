@@ -1,31 +1,33 @@
+import java.util.HashMap;
+
 public class test {
 
   public static void main(String[] args) {
-    int[][] matrix = {
-        { 1, 4, 7, 11, 15 },
-        { 2, 5, 8, 12, 19 },
-        { 3, 6, 9, 16, 22 },
-        { 10, 13, 14, 17, 24 },
-        { 18, 21, 23, 26, 30 }
-    };
+    int[] r1 = { 1, 5, 10, 50, 100, 500, 1000 };
+    char[] r2 = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
 
-    int target = 16;
-    int n = matrix.length;
-    int m = matrix[0].length;
-    int row = n - 1;
-    int col = 0;
+    HashMap<Character, Integer> roman = new HashMap<>();
 
-    while (row >= 0 && col < m) {
-      if (matrix[row][col] == target) {
-        System.out.println(row + "," + col);
-        break;
-
-      } else if (matrix[row][col] < target) {
-        col++;
-      } else {
-        row--;
-      }
+    for (int i = 0; i < r1.length; i++) {
+      roman.put(r2[i], r1[i]);
     }
 
+    String str = "MCMXCIV";
+    int num = 0;
+
+    int len = str.length();
+
+    for (int i = 0; i < len; i++) {
+
+      if (i + 1 < len && roman.get(str.charAt(i)) < roman.get(str.charAt(i + 1))) {
+        num -= roman.get(str.charAt(i));
+      } else {
+        num += roman.get(str.charAt(i));
+
+      }
+
+    }
+
+    System.out.println(num);
   }
 }

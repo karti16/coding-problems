@@ -809,14 +809,62 @@ console.log(gen.next().value); // 3
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 1. title
+## 19. Concurrently run tasks
 
-[Question link]()
+- you have a list of 1000 items
+- you have an async function `process(item)`
+- you need to process all items
+- it needs to be done concurrently, but not more than 25 at a time
+- collect items with errors
 
-[Video Solution Link]()
+[github link](https://github.com/sindresorhus/p-queue)
+
+[twitter Link](https://twitter.com/thdxr/status/1686856181745111040?s=20)
 
 ```javascript
+const taskPromise = (idx, task = null) =>
+  new Promise((resolve) => {
+    if (!task) {
+      resolve(idx);
+    }
 
+    task
+      .then(() => {
+        resolve(idx);
+      })
+      .catch(() => {
+        resolve(idx);
+      });
+  });
+
+let running = 0;
+
+const process = async (item) => {
+  await new Promise((r) => {
+    setTimeout(() => {
+      // console.log("result", item);
+      running--;
+      r();
+    }, Math.random() * 2000);
+  });
+};
+
+const test = async () => {
+  const items = Array.from({ length: 10 }, (_, idx) => idx);
+  const tasks = Array.from({ length: 2 }, (_, idx) => taskPromise(idx));
+
+  for (const item of items) {
+    running++;
+    const idx = await Promise.race(tasks);
+    console.log('running', running);
+    tasks[idx] = taskPromise(
+      idx,
+      process(item).catch((err) => console.error(err)),
+    );
+  }
+};
+
+test();
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
