@@ -22,6 +22,9 @@
 | 16.   | [Array Wrapper](#16-array-wrapper)                                   |
 | 17.   | [Generate Fibonacci Sequence](#17-generate-fibonacci-sequence)       |
 | 18.   | [Nested Array Generator](#18-nested-array-generator)                 |
+| 19.   | [Concurrently run tasks](#19-concurrently-run-tasks)                 |
+| 20.   | [Toggle Functions Arguments](#20-toggle-functions-arguments)         |
+| 21.   | [Sampler Function](#21-sampler-function)                             |
 
 ## 1. Function Composition
 
@@ -865,6 +868,91 @@ const test = async () => {
 };
 
 test();
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 20. Toggle Functions Arguments
+
+[Question link]()
+
+[Video Solution Link](https://www.youtube.com/watch?v=PacCqVMiS6Y)
+
+```javascript
+const toggle = (...args) => {
+  let index = 0;
+
+  return () => {
+    if (args.length) {
+      console.log(args[index++]);
+
+      if (index >= args.length) {
+        index = 0;
+      }
+    }
+  };
+};
+
+const onOff = toggle('on', 'off');
+
+onOff(); // on
+onOff(); // off
+onOff(); // onx
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 21. Sampler Function
+
+- Function should execute a given interval
+
+[Question link]()
+
+[Video Solution Link](https://www.youtube.com/watch?v=e8ZgzldSwYo)
+
+```javascript
+function sampler(callback, count = 1) {
+  let track = 0;
+
+  return (...args) => {
+    track++;
+
+    if (track === count) {
+      callback(...args);
+      track = 0;
+    }
+  };
+}
+
+function message(msg) {
+  console.log(msg);
+}
+
+const sample = sampler(message, 4);
+
+sample();
+sample();
+sample();
+sample('abs');
+sample();
+sample();
+sample();
+sample('abs');
+
+// abs
+// abs
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 1. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```javascript
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**

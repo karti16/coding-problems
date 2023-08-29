@@ -1,33 +1,31 @@
-import java.util.HashMap;
 
 public class test {
 
   public static void main(String[] args) {
-    int[] r1 = { 1, 5, 10, 50, 100, 500, 1000 };
-    char[] r2 = { 'I', 'V', 'X', 'L', 'C', 'D', 'M' };
+    String s = "   -42";
 
-    HashMap<Character, Integer> roman = new HashMap<>();
+    int i = 0;
 
-    for (int i = 0; i < r1.length; i++) {
-      roman.put(r2[i], r1[i]);
+    while (i < s.length() && s.charAt(i) == ' ') {
+      i++;
     }
 
-    String str = "MCMXCIV";
+    s = s.substring(i);
+    i = 0;
+
+    int sign = 1;
+
+    if (s.charAt(0) == '-' || s.charAt(0) == '+') {
+      sign = s.charAt(0) == '-' ? -1 : 1;
+      i++;
+    }
+    s = s.substring(i);
+
     int num = 0;
-
-    int len = str.length();
-
-    for (int i = 0; i < len; i++) {
-
-      if (i + 1 < len && roman.get(str.charAt(i)) < roman.get(str.charAt(i + 1))) {
-        num -= roman.get(str.charAt(i));
-      } else {
-        num += roman.get(str.charAt(i));
-
-      }
-
+    for (i = 0; i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9'; i++) {
+      num = (num * 10) + s.charAt(i) - '0';
     }
 
-    System.out.println(num);
+    System.out.println(num * sign);
   }
 }
