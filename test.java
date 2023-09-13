@@ -2,30 +2,48 @@
 public class test {
 
   public static void main(String[] args) {
-    String s = "   -42";
+    String str = "   -34";
+    final int len = str.length();
 
-    int i = 0;
-
-    while (i < s.length() && s.charAt(i) == ' ') {
-      i++;
+    if (len == 0) {
+      System.out.println(0);
     }
 
-    s = s.substring(i);
-    i = 0;
+    int index = 0;
 
-    int sign = 1;
-
-    if (s.charAt(0) == '-' || s.charAt(0) == '+') {
-      sign = s.charAt(0) == '-' ? -1 : 1;
-      i++;
-    }
-    s = s.substring(i);
-
-    int num = 0;
-    for (i = 0; i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <= '9'; i++) {
-      num = (num * 10) + s.charAt(i) - '0';
+    while (index < len && str.charAt(index) == ' ') {
+      ++index;
     }
 
-    System.out.println(num * sign);
+    boolean isNegative = false;
+
+    if (index < len) {
+
+      if (str.charAt(index) == '-') {
+        isNegative = true;
+        ++index;
+      } else if (str.charAt(index) == '+') {
+        ++index;
+      }
+
+    }
+
+    int result = 0;
+
+    while (index < len && isDigit(str.charAt(index))) {
+      int digit = str.charAt(index) - '0';
+      if (result > (Integer.MAX_VALUE / 10) ||
+          (result == (Integer.MAX_VALUE / 10) && digit > 7)) {
+        System.out.println(isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE);
+      }
+      result = (result * 10) + digit;
+      ++index;
+    }
+
+    System.out.println(isNegative ? -result : result);
+  }
+
+  static boolean isDigit(char ch) {
+    return ch >= '0' && ch <= '9';
   }
 }
