@@ -1,49 +1,128 @@
+import java.util.HashMap;
 
 public class test {
 
   public static void main(String[] args) {
-    String str = "   -34";
-    final int len = str.length();
+    String str = "abcad";
+    int k = 2;
 
-    if (len == 0) {
-      System.out.println(0);
+    int ans = 0;
+
+    if (k == 1) {
+      int a = solutionForK1(str);
+      System.out.println("if k = 1 : " + a);
     }
 
-    int index = 0;
+    HashMap<Character, Integer> maps = new HashMap<>();
+    HashMap<Character, Integer> mapb = new HashMap<>();
 
-    while (index < len && str.charAt(index) == ' ') {
-      ++index;
-    }
+    int is = -1;
+    int ib = -1;
+    int j = -1;
 
-    boolean isNegative = false;
+    while (true) {
+      boolean f1 = false;
+      boolean f2 = false;
+      boolean f3 = false;
 
-    if (index < len) {
+      while (ib < str.length() - 1) {
+        f1 = true;
+        ib++;
+        char ch = str.charAt(ib);
+        mapb.put(ch, mapb.getOrDefault(ch, 0) + 1);
 
-      if (str.charAt(index) == '-') {
-        isNegative = true;
-        ++index;
-      } else if (str.charAt(index) == '+') {
-        ++index;
+        if (mapb.size() == k + 1) {
+          ib--;
+          removeInMap(mapb, ch);
+          break;
+        }
       }
 
-    }
+      while (is < ib) {
+        f2 = true;
+        is++;
+        char ch = str.charAt(is);
+        maps.put(ch, maps.getOrDefault(ch, 0) + 1);
 
-    int result = 0;
-
-    while (index < len && isDigit(str.charAt(index))) {
-      int digit = str.charAt(index) - '0';
-      if (result > (Integer.MAX_VALUE / 10) ||
-          (result == (Integer.MAX_VALUE / 10) && digit > 7)) {
-        System.out.println(isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE);
+        if (maps.size() == k) {
+          is--;
+          removeInMap(maps, ch);
+          break;
+        }
       }
-      result = (result * 10) + digit;
-      ++index;
+
+      while (j < is) {
+        f3 = true;
+        if (mapb.size() == k && maps.size() == k - 1) {
+          ans += ib - is;
+        }
+        j++;
+        char ch = str.charAt(j);
+        removeInMap(maps, ch);
+        removeInMap(mapb, ch);
+
+        if (maps.size() < k - 1 || mapb.size() < k) {
+          break;
+        }
+      }
+
+      if (f1 == false && f2 == false && f3 == false) {
+        break;
+      }
     }
 
-    System.out.println(isNegative ? -result : result);
+    System.out.println(ans);
+
   }
 
-  static boolean isDigit(char ch) {
-    return ch >= '0' && ch <= '9';
+  public static int solutionForK1(String str) {
+    int ans = 0;
+    HashMap<Character, Integer> map = new HashMap<>();
+    int i = -1;
+    int j = -1;
+
+    while (true) {
+      boolean f1 = false;
+      boolean f2 = false;
+
+      while (i < str.length() - 1) {
+        f1 = true;
+        i++;
+        char ch = str.charAt(i);
+        map.put(ch, map.getOrDefault(ch, 0) + 1);
+        if (map.size() == 2) {
+          removeInMap(map, ch);
+          i--;
+          break;
+        }
+      }
+      while (j < i) {
+        f2 = true;
+        if (map.size() == 1) {
+          ans += i - j;
+
+        }
+        j++;
+        char ch = str.charAt(j);
+        removeInMap(map, ch);
+
+        if (map.size() == 0) {
+          break;
+        }
+      }
+
+      if (f1 == false && f2 == false) {
+        break;
+      }
+    }
+    return ans;
+  }
+
+  public static void removeInMap(HashMap<Character, Integer> map, char ch) {
+    if (map.get(ch) == 1) {
+      map.remove(ch);
+    } else {
+      map.put(ch, map.get(ch) - 1);
+    }
   }
 }

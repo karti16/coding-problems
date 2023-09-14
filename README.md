@@ -133,6 +133,8 @@
 | 122.  | [Valid Anagram](#122-valid-anagram)                                                                                                                                                      |
 | 123.  | [Sort Characters By Frequency](#123-sort-characters-by-frequency)                                                                                                                        |
 | 124.  | [Roman to Integer](#124-roman-to-integer)                                                                                                                                                |
+| 125.  | [String to Integer (atoi)](#125-string-to-integer-atoi)                                                                                                                                  |
+| 126.  | [Count With K Different Characters](#126-count-with-k-different-characters)                                                                                                              |
 
 ## 1. Binary Search
 
@@ -5786,25 +5788,202 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 125. String to Integer (atoi)
 
-[Question link]()
+[Question link](https://leetcode.com/problems/string-to-integer-atoi/description/)
 
 [Video Solution Link]()
 
 ```java
+
+public class test {
+
+  public static void main(String[] args) {
+    String str = "   -34";
+    final int len = str.length();
+
+    if (len == 0) {
+      System.out.println(0);
+    }
+
+    int index = 0;
+
+    while (index < len && str.charAt(index) == ' ') {
+      ++index;
+    }
+
+    boolean isNegative = false;
+
+    if (index < len) {
+
+      if (str.charAt(index) == '-') {
+        isNegative = true;
+        ++index;
+      } else if (str.charAt(index) == '+') {
+        ++index;
+      }
+
+    }
+
+    int result = 0;
+
+    while (index < len && isDigit(str.charAt(index))) {
+      int digit = str.charAt(index) - '0';
+      if (result > (Integer.MAX_VALUE / 10) ||
+          (result == (Integer.MAX_VALUE / 10) && digit > 7)) {
+        System.out.println(isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE);
+      }
+      result = (result * 10) + digit;
+      ++index;
+    }
+
+    System.out.println(isNegative ? -result : result);
+  }
+
+  static boolean isDigit(char ch) {
+    return ch >= '0' && ch <= '9';
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 126. Count With K Different Characters
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/count-with-k-different-characters_1214627?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTab=0)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=CBSeilNvZHs)
 
 ```java
+import java.util.HashMap;
+
+public class test {
+
+  public static void main(String[] args) {
+    String str = "abcad";
+    int k = 2;
+
+    int ans = 0;
+
+    if (k == 1) {
+      int a = solutionForK1(str);
+      System.out.println("if k = 1 : " + a);
+    }
+
+    HashMap<Character, Integer> maps = new HashMap<>();
+    HashMap<Character, Integer> mapb = new HashMap<>();
+
+    int is = -1;
+    int ib = -1;
+    int j = -1;
+
+    while (true) {
+      boolean f1 = false;
+      boolean f2 = false;
+      boolean f3 = false;
+
+      while (ib < str.length() - 1) {
+        f1 = true;
+        ib++;
+        char ch = str.charAt(ib);
+        mapb.put(ch, mapb.getOrDefault(ch, 0) + 1);
+
+        if (mapb.size() == k + 1) {
+          ib--;
+          removeInMap(mapb, ch);
+          break;
+        }
+      }
+
+      while (is < ib) {
+        f2 = true;
+        is++;
+        char ch = str.charAt(is);
+        maps.put(ch, maps.getOrDefault(ch, 0) + 1);
+
+        if (maps.size() == k) {
+          is--;
+          removeInMap(maps, ch);
+          break;
+        }
+      }
+
+      while (j < is) {
+        f3 = true;
+        if (mapb.size() == k && maps.size() == k - 1) {
+          ans += ib - is;
+        }
+        j++;
+        char ch = str.charAt(j);
+        removeInMap(maps, ch);
+        removeInMap(mapb, ch);
+
+        if (maps.size() < k - 1 || mapb.size() < k) {
+          break;
+        }
+      }
+
+      if (f1 == false && f2 == false && f3 == false) {
+        break;
+      }
+    }
+
+    System.out.println(ans);
+
+  }
+
+  public static int solutionForK1(String str) {
+    int ans = 0;
+    HashMap<Character, Integer> map = new HashMap<>();
+    int i = -1;
+    int j = -1;
+
+    while (true) {
+      boolean f1 = false;
+      boolean f2 = false;
+
+      while (i < str.length() - 1) {
+        f1 = true;
+        i++;
+        char ch = str.charAt(i);
+        map.put(ch, map.getOrDefault(ch, 0) + 1);
+        if (map.size() == 2) {
+          removeInMap(map, ch);
+          i--;
+          break;
+        }
+      }
+      while (j < i) {
+        f2 = true;
+        if (map.size() == 1) {
+          ans += i - j;
+
+        }
+        j++;
+        char ch = str.charAt(j);
+        removeInMap(map, ch);
+
+        if (map.size() == 0) {
+          break;
+        }
+      }
+
+      if (f1 == false && f2 == false) {
+        break;
+      }
+    }
+    return ans;
+  }
+
+  public static void removeInMap(HashMap<Character, Integer> map, char ch) {
+    if (map.get(ch) == 1) {
+      map.remove(ch);
+    } else {
+      map.put(ch, map.get(ch) - 1);
+    }
+  }
+}
 
 ```
 
