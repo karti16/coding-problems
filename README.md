@@ -135,6 +135,8 @@
 | 124.  | [Roman to Integer](#124-roman-to-integer)                                                                                                                                                |
 | 125.  | [String to Integer (atoi)](#125-string-to-integer-atoi)                                                                                                                                  |
 | 126.  | [Count With K Different Characters](#126-count-with-k-different-characters)                                                                                                              |
+| 127.  | [Longest Palindromic Substring](#127-longest-palindromic-substring)                                                                                                                      |
+| 128.  | [Sum of Beauty of All Substrings](#128-sum-of-beauty-of-all-substrings)                                                                                                                  |
 
 ## 1. Binary Search
 
@@ -5984,6 +5986,168 @@ public class test {
     }
   }
 }
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 127. Longest Palindromic Substring
+
+[Question link](https://leetcode.com/problems/longest-palindromic-substring/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=XYQecbcd6_c)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String str = "babse";
+    String res = "";
+    int resLen = 0;
+    int len = str.length();
+
+    for (int i = 0; i < len; i++) {
+      int l = i;
+      int r = i;
+      // odd length
+      while (l >= 0 && r < len && str.charAt(l) == str.charAt(r)) {
+        if (r - l + 1 > resLen) {
+          resLen = r - l + 1;
+          res = str.substring(l, r + 1);
+
+        }
+        r += 1;
+        l -= 1;
+      }
+
+      // even length
+      l = i;
+      r = i + 1;
+      while (l >= 0 && r < len && str.charAt(l) == str.charAt(r)) {
+        if (r - l + 1 > resLen) {
+          resLen = r - l + 1;
+          res = str.substring(l, r + 1);
+
+        }
+        r += 1;
+        l -= 1;
+      }
+
+    }
+
+    System.out.println(res); // bab
+    System.out.println(resLen); // 3
+
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 128. Sum of Beauty of All Substrings
+
+[Question link](https://leetcode.com/problems/sum-of-beauty-of-all-substrings/description/)
+
+[Video Solution Link](https://leetcode.com/problems/sum-of-beauty-of-all-substrings/solutions/1096380/java-t-o-n-2-s-o-1-get-the-beauty-of-all-substrings-and-sum-them/comments/869005)
+
+```java
+public class test {
+
+  public static void main(String[] args) {
+    String s = "aabcb";
+    int sum = 0;
+    int len = s.length();
+
+    for (int i = 0; i < len; i++) {
+      int[] charCount = new int[26];
+
+      for (int j = i; j < len; j++) {
+        char c = s.charAt(j);
+        charCount[c - 'a']++;
+        sum += beautySum(charCount);
+      }
+
+    }
+
+    System.out.println(sum); // 5
+
+  }
+
+  public static int beautySum(int[] arr) {
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+
+    for (int n : arr) {
+      if (n != 0) {
+        min = Math.min(min, n);
+        max = Math.max(max, n);
+      }
+    }
+
+    return max - min;
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
 
 ```
 
