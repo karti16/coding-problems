@@ -3,10 +3,19 @@ package Code.Java.MyDoublyLinkedList;
 public class Runner {
   public static void main(String[] args) {
 
-    MyDoublyLinkedList list = new MyDoublyLinkedList(); // 0 based index
-    list.insertAtStart(10);
-    list.insertAtStart(20);
-    list.insertAtStart(30);
-    list.show();
+    MyDoublyLinkedList dll = new MyDoublyLinkedList();
+    dll.insertAt(0, 1);
+    dll.insertAt(1, 2);
+    dll.insertAt(2, 3);
+    dll.insertAt(3, 4);
+
+    dll.display();
+    dll.displayReverse();
+
+    dll.deleteAt(4);
+
+    dll.display();
+    dll.displayReverse();
+
   }
 }

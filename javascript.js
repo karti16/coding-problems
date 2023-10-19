@@ -1,3 +1,4 @@
+//@ts-check
 function sampler(callback, count = 1) {
   let track = 0;
 

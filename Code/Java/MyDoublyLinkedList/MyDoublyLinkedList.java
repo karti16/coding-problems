@@ -2,81 +2,122 @@ package Code.Java.MyDoublyLinkedList;
 
 public class MyDoublyLinkedList {
   private Node head;
+  private Node tail;
 
-  // public void insert(int data) {
-  // Node node = new Node(data);
-
-  // if (head == null) {
-  // head = node;
-  // } else {
-  // Node n = head;
-  // while (n.next != null) {
-  // n = n.next;
-  // }
-  // n.next = node;
-  // }
-  // }
-
-  public void show() {
+  public void display() {
+    if (head == null) {
+      System.out.println("List is Empty");
+      return;
+    }
     Node n = head;
-    String s = "[";
-    while (n.next != null) {
-      s += (n.data);
-      s += ", ";
+    while (n != null) {
+      System.out.print(n.data + " -> ");
       n = n.next;
     }
-    s += n.data;
-    s = s.substring(0, s.length());
-    s += "]";
-    System.out.println(s);
+    System.out.println("end");
+    System.out.println();
+  }
+
+  public void displayReverse() {
+    if (head == null) {
+      System.out.println("List is Empty");
+      return;
+    }
+    Node n = tail;
+    while (n != null) {
+      System.out.print(n.data + " -> ");
+      n = n.prev;
+    }
+    System.out.println("start");
+    System.out.println();
   }
 
   public void insertAtStart(int data) {
-    Node node = new Node(data);
-    node.next = head;
-    node.prev = null;
-    if (head != null) {
-      head.prev = null;
+    Node newNode = new Node(data);
+    newNode.next = head;
+
+    if (head == null) {
+      tail = newNode;
+    } else {
+      head.prev = newNode;
     }
-    head = node;
+
+    head = newNode;
   }
 
-  // public void insertAt(int index, int data) {
-  // Node node = new Node(data);
-  // node.data = data;
+  public void insertAt(int position, int data) {
 
-  // if (index == 0) {
-  // insertAtStart(data);
-  // return;
-  // }
+    if (position == 0) {
+      insertAtStart(data);
+      return;
+    }
 
-  // Node n = head;
+    Node newNode = new Node(data);
+    Node n = head;
+    for (int i = 1; i < position; i++) {
+      n = n.next;
+      if (n == null) {
+        throw new IndexOutOfBoundsException("Invalid position");
+      }
+    }
 
-  // for (int i = 1; i < index - 1; i++) {
-  // n = n.next;
-  // }
+    if (n == tail) {
+      insetAtEnd(data);
+      return;
+    }
 
-  // node.next = n.next;
-  // n.next = node;
+    newNode.next = n.next;
+    newNode.prev = n;
+    n.next.prev = newNode;
+    n.next = newNode;
+  }
 
-  // }
+  public void insetAtEnd(int data) {
+    if (head == null) {
+      insertAtStart(data);
+      return;
+    }
 
-  // public void deleteAt(int index) {
-  // Node temp = null;
+    Node newNode = new Node(data);
+    newNode.prev = tail;
+    tail.next = newNode;
+    tail = newNode;
+  }
 
-  // Node n = head;
+  public void deleteAt(int position) {
+    if (head == null) {
+      throw new IndexOutOfBoundsException("List is empty");
+    }
 
-  // if (index == 0) {
-  // head = n.next;
-  // } else {
-  // for (int i = 1; i < index; i++) {
-  // n = n.next;
-  // }
-  // temp = n.next;
-  // n.next = temp.next;
-  // }
+    if (position == 0) {
+      head = head.next;
+      if (head == null) {
+        tail = null;
+      } else {
+        head.prev = null;
+      }
+      return;
+    }
+    Node n = head;
+    Node prev = null;
 
-  // }
+    for (int i = 1; i <= position; i++) {
+      prev = n;
+      n = n.next;
+      if (n == null) {
+        throw new IndexOutOfBoundsException("Invalid position");
+      }
+    }
+
+    System.out.println(n.data);
+    prev.next = n.next;
+    if (n.next == null) {
+      tail = prev;
+    } else {
+      n.next.prev = prev;
+    }
+
+  }
 
   private class Node {
     int data;
