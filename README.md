@@ -137,6 +137,9 @@
 | 126.  | [Count With K Different Characters](#126-count-with-k-different-characters)                                                                                                              |
 | 127.  | [Longest Palindromic Substring](#127-longest-palindromic-substring)                                                                                                                      |
 | 128.  | [Sum of Beauty of All Substrings](#128-sum-of-beauty-of-all-substrings)                                                                                                                  |
+| 129.  | [Middle of the Linked List](#129-middle-of-the-linked-list)                                                                                                                  |
+| 130.  | [Reverse Linked List](#130-reverse-linked-list)                                                                                                                  |
+| 131.  | [Linked List Cycle](#131-linked-list-cycle)                                                                                                                  |
 
 ## 1. Binary Search
 
@@ -6093,38 +6096,125 @@ public class test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 129. Middle of the Linked List
 
-[Question link]()
+[Question link](https://leetcode.com/problems/middle-of-the-linked-list/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=A2_ldqM4QcY)
 
 ```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode s = head;
+        ListNode f = head;
 
+        while(f != null && f.next != null){
+            s = s.next;
+            f = f.next.next;
+        }
+
+        return s;
+    }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 130. Reverse Linked List
 
-[Question link]()
+[Question link](https://leetcode.com/problems/reverse-linked-list/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=iRtLEoL-r-g)
 
 ```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    // iterative way
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
 
+        while(current != null){
+            ListNode next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+
+    // recursive way
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        ListNode rest = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return rest;
+    }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 131. Linked List Cycle
 
-[Question link]()
+[Question link](https://leetcode.com/problems/linked-list-cycle/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=gBTe7lFR3vc)
 
 ```java
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
 
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(fast == slow){
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
