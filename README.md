@@ -140,6 +140,7 @@
 | 129.  | [Middle of the Linked List](#129-middle-of-the-linked-list)                                                                                                                  |
 | 130.  | [Reverse Linked List](#130-reverse-linked-list)                                                                                                                  |
 | 131.  | [Linked List Cycle](#131-linked-list-cycle)                                                                                                                  |
+| 132.  | [Linked List Cycle II](#132-linked-list-cycle-ii)                                                                                                                  |
 
 ## 1. Binary Search
 
@@ -6219,14 +6220,54 @@ public class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 132. Linked List Cycle II
 
-[Question link]()
+[Question link](https://leetcode.com/problems/linked-list-cycle-ii/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=QfbOhn0WZ88)
 
 ```java
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
 
+        boolean flag = false;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast){
+                flag = true;
+                break;
+            }
+        }
+
+        if(flag == false){
+            return null;
+        }
+
+        fast = head;
+        while(fast != slow){
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow;
+    }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
