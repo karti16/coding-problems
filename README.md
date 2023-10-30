@@ -137,10 +137,15 @@
 | 126.  | [Count With K Different Characters](#126-count-with-k-different-characters)                                                                                                              |
 | 127.  | [Longest Palindromic Substring](#127-longest-palindromic-substring)                                                                                                                      |
 | 128.  | [Sum of Beauty of All Substrings](#128-sum-of-beauty-of-all-substrings)                                                                                                                  |
-| 129.  | [Middle of the Linked List](#129-middle-of-the-linked-list)                                                                                                                  |
-| 130.  | [Reverse Linked List](#130-reverse-linked-list)                                                                                                                  |
-| 131.  | [Linked List Cycle](#131-linked-list-cycle)                                                                                                                  |
-| 132.  | [Linked List Cycle II](#132-linked-list-cycle-ii)                                                                                                                  |
+| 129.  | [Middle of the Linked List](#129-middle-of-the-linked-list)                                                                                                                              |
+| 130.  | [Reverse Linked List](#130-reverse-linked-list)                                                                                                                                          |
+| 131.  | [Linked List Cycle](#131-linked-list-cycle)                                                                                                                                              |
+| 132.  | [Linked List Cycle II](#132-linked-list-cycle-ii)                                                                                                                                        |
+| 133.  | [Contains Duplicate](#133-contains-duplicate)                                                                                                                                            |
+| 134.  | [Replace Elements with Greatest Element on Right Side](#134-replace-elements-with-greatest-element-on-right-side)                                                                        |
+| 135.  | [Is Subsequence](#135-is-subsequence)                                                                                                                                                    |
+| 136.  | [Length of Last Word](#136-length-of-last-word)                                                                                                                                          |
+| 137.  | [Group Anagrams](#137-group-anagrams)                                                                                                                                                    |
 
 ## 1. Binary Search
 
@@ -5582,6 +5587,24 @@ public class test {
   }
 }
 
+------------------------------------------------------------------------
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < strs[0].length(); i++){
+            for(String s : strs){
+                if( i == s.length() || s.charAt(i) != strs[0].charAt(i) ){
+                    return sb.toString();
+                }
+            }
+            sb.append(strs[0].charAt(i));
+        }
+        return sb.toString();
+
+    }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -5679,6 +5702,10 @@ public class test {
 [Question link](https://leetcode.com/problems/valid-anagram/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=IRN1VcA8CGc)
+
+> Assign empty array of size 26. Count the character from one string and reduce count from another string.
+>
+> loop through array. If all zero then anagram else not
 
 ```java
 public class test {
@@ -6272,14 +6299,166 @@ public class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 133. Contains Duplicate
 
-[Question link]()
+[Question link](https://leetcode.com/problems/contains-duplicate/description/)
 
 [Video Solution Link]()
 
-```java
+> Use Hashset. check if num is present if so return true, else add num.
 
+```java
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for(int n : nums){
+            if(set.contains(n)){
+                return true;
+            }else{
+                set.add(n);
+            }
+        }
+        return false;
+    }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 134. Replace Elements with Greatest Element on Right Side
+
+[Question link](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=ZHjKhUjcsaU)
+
+> start from end of array, 
+>
+> set max to -1
+> if ele is greater than max then reassign new max, else replace num to max. before that keep the old ele and reassign as max 
+
+```java
+class Solution {
+    public int[] replaceElements(int[] arr) {
+        int max = -1;
+
+        for(int i = arr.length - 1; i >= 0; i--){
+            if(arr[i] > max){
+                int temp = max;
+                max = arr[i];
+                arr[i] = temp;
+            }else{
+                arr[i] = max;
+            }
+        }
+        return arr;
+    }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 135. Is Subsequence
+
+[Question link](https://leetcode.com/problems/is-subsequence/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=99RVfqklbCE)
+
+> use two pointer. when two char matched increment pointer. if not increment the parent string. Check length of 1st pointer and child string length 
+> 
+
+```java
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+
+        if(s.length() > t.length()){
+            return false;
+        }
+
+        int i = 0;
+        int j = 0;
+
+        while( i < s.length() && j < t.length()){
+            if(s.charAt(i) == t.charAt(j)){
+                i++;
+            }
+            j++;
+        }
+        return s.length() == i;
+    }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 136. Length of Last Word
+
+[Question link](https://leetcode.com/problems/length-of-last-word/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=KT9rltZTybQ)
+
+> iterate from backwards. skip the space at the last. And count the word until another space encounters or string is finished
+
+```java
+class Solution {
+    public int lengthOfLastWord(String s) {
+        int c = 0;
+        int start = s.length() - 1;
+        
+        while(s.charAt(start) == ' '){
+            start--;
+        }
+
+        while(start >= 0 && s.charAt(start) != ' '){
+            c++;
+            start--;
+        }
+
+        return c;
+    }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 137. Group Anagrams
+
+[Question link](https://leetcode.com/problems/group-anagrams/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=vzdNOK2oB2E)
+
+> Use HashMap and store sortedWord as key and actual word as list of strings as values.
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+public class Test {
+
+  public static void main(String[] args) {
+    String[] strs = { "eat", "tea", "tan", "ate", "nat", "bat" };
+    HashMap<String, List<String>> map = new HashMap<>();
+    List<List<String>> res = new ArrayList<>();
+    for (String s : strs) {
+      String sortedWord = sortString(s);
+      if (!map.containsKey(sortedWord)) {
+        map.put(sortedWord, new ArrayList<>());
+      }
+      map.get(sortedWord).add(s);
+    }
+
+    res.addAll(map.values());
+
+    System.out.println(res);
+  }
+
+  public static String sortString(String s) {
+    char[] temp_s = s.toCharArray();
+    Arrays.sort(temp_s);
+    return new String(temp_s);
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
