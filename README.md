@@ -146,6 +146,13 @@
 | 135.  | [Is Subsequence](#135-is-subsequence)                                                                                                                                                    |
 | 136.  | [Length of Last Word](#136-length-of-last-word)                                                                                                                                          |
 | 137.  | [Group Anagrams](#137-group-anagrams)                                                                                                                                                    |
+| 138.  | [Remove Element](#138-remove-element)                                                                                                                                                    |
+| 139.  | [Find length of Loop in a linked list](#139-find-length-of-loop-in-a-linked-list)                                                                                                        |
+| 140.  | [Palindrome Linked List](#140-palindrome-linked-list)                                                                                                                                    |
+| 141.  | [Odd Even Linked List](#141-odd-even-linked-list)                                                                                                                                        |
+| 142.  | [Remove Nth Node From End of List](#142-remove-nth-node-from-end-of-list)                                                                                                                |
+| 143.  | [Delete the Middle Node of a Linked List](#143-delete-the-middle-node-of-a-linked-list)                                                                                                  |
+| 144.  | [Sort List](#144-sort-list)                                                                                                                                                              |
 
 ## 1. Binary Search
 
@@ -1352,6 +1359,57 @@ public class test {
       arr[i] = temp.get(i - start);
     }
 
+  }
+}
+
+
+--------
+
+import java.util.Arrays;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] arr = { 1, 23, 45, 32, 2, 7, 8, 34, 66, 34 };
+    int[] res = mergeSort(arr);
+
+    System.out.println(Arrays.toString(res));
+  }
+
+  public static int[] mergeSort(int[] arr) {
+    if (arr.length == 1) {
+      return arr;
+    }
+    int start = 0;
+    int end = arr.length;
+    int mid = end / 2;
+    int[] l = mergeSort(Arrays.copyOfRange(arr, start, mid));
+    int[] r = mergeSort(Arrays.copyOfRange(arr, mid, end));
+
+    return merge(l, r);
+  }
+
+  public static int[] merge(int[] left, int[] right) {
+    int[] joined = new int[left.length + right.length];
+    int i = 0;
+    int l = 0;
+    int r = 0;
+    while (l < left.length && r < right.length) {
+      if (left[l] < right[r]) {
+        joined[i++] = left[l++];
+      } else {
+        joined[i++] = right[r++];
+      }
+    }
+
+    while (l < left.length) {
+      joined[i++] = left[l++];
+    }
+    while (r < right.length) {
+      joined[i++] = right[r++];
+    }
+
+    return joined;
   }
 }
 ```
@@ -3193,11 +3251,14 @@ public class test {
 
 [Video Solution Link](https://youtube.com/watch?v=nPVEaB3AjUM)
 
+> Create a row with 1 as element. Add 0 to start and end. Sum element i and i+1 and this to new row.Repeat till N times.
+
+
 ```java
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+ 
 public class test {
   public static void main(String[] args) {
     int n = 5;
@@ -6463,16 +6524,292 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 138. Remove Element
 
-[Question link]()
+[Question link](https://leetcode.com/problems/remove-element/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Pcd1ii9P9ZI)
+
+> Keep pointer k = 0. loop through element replace kth element when non val found and increment k by 1
+
+```java
+import java.util.Arrays;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] nums = { 3, 2, 2, 3 };
+    int val = 2;
+    int k = 0;
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] != val) {
+        nums[k] = nums[i];
+        k += 1;
+      }
+    }
+    System.out.println(Arrays.toString(nums));
+    System.out.println(k);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 139. Find length of Loop in a linked list
+
+[Question link](https://www.codingninjas.com/studio/problems/find-length-of-loop_8160455?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
+
+[Video Solution Link](https://www.youtube.com/watch?v=qu7Q-f7jljI)
+
+> Find the loop using fast and slow pointer and count the elements circling one round around the loop
+
+```java
+public class Solution{
+  public static int lengthOfLoop(Node head) {
+    Node slow = head;
+    Node fast = head;
+    int count = 0;
+
+    while(fast != null && fast.next != null){
+      slow = slow.next;
+      fast = fast.next.next;
+
+      if(fast == slow){
+        count = 1;
+        slow = slow.next;
+        while(slow != fast){
+          slow = slow.next;
+          count += 1;
+        }
+        return count;
+      }
+    }
+    return 0;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 140. Palindrome Linked List
+
+
+[Question link](https://leetcode.com/problems/palindrome-linked-list/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=yOzXms1J6Nk)
+
+[Video Solution Link](https://www.youtube.com/watch?v=-DtNInqFUXs)
+
+> Find the middle using fast and slow pointer. Reverse the linked list from middle to end and iterate check value from start to middle and middle to end.
+
+```java
+class Solution {
+  public boolean isPalindrome(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+
+    while (fast != null && fast.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+
+    ListNode prev = null;
+    while (slow != null) {
+      ListNode temp = slow.next;
+      slow.next = prev;
+      prev = slow;
+      slow = temp;
+
+    }
+
+    ListNode left = head;
+    ListNode right = prev;
+
+    while (right != null) {
+      if (left.val != right.val) {
+        return false;
+      }
+      left = left.next;
+      right = right.next;
+    }
+
+    return true;
+
+  }
+}
+```
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 141. Odd Even Linked List
+
+[Question link](https://leetcode.com/problems/odd-even-linked-list/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=WoUAs7R3Ao4)
+
+> use odd and event pointer and connect link by jumping alternative positions. maintain evenHead and lastly connect it at end of odd list end
+
+```java
+class Solution {
+  public ListNode oddEvenList(ListNode head) {
+    if (head == null)
+      return head;
+
+    ListNode odd = head;
+    ListNode even = head.next;
+
+    // maintain even head;
+    ListNode evenHead = even;
+
+    while (even != null && even.next != null) {
+      // odd pointer
+      odd.next = odd.next.next;
+      odd = odd.next;
+
+      // even pointer
+      even.next = even.next.next;
+      even = even.next;
+    }
+
+    // connect odd ending to evenHead
+    odd.next = evenHead;
+
+    return head;
+  }
+}
+```
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 142. Remove Nth Node From End of List
+
+[Question link](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Lhu3MsXZy-Q)
+
+> initialize fast pointer in n+1 and slow pointer in head + 1 and then iterate until fast reaches end. And delete the slow.next pointer
+
+```java
+class Solution {
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode start = new ListNode();
+    start.next = head;
+
+    ListNode fast = start;
+    ListNode slow = start;
+
+    for (int i = 1; i <= n; i++) {
+      fast = fast.next;
+    }
+
+    while (fast.next != null) {
+      fast = fast.next;
+      slow = slow.next;
+    }
+
+    slow.next = slow.next.next;
+
+    return start.next;
+  }
+}
+```
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 143. Delete the Middle Node of a Linked List
+
+[Question link](https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description/)
 
 [Video Solution Link]()
 
+> find the middle element using fast and slow pointer. delete the middle pointer
+
 ```java
+class Solution {
+  public ListNode deleteMiddle(ListNode head) {
+    if (head == null || head.next == null) {
+      return null;
+    }
+    ListNode start = new ListNode();
+    start.next = head;
+    ListNode fast = start;
+    ListNode slow = start;
 
+    while (fast.next != null && fast.next.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    slow.next = slow.next.next;
+    return start.next;
+  }
+}
 ```
+**[⬆ Back to Top](#list-of-problems)**
 
+
+## 144. Sort List
+
+[Question link](https://leetcode.com/problems/sort-list/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=TGveA1oFhrc&pp=ygUSc29ydCBsaXN0IGxlZXRjb2Rl)
+
+```java
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode left = head;
+        ListNode mid = this.getMidNode(head);
+        ListNode right = mid.next;
+        mid.next = null;
+
+        left = this.sortList(left);
+        right = this.sortList(right);
+
+        return this.merge(left, right);
+    }
+
+    public ListNode getMidNode(ListNode h) {
+        ListNode prev = null;
+        ListNode fast = h;
+        ListNode slow = h;
+
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return slow;
+    }
+
+    public ListNode merge(ListNode left, ListNode right) {
+        ListNode n = new ListNode();
+        ListNode tempHead = n;
+
+        while (left != null && right != null) {
+            if (left.val < right.val) {
+                n.next = left;
+                left = left.next;
+            } else {
+                n.next = right;
+                right = right.next;
+            }
+            n = n.next;
+        }
+
+        if (left != null) {
+            n.next = left;
+        }
+        if (right != null) {
+            n.next = right;
+        }
+        return tempHead.next;
+    }
+}
+```
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 51. title
@@ -6484,5 +6821,40 @@ public class Test {
 ```java
 
 ```
-
 **[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+**[⬆ Back to Top](#list-of-problems)**
+
+
+

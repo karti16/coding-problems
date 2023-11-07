@@ -3,6 +3,23 @@ package Code.Java.MyLinkedList;
 public class MyLinkedList {
   Node head;
 
+  public MyLinkedList(int[] arr) {
+    if (arr.length == 0) {
+      head = new Node();
+      return;
+    }
+    Node n = new Node(arr[0]);
+    head = n;
+
+    for (int i = 1; i < arr.length; i++) {
+      n.next = new Node(arr[i]);
+      n = n.next;
+    }
+  }
+
+  public MyLinkedList() {
+  }
+
   public void insert(int data) {
     Node node = new Node(data);
 
@@ -18,7 +35,29 @@ public class MyLinkedList {
   }
 
   public void show() {
+    if (head == null) {
+      System.out.println("[ ]");
+      return;
+    }
     Node n = head;
+    String s = "[";
+    while (n.next != null) {
+      s += (n.data);
+      s += ", ";
+      n = n.next;
+    }
+    s += n.data;
+    s = s.substring(0, s.length());
+    s += "]";
+    System.out.println(s);
+  }
+
+  public void show(Node h) {
+    if (h == null) {
+      System.out.println("[ ]");
+      return;
+    }
+    Node n = h;
     String s = "[";
     while (n.next != null) {
       s += (n.data);
@@ -74,12 +113,80 @@ public class MyLinkedList {
 
   }
 
-  private class Node {
-    int data;
-    Node next;
-
-    public Node(int data) {
-      this.data = data;
+  public void deleteMiddleNode() {
+    if (head == null || head.next == null) {
+      head = null;
+      return;
     }
+    Node start = new Node();
+    start.next = head;
+    Node fast = start;
+    Node slow = start;
+
+    while (fast.next != null && fast.next.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+    slow.next = slow.next.next;
+    System.out.println(slow.data);
+
   }
+
+  public Node sortList(Node tempHead) {
+    if (tempHead == null || tempHead.next == null) {
+      return tempHead;
+    }
+
+    Node left = tempHead;
+    Node mid = this.findMiddle(tempHead);
+    Node right = mid.next;
+    mid.next = null;
+
+    left = this.sortList(left);
+    right = this.sortList(right);
+
+    return this.merge(left, right);
+  }
+
+  public Node getHead() {
+    return head;
+  }
+
+  private Node merge(Node left, Node right) {
+    Node n = new Node();
+    Node tempHead = n;
+
+    while (left != null && right != null) {
+      if (left.data < right.data) {
+        n.next = left;
+        left = left.next;
+      } else {
+        n.next = right;
+        right = right.next;
+      }
+      n = n.next;
+    }
+
+    if (left != null) {
+      n.next = left;
+    }
+    if (right != null) {
+      n.next = right;
+    }
+    return tempHead.next;
+  }
+
+  public Node findMiddle(Node tempHead) {
+
+    Node fast = tempHead;
+    Node slow = tempHead;
+
+    while (fast.next != null && fast.next.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+
+    return slow;
+  }
+
 }

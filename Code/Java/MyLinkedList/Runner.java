@@ -1,19 +1,14 @@
 package Code.Java.MyLinkedList;
 
 public class Runner {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 43, 2, 56, 4};
+        MyLinkedList list = new MyLinkedList(arr);
 
-    MyLinkedList list = new MyLinkedList(); // 0 based index
-    list.insert(10);
-    list.insert(20);
-    list.insert(30);
-    list.insert(40);
-    list.insert(50);
+        list.show();
 
-    list.insertAt(0, 99);
-    list.show();
-
-    list.deleteAt(0);
-    list.show();
-  }
+        Node head = list.getHead();
+        Node sortedHead = list.sortList(head);
+        list.show(sortedHead);
+    }
 }
