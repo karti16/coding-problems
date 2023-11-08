@@ -153,6 +153,7 @@
 | 142.  | [Remove Nth Node From End of List](#142-remove-nth-node-from-end-of-list)                                                                                                                |
 | 143.  | [Delete the Middle Node of a Linked List](#143-delete-the-middle-node-of-a-linked-list)                                                                                                  |
 | 144.  | [Sort List](#144-sort-list)                                                                                                                                                              |
+| 145.  | [Sort linked list of 0s 1s 2s](#145-sort-linked-list-of-0s-1s-2s)                                                                                                                        |
 
 ## 1. Binary Search
 
@@ -6812,13 +6813,53 @@ class Solution {
 ```
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 145. Sort linked list of 0s 1s 2s
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/sort-linked-list-of-0s-1s-2s_1071937?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=ogmBt6f9hw8)
+
+> Create 3 linked list and join them
 
 ```java
+public class Solution {
+  public static Node sortList(Node head) {
+
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    Node n = head;
+
+    Node zeroHead = new Node(-1);
+    Node oneHead = new Node(-1);
+    Node twoHead = new Node(-1);
+
+    Node zero_n = zeroHead;
+    Node one_n = oneHead;
+    Node two_n = twoHead;
+
+    while (n != null) {
+      if (n.data == 0) {
+        zero_n.next = n;
+        zero_n = n;
+      } else if (n.data == 1) {
+        one_n.next = n;
+        one_n = n;
+      } else if (n.data == 2) {
+        two_n.next = n;
+        two_n = n;
+      }
+      n = n.next;
+    }
+
+    zero_n.next = oneHead.next;
+    one_n.next = twoHead.next;
+    two_n.next = null;
+
+    return zeroHead.next;
+  }
+}
 
 ```
 **[⬆ Back to Top](#list-of-problems)**
