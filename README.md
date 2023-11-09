@@ -154,6 +154,7 @@
 | 143.  | [Delete the Middle Node of a Linked List](#143-delete-the-middle-node-of-a-linked-list)                                                                                                  |
 | 144.  | [Sort List](#144-sort-list)                                                                                                                                                              |
 | 145.  | [Sort linked list of 0s 1s 2s](#145-sort-linked-list-of-0s-1s-2s)                                                                                                                        |
+| 146.  | [Intersection of Two Linked Lists](#146-intersection-of-two-linked-lists)                                                                                                                |
 
 ## 1. Binary Search
 
@@ -6864,14 +6865,83 @@ public class Solution {
 ```
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 146. Intersection of Two Linked Lists
 
-[Question link]()
+[Question link](https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=D0X0BONOQhI)
+
+> solution 1 : iterate from l1, if l1 reaches end connect to l2, same to other list. And check if l1 and l2 are intersecting
+> 
+> solution 2 : find the difference between length of list and start iterate ahead if list is longer
+
+
 
 ```java
+// optimal solution
 
+public class Solution {
+
+  public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    ListNode h1 = headA;
+    ListNode h2 = headB;
+
+    while (h1 != h2) {
+      h1 = h1 != null ? h1.next : headB;
+      h2 = h2 != null ? h2.next : headA;
+    }
+
+    return h1;
+  }
+}
+
+
+-----
+public class Solution {
+
+  public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    int len1 = 0;
+    int len2 = 0;
+    ListNode h1 = headA;
+    ListNode h2 = headB;
+
+    while (h1 != null) {
+      h1 = h1.next;
+      len1 += 1;
+    }
+
+    while (h2 != null) {
+      h2 = h2.next;
+      len2 += 1;
+    }
+
+    if (len1 < len2) {
+      h2 = headB;
+      h1 = headA;
+      int count = len2 - len1;
+      while (count > 0) {
+        h2 = h2.next;
+        count -= 1;
+      }
+    } else {
+      h1 = headA;
+      h2 = headB;
+      int count = len1 - len2;
+      while (count > 0) {
+        h1 = h1.next;
+        count -= 1;
+      }
+    }
+
+    while (h1 != h2 && h1 != null && h2 != null) {
+      h1 = h1.next;
+      h2 = h2.next;
+    }
+
+    return h1;
+  }
+}
+-----
 ```
 **[⬆ Back to Top](#list-of-problems)**
 
