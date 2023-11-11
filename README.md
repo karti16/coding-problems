@@ -156,6 +156,7 @@
 | 145.  | [Sort linked list of 0s 1s 2s](#145-sort-linked-list-of-0s-1s-2s)                                                                                                                        |
 | 146.  | [Intersection of Two Linked Lists](#146-intersection-of-two-linked-lists)                                                                                                                |
 | 147.  | [Add Two Numbers](#147-add-two-numbers)                                                                                                                                                  |
+| 148.  | [Add one to a number represented as Linked List](#148-add-one-to-a-number-represented-as-linked-list)                                                                                    |
 
 ## 1. Binary Search
 
@@ -6976,6 +6977,137 @@ class Solution {
     return dummy.next;
   }
 }
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 148. Add one to a number represented as Linked List
+
+[Question link](https://www.codingninjas.com/studio/problems/add-one-to-a-number-represented-as-linked-list_920557?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
+
+[Video Solution Link](https://www.youtube.com/watch?v=wU3m025A-cQ)
+
+```java
+public class Solution {
+
+  public Node reverse(Node head) {
+    Node curr = head;
+    Node prev = null;
+
+    while (curr != null) {
+      Node next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    return prev;
+  }
+
+  public static Node addNode(Node h) {
+    // Write your code here.
+    Node head = this.reverse(h);
+    Node dummy = new Node(0);
+    Node curr = dummy;
+    int carry = 1;
+
+    while (head != null || carry > 0) {
+      int v = head != null ? head.data : 0;
+
+      int val = v + carry;
+      carry = val / 10;
+      val = val % 10;
+      curr.next = new Node(val);
+
+      curr = curr.next;
+      head = head != null ? head.next : null;
+    }
+    return this.reverse(dummy.next);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
