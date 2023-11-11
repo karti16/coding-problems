@@ -2,13 +2,14 @@ package Code.Java.MyLinkedList;
 
 public class Runner {
     public static void main(String[] args) {
-        int[] arr = {1, 3, 5, 43, 2, 56, 4};
+        int[] arr = {9,9,9};
         MyLinkedList list = new MyLinkedList(arr);
-
         list.show();
+//        list.show(list.reverse());
 
-        Node head = list.getHead();
-        Node sortedHead = list.sortList(head);
-        list.show(sortedHead);
+        Node h = list.addOneToNode();
+        list.show(h);
+
+
     }
 }
