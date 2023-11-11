@@ -155,6 +155,8 @@
 | 144.  | [Sort List](#144-sort-list)                                                                                                                                                              |
 | 145.  | [Sort linked list of 0s 1s 2s](#145-sort-linked-list-of-0s-1s-2s)                                                                                                                        |
 | 146.  | [Intersection of Two Linked Lists](#146-intersection-of-two-linked-lists)                                                                                                                |
+| 147.  | [Add Two Numbers](#147-add-two-numbers)                                                                                                                                                  |
+| 148.  | [Add one to a number represented as Linked List](#148-add-one-to-a-number-represented-as-linked-list)                                                                                    |
 
 ## 1. Binary Search
 
@@ -3255,12 +3257,11 @@ public class test {
 
 > Create a row with 1 as element. Add 0 to start and end. Sum element i and i+1 and this to new row.Repeat till N times.
 
-
 ```java
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
- 
+
 public class test {
   public static void main(String[] args) {
     int n = 5;
@@ -6394,10 +6395,10 @@ class Solution {
 
 [Video Solution Link](https://www.youtube.com/watch?v=ZHjKhUjcsaU)
 
-> start from end of array, 
+> start from end of array,
 >
 > set max to -1
-> if ele is greater than max then reassign new max, else replace num to max. before that keep the old ele and reassign as max 
+> if ele is greater than max then reassign new max, else replace num to max. before that keep the old ele and reassign as max
 
 ```java
 class Solution {
@@ -6426,8 +6427,7 @@ class Solution {
 
 [Video Solution Link](https://www.youtube.com/watch?v=99RVfqklbCE)
 
-> use two pointer. when two char matched increment pointer. if not increment the parent string. Check length of 1st pointer and child string length 
-> 
+> use two pointer. when two char matched increment pointer. if not increment the parent string. Check length of 1st pointer and child string length
 
 ```java
 class Solution {
@@ -6466,7 +6466,7 @@ class Solution {
     public int lengthOfLastWord(String s) {
         int c = 0;
         int start = s.length() - 1;
-        
+
         while(s.charAt(start) == ' '){
             start--;
         }
@@ -6596,7 +6596,6 @@ public class Solution{
 
 ## 140. Palindrome Linked List
 
-
 [Question link](https://leetcode.com/problems/palindrome-linked-list/description/)
 
 [Video Solution Link](https://www.youtube.com/watch?v=yOzXms1J6Nk)
@@ -6641,8 +6640,8 @@ class Solution {
   }
 }
 ```
-**[⬆ Back to Top](#list-of-problems)**
 
+**[⬆ Back to Top](#list-of-problems)**
 
 ## 141. Odd Even Linked List
 
@@ -6681,8 +6680,8 @@ class Solution {
   }
 }
 ```
-**[⬆ Back to Top](#list-of-problems)**
 
+**[⬆ Back to Top](#list-of-problems)**
 
 ## 142. Remove Nth Node From End of List
 
@@ -6716,8 +6715,8 @@ class Solution {
   }
 }
 ```
-**[⬆ Back to Top](#list-of-problems)**
 
+**[⬆ Back to Top](#list-of-problems)**
 
 ## 143. Delete the Middle Node of a Linked List
 
@@ -6747,8 +6746,8 @@ class Solution {
   }
 }
 ```
-**[⬆ Back to Top](#list-of-problems)**
 
+**[⬆ Back to Top](#list-of-problems)**
 
 ## 144. Sort List
 
@@ -6812,6 +6811,7 @@ class Solution {
     }
 }
 ```
+
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 145. Sort linked list of 0s 1s 2s
@@ -6863,6 +6863,7 @@ public class Solution {
 }
 
 ```
+
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 146. Intersection of Two Linked Lists
@@ -6872,10 +6873,8 @@ public class Solution {
 [Video Solution Link](https://www.youtube.com/watch?v=D0X0BONOQhI)
 
 > solution 1 : iterate from l1, if l1 reaches end connect to l2, same to other list. And check if l1 and l2 are intersecting
-> 
+>
 > solution 2 : find the difference between length of list and start iterate ahead if list is longer
-
-
 
 ```java
 // optimal solution
@@ -6943,6 +6942,90 @@ public class Solution {
 }
 -----
 ```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 147. Add Two Numbers
+
+[Question link](https://leetcode.com/problems/add-two-numbers/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=wgFPrzTjm7s)
+
+```java
+class Solution {
+  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    ListNode dummy = new ListNode(0);
+    ListNode curr = dummy;
+    int carry = 0;
+
+    while ((l1 != null || l2 != null) || carry > 0) {
+      int v1 = l1 != null ? l1.val : 0;
+      int v2 = l2 != null ? l2.val : 0;
+
+      int val = v1 + v2 + carry;
+
+      carry = val / 10;
+      val = val % 10;
+
+      curr.next = new ListNode(val);
+
+      curr = curr.next;
+      l1 = l1 != null ? l1.next : null;
+      l2 = l2 != null ? l2.next : null;
+    }
+
+    return dummy.next;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 148. Add one to a number represented as Linked List
+
+[Question link](https://www.codingninjas.com/studio/problems/add-one-to-a-number-represented-as-linked-list_920557?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
+
+[Video Solution Link](https://www.youtube.com/watch?v=wU3m025A-cQ)
+
+```java
+public class Solution {
+
+  public Node reverse(Node head) {
+    Node curr = head;
+    Node prev = null;
+
+    while (curr != null) {
+      Node next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    return prev;
+  }
+
+  public static Node addNode(Node h) {
+    // Write your code here.
+    Node head = this.reverse(h);
+    Node dummy = new Node(0);
+    Node curr = dummy;
+    int carry = 1;
+
+    while (head != null || carry > 0) {
+      int v = head != null ? head.data : 0;
+
+      int val = v + carry;
+      carry = val / 10;
+      val = val % 10;
+      curr.next = new Node(val);
+
+      curr = curr.next;
+      head = head != null ? head.next : null;
+    }
+    return this.reverse(dummy.next);
+  }
+}
+```
+
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 51. title
@@ -6954,6 +7037,7 @@ public class Solution {
 ```java
 
 ```
+
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 51. title
@@ -6965,7 +7049,77 @@ public class Solution {
 ```java
 
 ```
+
 **[⬆ Back to Top](#list-of-problems)**
 
+## 51. title
 
+[Question link]()
 
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
