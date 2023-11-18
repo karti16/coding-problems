@@ -157,6 +157,9 @@
 | 146.  | [Intersection of Two Linked Lists](#146-intersection-of-two-linked-lists)                                                                                                                |
 | 147.  | [Add Two Numbers](#147-add-two-numbers)                                                                                                                                                  |
 | 148.  | [Add one to a number represented as Linked List](#148-add-one-to-a-number-represented-as-linked-list)                                                                                    |
+| 149.  | [Delete all occurrences of a given key in a doubly linked list](#149-delete-all-occurrences-of-a-given-key-in-a-doubly-linked-list)                                                      |
+| 150.  | [Find pairs with given sum in doubly linked list](#150-find-pairs-with-given-sum-in-doubly-linked-list)                                                                                  |
+| 151.  | [Remove duplicates from a sorted Doubly Linked List](#151-remove-duplicates-from-a-sorted-doubly-linked-list)                                                                            |
 
 ## 1. Binary Search
 
@@ -7028,38 +7031,90 @@ public class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 149. Delete all occurrences of a given key in a doubly linked list
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/delete-all-occurrences-of-a-given-key-in-a-doubly-linked-list_8160461?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
 
 [Video Solution Link]()
 
 ```java
+public class Solution {
 
+  public static Node deleteAllOccurrences(Node head, int k) {
+    Node curr = head;
+    Node dummy = new Node(-1);
+    dummy.next = head;
+    head.prev = dummy;
+    while (curr != null) {
+      if (curr.data == k) {
+        curr.prev.next = curr.next;
+        if (curr.next != null) {
+          curr.next.prev = curr.prev;
+        }
+      }
+      curr = curr.next;
+    }
+
+    return dummy.next;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 150. Find pairs with given sum in doubly linked list
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/find-pairs-with-given-sum-in-doubly-linked-list_1164172?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf)
 
 [Video Solution Link]()
 
 ```java
+public void findPair(int k) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
+    Node n = head;
+
+    while (n != null) {
+      if (map.containsKey(k - n.data)) {
+        res.add(new ArrayList<>(Arrays.asList(k - n.data, n.data)));
+      }
+      int count = map.getOrDefault(n.data, 0);
+      map.put(n.data, count + 1);
+      n = n.next;
+    }
+
+    System.out.println(res);
+  }
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 151. Remove duplicates from a sorted Doubly Linked List
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/remove-duplicates-from-a-sorted-doubly-linked-list_2420283?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=DISCUSS)
 
 [Video Solution Link]()
 
 ```java
+public void uniqueSortedList() {
+    Node prev = head;
+    Node curr = head.next;
 
+    while (curr != null) {
+      if (prev.data == curr.data) {
+        prev.next = curr.next;
+        if (curr.next != null) {
+          curr.next.prev = prev;
+        }
+      } else if (curr.next == null && curr.data == prev.data) {
+        prev.next = null;
+      } else if (curr.data != prev.data) {
+        prev = prev.next;
+      }
+      curr = curr.next;
+    }
+  }
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
