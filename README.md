@@ -160,6 +160,9 @@
 | 149.  | [Delete all occurrences of a given key in a doubly linked list](#149-delete-all-occurrences-of-a-given-key-in-a-doubly-linked-list)                                                      |
 | 150.  | [Find pairs with given sum in doubly linked list](#150-find-pairs-with-given-sum-in-doubly-linked-list)                                                                                  |
 | 151.  | [Remove duplicates from a sorted Doubly Linked List](#151-remove-duplicates-from-a-sorted-doubly-linked-list)                                                                            |
+| 152.  | [Delete node in Doubly Linked List](#152-delete-node-in-doubly-linked-list)                                                                                                              |
+| 153.  | [Doubly linked list Insertion at given position](#153-doubly-linked-list-insertion-at-given-position)                                                                                    |
+| 154.  | [Insert in Sorted way in a Sorted DLL](#154-insert-in-sorted-way-in-a-sorted-dll)                                                                                                        |
 
 ## 1. Binary Search
 
@@ -7084,6 +7087,8 @@ public void findPair(int k) {
       n = n.next;
     }
 
+    res.sort((l1, l2) -> l1.get(0).compareTo(l2.get(0)));
+
     System.out.println(res);
   }
 ```
@@ -7119,38 +7124,114 @@ public void uniqueSortedList() {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 152. Delete node in Doubly Linked List
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/delete-node-in-doubly-linked-list/1?page=1&category=doubly-linked-list&sortBy=submissions)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=LvUgew66zOQ)
 
 ```java
+class Solution {
+
+  Node deleteNode(Node head, int x) {
+    if (x == 1) {
+      head = head.next;
+      head.prev = null;
+      return head;
+    }
+
+    Node curr = head;
+    while (x > 1) {
+      curr = curr.next;
+      x -= 1;
+    }
+
+    Node temp = curr.prev;
+
+    curr.prev.next = curr.next;
+    curr.next = temp;
+
+    return head;
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 153. Doubly linked list Insertion at given position
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/insert-a-node-in-doubly-linked-list/1?page=1&category=doubly-linked-list&sortBy=submissions)
 
 [Video Solution Link]()
 
 ```java
+class GfG {
+
+  void addNode(Node head_ref, int pos, int data) {
+    Node curr = head_ref;
+    Node newNode = new Node(data);
+
+    while (pos > 0 && curr != null) {
+      curr = curr.next;
+      pos -= 1;
+    }
+
+    if (curr.next != null) {
+      Node temp = curr.next;
+      curr.next = newNode;
+      newNode.next = temp;
+      temp.prev = newNode;
+      newNode.prev = curr;
+    } else {
+      curr.next = newNode;
+      newNode.prev = curr;
+      newNode.next = null;
+    }
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 154. Insert in Sorted way in a Sorted DLL
 
-[Question link]()
+[Question link](https://practice.geeksforgeeks.org/problems/insert-in-sorted-way-in-a-sorted-dll/1?page=1&category=doubly-linked-list&sortBy=submissions)
 
 [Video Solution Link]()
 
 ```java
+class GfG {
 
+  public static Node sortedInsert(Node head, int x) {
+    Node newNode = new Node(x);
+    if (head == null) return newNode;
+
+    if (x <= head.data) {
+      newNode.next = head;
+      head.prev = newNode;
+      return newNode;
+    }
+
+    Node curr = head;
+
+    while (curr.next != null && curr.next.data < x) {
+      curr = curr.next;
+    }
+
+    newNode.next = curr.next;
+
+    if (curr.next != null) {
+      curr.next.prev = newNode;
+    }
+
+    curr.next = newNode;
+    newNode.prev = curr;
+
+    return head;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
