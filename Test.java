@@ -1,37 +1,42 @@
+import java.util.Arrays;
+
 public class Test {
 
   public static void main(String[] args) {
-    System.out.println("ddd");
+    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
+    quickSort(arr, 0, arr.length - 1);
+    System.out.println(Arrays.toString(arr));
   }
-}
 
-class GfG {
+  static void quickSort(int[] arr, int low, int high) {
+    if (low >= high) {
+      return;
+    }
+    int start = low;
+    int end = high;
+    int mid = start + (end - start) / 2;
+    int pivot = arr[mid];
 
-  public static Node sortedInsert(Node head, int x) {
-    Node newNode = new Node(x);
-    if (head == null) return newNode;
+    while (start <= end) {
+      while (arr[start] < pivot) {
+        start++;
+      }
 
-    if (x <= head.data) {
-      newNode.next = head;
-      head.prev = newNode;
-      return newNode;
+      while (arr[end] > pivot) {
+        end--;
+      }
+
+      if (start <= end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        start++;
+        end--;
+      }
     }
 
-    Node curr = head;
-
-    while (curr.next != null && curr.next.data < x) {
-      curr = curr.next;
-    }
-
-    newNode.next = curr.next;
-
-    if (curr.next != null) {
-      curr.next.prev = newNode;
-    }
-
-    curr.next = newNode;
-    newNode.prev = curr;
-
-    return head;
+    quickSort(arr, low, end);
+    quickSort(arr, start, high);
   }
 }

@@ -163,6 +163,7 @@
 | 152.  | [Delete node in Doubly Linked List](#152-delete-node-in-doubly-linked-list)                                                                                                              |
 | 153.  | [Doubly linked list Insertion at given position](#153-doubly-linked-list-insertion-at-given-position)                                                                                    |
 | 154.  | [Insert in Sorted way in a Sorted DLL](#154-insert-in-sorted-way-in-a-sorted-dll)                                                                                                        |
+| 155.  | [Merge Sort on Doubly Linked List](#155-merge-sort-on-doubly-linked-list)                                                                                                                |
 
 ## 1. Binary Search
 
@@ -1589,6 +1590,54 @@ public class test {
   }
 
 }
+
+
+// ----------------------------------
+
+import java.util.Arrays;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3, 6, 9, 12, 7, 5 };
+    quickSort(arr, 0, arr.length - 1);
+    System.out.println(Arrays.toString(arr));
+  }
+
+  static void quickSort(int[] arr, int low, int high) {
+    if (low >= high) {
+      return;
+    }
+    int start = low;
+    int end = high;
+    int mid = start + (end - start) / 2;
+    int pivot = arr[mid];
+
+    while (start <= end) {
+      while (arr[start] < pivot) {
+        start++;
+      }
+
+      while (arr[end] > pivot) {
+        end--;
+      }
+
+      if (start <= end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        start++;
+        end--;
+      }
+    }
+
+    quickSort(arr, low, end);
+    quickSort(arr, start, high);
+  }
+}
+
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -7236,14 +7285,86 @@ class GfG {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 155. MergeSort on Doubly Linked List
 
-[Question link]()
+[Question link](https://www.geeksforgeeks.org/problems/merge-sort-on-doubly-linked-list/1?page=1&category=doubly-linked-list&sortBy=submissions)
 
 [Video Solution Link]()
 
 ```java
+class LinkedList {
 
+  static Node sortDoubly(Node head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    Node left = head;
+    Node mid = findMiddle(head);
+    Node right = mid.next;
+    mid.next = null;
+    right.prev = null;
+
+    left = sortDoubly(left);
+    right = sortDoubly(right);
+
+    return merge(left, right);
+  }
+
+  public static Node merge(Node left, Node right) {
+    if (left == null) {
+      return right;
+    }
+    if (right == null) {
+      return left;
+    }
+    Node ans = new Node(-1);
+    Node temp = ans;
+
+    while (left != null && right != null) {
+      if (left.data < right.data) {
+        temp.next = left;
+        left.prev = temp;
+        temp = left;
+        left = left.next;
+      } else {
+        temp.next = right;
+        right.prev = temp;
+        temp = right;
+        right = right.next;
+      }
+    }
+
+    if (left != null) {
+      temp.next = left;
+      left.prev = temp;
+      temp = left;
+      left = left.next;
+    }
+    if (right != null) {
+      temp.next = right;
+      right.prev = temp;
+      temp = right;
+      right = right.next;
+    }
+
+    ans = ans.next;
+    ans.prev = null;
+    return ans;
+  }
+
+  public static Node findMiddle(Node tempHead) {
+    Node fast = tempHead;
+    Node slow = tempHead;
+
+    while (fast.next != null && fast.next.next != null) {
+      fast = fast.next.next;
+      slow = slow.next;
+    }
+
+    return slow;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**

@@ -178,4 +178,80 @@ public class MyDoublyLinkedList {
             head = temp.prev;
         }
     }
+
+    public void sortUsingMergeSort() {
+        head = mergeSort(head);
+    }
+
+    private Node mergeSort(Node tempHead) {
+        if(tempHead == null || tempHead.next == null){
+            return tempHead;
+        }
+
+        Node left = tempHead;
+        Node mid = findMiddle(tempHead);
+        Node right = mid.next;
+        mid.next = null;
+        right.prev = null;
+
+        left = mergeSort(left);
+        right = mergeSort(right);
+
+        return merge(left, right);
+    }
+
+    private Node merge(Node left, Node right) {
+        if(left == null){
+            return right;
+        }
+        if(right == null){
+            return left;
+        }
+        Node ans = new Node();
+        Node temp = ans;
+
+        while(left != null && right != null){
+            if(left.data < right.data){
+                temp.next = left;
+                left.prev = temp;
+                temp = left;
+                left = left.next;
+            }else{
+                temp.next = right;
+                right.prev = temp;
+                temp = right;
+                right = right.next;
+            }
+        }
+
+        if (left != null) {
+            temp.next = left;
+            left.prev = temp;
+            temp = left;
+            left = left.next;
+        }
+        if (right != null) {
+            temp.next = right;
+            right.prev = temp;
+            temp = right;
+            right = right.next;
+        }
+
+        ans = ans.next;
+        ans.prev = null;
+        return ans;
+    }
+
+
+    private Node findMiddle(Node tempHead) {
+        Node fast = tempHead;
+        Node slow = tempHead;
+
+        while(fast.next != null && fast.next.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return slow;
+    }
 }
