@@ -164,6 +164,7 @@
 | 153.  | [Doubly linked list Insertion at given position](#153-doubly-linked-list-insertion-at-given-position)                                                                                    |
 | 154.  | [Insert in Sorted way in a Sorted DLL](#154-insert-in-sorted-way-in-a-sorted-dll)                                                                                                        |
 | 155.  | [Merge Sort on Doubly Linked List](#155-merge-sort-on-doubly-linked-list)                                                                                                                |
+| 156.  | [QuickSort on Doubly Linked List](#156-quicksort-on-doubly-linked-list)                                                                                                                  |
 
 ## 1. Binary Search
 
@@ -7369,6 +7370,40 @@ class LinkedList {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 156. QuickSort on Doubly Linked List
+
+[Question link](https://www.geeksforgeeks.org/problems/quicksort-on-doubly-linked-list/1?page=1&category=doubly-linked-list&sortBy=submissions)
+
+[Video Solution Link]()
+
+```java
+class GfG {
+
+  public static Node partition(Node l, Node h) {
+    Node pivot = h;
+    Node i = l;
+
+    for (Node j = l; j != h; j = j.next) {
+      if (pivot.data > j.data) {
+        swap(j, i);
+        i = i.next;
+      }
+    }
+
+    swap(i, h);
+    return i;
+  }
+
+  public static void swap(Node x, Node y) {
+    int temp = x.data;
+    x.data = y.data;
+    y.data = temp;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
 ## 51. title
 
 [Question link]()
@@ -7380,3 +7415,124 @@ class LinkedList {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
