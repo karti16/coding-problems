@@ -8,6 +8,9 @@
 | 2.4.  | [5% tax added](#24-5-tax-added)                                                    |
 | 2.5.  | [Solve expression](#24-solve-expression)                                           |
 | 2.7.  | [Minimum denomination to amount](#27-minimum-denomination-to-amount)               |
+| 2.8.  | [Calculate remaining amount in loan](#28-calculate-remaining-amount-in-loan)       |
+| 3.1.  | [Print date format](#31-print-date-format)                                         |
+| 3.2.  | [Print formatted content](#32-print-formatted-content)                             |
 
 ## 2.1. Print tick pattern
 
@@ -172,26 +175,81 @@ int main(void) {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 2.1. Volume of sphere
+
+
+## 2.8. Calculate remaining amount in loan
 
 ```c
+#include <stdio.h>
+
+int main(void) {
+
+  float loan = 0.0f, rate = 0.0f, payment = 0.0f;
+
+  printf("Enter amount of loan: ");
+  scanf("%f", &loan);
+
+  printf("Enter interest rate: ");
+  scanf("%f", &rate);
+
+  printf("Enter monthly payment: ");
+  scanf("%f", &payment);
+
+  loan = loan - payment + (loan * rate / 100.0 / 12.0);
+  printf("Balance remaining after first payment: $%.2f\n", loan);
+
+  loan = loan - payment + (loan * rate / 100.0 / 12.0);
+  printf("Balance remaining after second payment: $%.2f\n", loan);
+
+  loan = loan - payment + (loan * rate / 100.0 / 12.0);
+  printf("Balance remaining after third payment: $%.2f\n", loan);
+
+  return 0;
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 3.1. Print date format
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  int m, d, y;
+  scanf("%d/%d/%d", &m, &d, &y);
+
+  printf("%d/%2.2d/%2.2d", y, d, m);
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 2.1. Volume of sphere
+## 3.2. Print formatted content
 
 ```c
+#include <stdio.h>
 
-```
+int main(void) {
+  int item_no;
+  float price;
+  int m, d, y;
 
-**[⬆ Back to Top](#list-of-problems)**
+  printf("Enter item no. : ");
+  scanf("%d", &item_no);
 
-## 2.1. Volume of sphere
+  printf("Enter price : ");
+  scanf("%f", &price);
 
-```c
+  scanf("%d/%d/%d", &m, &d, &y);
 
+  printf("Item\tUnit\t\tPurchase\n");
+  printf("\tPrice\t\tDate\n");
+  printf("%d\t$%7.2f\t%d/%2.2d/%2.2d\n", item_no, price, d, m, y);
+
+  return 0;
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**

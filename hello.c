@@ -1,39 +1,21 @@
-#include<stdio.h>
-
+#include <stdio.h>
 
 int main(void) {
+  int item_no;
+  float price;
+  int m, d, y;
 
-  int amount;
-  int twenty = 0;
-  int ten = 0;
-  int five = 0;
-  int one = 0;
+  printf("Enter item no. : ");
+  scanf("%d", &item_no);
 
-  printf("Enter amount : ");
-  scanf("%d", &amount);
+  printf("Enter price : ");
+  scanf("%f", &price);
 
-  twenty = amount / 20;
-  amount = amount - twenty * 20;
+  scanf("%d/%d/%d", &m, &d, &y);
 
-  ten = amount / 10;
-  amount = amount - ten * 10;
+  printf("Item\tUnit\t\tPurchase\n");
+  printf("\tPrice\t\tDate\n");
+  printf("%d\t$%7.2f\t%d/%2.2d/%2.2d\n", item_no, price, d, m, y);
 
-  five = amount / 5;
-  amount = amount - five * 5;
-
-  one = amount / 1;
-  amount = amount - one * 1;
-
-
-
-  printf("$20  bills: %d\n", twenty);
-  printf("$10  bills: %d\n", ten);
-  printf("$5  bills: %d\n", five);
-  printf("$1  bills: %d\n", one);
   return 0;
-
-
-  }
-
-
-
+}
