@@ -242,7 +242,6 @@ public class MyDoublyLinkedList {
         return ans;
     }
 
-
     private Node findMiddle(Node tempHead) {
         Node fast = tempHead;
         Node slow = tempHead;
@@ -253,5 +252,86 @@ public class MyDoublyLinkedList {
         }
 
         return slow;
+    }
+
+    public void reverseKGroupStriver(int K) {
+        if(K == 1 || head == null){
+            return;
+        }
+
+        Node dummy = new Node();
+        dummy.next = head;
+
+        Node prev = dummy;
+        Node curr = dummy;
+        Node next;
+
+        int count = 0;
+
+        while(curr.next != null){
+            curr = curr.next;
+            count++;
+        }
+
+        while(count >= K){
+            curr = prev.next;
+            next = curr.next;
+
+            for (int i = 1; i < K; i++) {
+                curr.next = next.next;
+                next.next = prev.next;
+                prev.next = next;
+                next = curr.next;
+            }
+
+            prev = curr;
+            count -= K;
+
+        }
+
+        head = dummy.next;
+        display();
+    }
+
+    public void reverseKGroupNeetCode(int K) {
+        Node dummy = new Node();
+        dummy.next = head;
+
+        Node groupPrev = dummy;
+
+        while(true){
+            Node kth = getKthNode(groupPrev, K);
+
+            if(kth == null){
+                break;
+            }
+
+            Node groupNext = kth.next;
+            Node prev = kth.next;
+            Node curr = groupPrev.next;
+
+            while(curr != groupNext){
+                Node temp = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = temp;
+            }
+
+            Node temp = groupPrev.next;
+            groupPrev.next = kth;
+            groupPrev = temp;
+
+        }
+
+        head = dummy.next;
+        display();
+    }
+
+    private Node getKthNode(Node curr, int k){
+        while(curr != null && k > 0){
+            curr = curr.next;
+            k-=1;
+        }
+        return curr;
     }
 }

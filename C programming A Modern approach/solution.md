@@ -11,6 +11,8 @@
 | 2.8.  | [Calculate remaining amount in loan](#28-calculate-remaining-amount-in-loan)       |
 | 3.1.  | [Print date format](#31-print-date-format)                                         |
 | 3.2.  | [Print formatted content](#32-print-formatted-content)                             |
+| 4.1.  | [Reverse number](#41-reverse-number)                                               |
+| 4.4.  | [Convert number to Octal number](#44-convert-number-to-octal-number)               |
 
 ## 2.1. Print tick pattern
 
@@ -250,6 +252,100 @@ int main(void) {
 
   return 0;
 }
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 4.1. Reverse number
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  int num;
+  printf("Enter number : ");
+  scanf("%d", &num);
+
+  int res = 0;
+
+  while (num > 0) {
+    int n = num % 10;
+    res = (res * 10) + n;
+    num = num / 10;
+  }
+
+  printf("Reversed number: %d\n", res);
+
+  return 0;
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 4.4. Convert number to Octal number
+
+```c
+#include <stdio.h>
+
+int main(void) {
+  int num;
+  printf("Enter number : ");
+  scanf("%d", &num);
+
+  int octalNum = 0;
+  int count = 1;
+
+  while (num > 0) {
+    int reminder = num % 8;
+    octalNum = octalNum + reminder * count;
+    count = count * 10;
+    num = num / 8;
+  }
+
+  printf("Octal number: %d\n", octalNum);
+
+  return 0;
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 2.1. Volume of sphere
+
+```c
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 2.1. Volume of sphere
+
+```c
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 2.1. Volume of sphere
+
+```c
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 2.1. Volume of sphere
+
+```c
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 2.1. Volume of sphere
+
+```c
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**

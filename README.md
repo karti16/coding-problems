@@ -165,6 +165,8 @@
 | 154.  | [Insert in Sorted way in a Sorted DLL](#154-insert-in-sorted-way-in-a-sorted-dll)                                                                                                        |
 | 155.  | [Merge Sort on Doubly Linked List](#155-merge-sort-on-doubly-linked-list)                                                                                                                |
 | 156.  | [QuickSort on Doubly Linked List](#156-quicksort-on-doubly-linked-list)                                                                                                                  |
+| 157.  | [LRU Cache](#157-lru-cache)                                                                                                                                                              |
+| 158.  | [Reverse Nodes in k-Group](#158-reverse-nodes-in-k-group)                                                                                                                                |
 
 ## 1. Binary Search
 
@@ -7404,25 +7406,195 @@ class GfG {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 157. LRU Cache
 
-[Question link]()
+[Question link](https://leetcode.com/problems/lru-cache/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=NDpwj0VWz1U)
+
+[Video Solution Link](https://www.youtube.com/watch?v=xDEuM5qa0zg&pp=ygUJbHJ1IGNhY2hl)
 
 ```java
+class LRUCache {
+
+  final Node head = new Node();
+  final Node tail = new Node();
+  Map<Integer, Node> node_map;
+  int cache_capacity = 0;
+
+  public LRUCache(int capacity) {
+    node_map = new HashMap(capacity);
+    this.cache_capacity = capacity;
+    head.next = tail;
+    tail.prev = head;
+  }
+
+  public int get(int key) {
+    int result = -1;
+    Node oldNode = node_map.get(key);
+
+    if (oldNode != null) {
+      removeNode(oldNode);
+      result = oldNode.val;
+      addNode(oldNode);
+    }
+
+    return result;
+  }
+
+  public void put(int key, int value) {
+    Node oldNode = node_map.get(key);
+
+    if (oldNode != null) {
+      removeNode(oldNode);
+      oldNode.val = value;
+      addNode(oldNode);
+    } else {
+      if (node_map.size() == this.cache_capacity) {
+        node_map.remove(tail.prev.key);
+        removeNode(tail.prev);
+      }
+
+      Node new_node = new Node(key, value);
+      node_map.put(key, new_node);
+      addNode(new_node);
+    }
+  }
+
+  public void removeNode(Node node) {
+    Node next_node = node.next;
+    Node prev_node = node.prev;
+
+    prev_node.next = next_node;
+    next_node.prev = prev_node;
+  }
+
+  public void addNode(Node new_node) {
+    Node next_node = head.next;
+
+    head.next = new_node;
+    new_node.prev = head;
+
+    new_node.next = next_node;
+    next_node.prev = new_node;
+  }
+
+  class Node {
+
+    int key;
+    int val;
+    Node prev;
+    Node next;
+
+    public Node(int key, int val) {
+      this.key = key;
+      this.val = val;
+    }
+
+    public Node() {}
+  }
+}
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 158. Reverse Nodes in k-Group
 
-[Question link]()
+[Question link](https://leetcode.com/problems/reverse-nodes-in-k-group/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=1UOPsfP85V4&pp=ygUYUmV2ZXJzZSBOb2RlcyBpbiBrLUdyb3Vw)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Of0HPkk3JgI&t=665s&pp=ygUYUmV2ZXJzZSBOb2RlcyBpbiBrLUdyb3Vw)
 
 ```java
+class Solution {
+
+  public ListNode reverseKGroup(ListNode head, int k) {
+    if (k == 1 || head == null) {
+      return head;
+    }
+
+    ListNode dummy = new ListNode();
+    dummy.next = head;
+
+    ListNode prev = dummy;
+    ListNode curr = dummy;
+    ListNode next;
+
+    int count = 0;
+
+    while (curr.next != null) {
+      curr = curr.next;
+      count++;
+    }
+
+    while (count >= k) {
+      curr = prev.next;
+      next = curr.next;
+
+      for (int i = 1; i < k; i++) {
+        curr.next = next.next;
+        next.next = prev.next;
+        prev.next = next;
+        next = curr.next;
+      }
+
+      prev = curr;
+      count -= k;
+    }
+
+    return dummy.next;
+  }
+}
+
+------------------------------------
+
+class Solution {
+
+  public ListNode reverseKGroup(ListNode head, int k) {
+    if (k == 1 || head == null) {
+      return head;
+    }
+
+    ListNode dummy = new ListNode();
+    dummy.next = head;
+
+    ListNode prev = dummy;
+    ListNode curr = dummy;
+    ListNode next;
+
+    int count = 0;
+
+    while (curr.next != null) {
+      curr = curr.next;
+      count++;
+    }
+
+    while (count >= k) {
+      curr = prev.next;
+      next = curr.next;
+
+      for (int i = 1; i < k; i++) {
+        curr.next = next.next;
+        next.next = prev.next;
+        prev.next = next;
+        next = curr.next;
+      }
+
+      prev = curr;
+      count -= k;
+    }
+
+    return dummy.next;
+  }
+}
 
 ```
 
