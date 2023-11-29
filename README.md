@@ -167,6 +167,9 @@
 | 156.  | [QuickSort on Doubly Linked List](#156-quicksort-on-doubly-linked-list)                                                                                                                  |
 | 157.  | [LRU Cache](#157-lru-cache)                                                                                                                                                              |
 | 158.  | [Reverse Nodes in k-Group](#158-reverse-nodes-in-k-group)                                                                                                                                |
+| 159.  | [Rotate List (Linked List)](#159-rotate-list-linked-list)                                                                                                                                |
+| 160.  | [Flattening a Linked List)](#160-flattening-a-linked-list)                                                                                                                               |
+| 161.  | [Copy List with Random Pointer)](#161-copy-list-with-random-pointer)                                                                                                                     |
 
 ## 1. Binary Search
 
@@ -7600,37 +7603,176 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 159. Rotate List (Linked List)
 
-[Question link]()
+[Question link](https://leetcode.com/problems/rotate-list/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=UcGtPs2LE_c)
 
 ```java
+class Solution {
 
+  public ListNode rotateRight(ListNode head, int k) {
+    if (head == null) {
+      return head;
+    }
+
+    ListNode tail = head;
+    int len = 1;
+
+    while (tail.next != null) {
+      tail = tail.next;
+      len += 1;
+    }
+
+    k = k % len;
+    if (k == 0) {
+      return head;
+    }
+
+    ListNode curr = head;
+    for (int i = 1; i <= len - k - 1; i++) {
+      curr = curr.next;
+    }
+
+    ListNode newHead = curr.next;
+    curr.next = null;
+    tail.next = head;
+
+    return newHead;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 160. Flattening a Linked List
 
-[Question link]()
+[Question link](https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=ysytSSXpAI0)
 
 ```java
+class GfG {
 
+  Node flatten(Node root) {
+    if (root == null || root.next == null) {
+      return root;
+    }
+
+    root.next = flatten(root.next);
+
+    root = mergeTwoLists(root, root.next);
+
+    return root;
+  }
+
+  Node mergeTwoLists(Node a, Node b) {
+    Node temp = new Node(0);
+    Node res = temp;
+
+    while (a != null && b != null) {
+      if (a.data < b.data) {
+        temp.bottom = a;
+        temp = temp.bottom;
+        a = a.bottom;
+      } else {
+        temp.bottom = b;
+        temp = temp.bottom;
+        b = b.bottom;
+      }
+    }
+
+    if (a != null) {
+      temp.bottom = a;
+    } else {
+      temp.bottom = b;
+    }
+
+    return res.bottom;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 161. Copy List with Random Pointer
 
-[Question link]()
+[Question link](https://leetcode.com/problems/copy-list-with-random-pointer/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=VNf6VynfpdM)
 
 ```java
+class Solution {
+
+  public Node copyRandomList(Node head) {
+    if (head == null) {
+      return null;
+    }
+
+    Node temp = head;
+
+    while (temp != null) {
+      Node newNode = new Node(temp.val);
+      newNode.next = temp.next;
+      temp.next = newNode;
+      temp = newNode.next;
+    }
+
+    Node itr = head;
+
+    while (itr != null) {
+      if (itr.next != null) {
+        itr.next.random = itr.random != null ? itr.random.next : null;
+      }
+
+      itr = itr.next != null ? itr.next.next : null;
+    }
+
+    Node og = head;
+    Node copy = head.next;
+
+    Node ans = head.next;
+
+    while (og != null && copy != null) {
+      og.next = og.next != null ? og.next.next : null;
+      copy.next = copy.next != null ? copy.next.next : null;
+
+      og = og.next;
+      copy = copy.next;
+    }
+
+    return ans;
+  }
+}
+
+---------------------------
+
+class Solution {
+
+  public Node copyRandomList(Node head) {
+    HashMap<Node, Node> map = new HashMap<>();
+    map.put(null, null);
+    Node curr = head;
+
+    while (curr != null) {
+      Node copy = new Node(curr.val);
+      map.put(curr, copy);
+      curr = curr.next;
+    }
+
+    curr = head;
+
+    while (curr != null) {
+      Node copy = map.get(curr);
+      copy.next = map.get(curr.next);
+      copy.random = map.get(curr.random);
+      curr = curr.next;
+    }
+
+    return map.get(head);
+  }
+}
 
 ```
 
