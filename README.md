@@ -170,6 +170,8 @@
 | 159.  | [Rotate List (Linked List)](#159-rotate-list-linked-list)                                                                                                                                |
 | 160.  | [Flattening a Linked List)](#160-flattening-a-linked-list)                                                                                                                               |
 | 161.  | [Copy List with Random Pointer)](#161-copy-list-with-random-pointer)                                                                                                                     |
+| 162.  | [Pow(x, n))](#162-powx-n)                                                                                                                                                                |
+| 163.  | [163. Find numbers (words) in string ](#163-find-numbers-words-in-string)                                                                                                                |
 
 ## 1. Binary Search
 
@@ -5954,48 +5956,46 @@ public class test {
 
 ```java
 
-public class test {
+class Solution {
 
-  public static void main(String[] args) {
-    String str = "   -34";
-    final int len = str.length();
+  public int myAtoi(String s) {
+    int len = s.length();
 
-    if (len == 0) {
-      System.out.println(0);
-    }
+    if (len == 0) return 0;
 
     int index = 0;
 
-    while (index < len && str.charAt(index) == ' ') {
-      ++index;
+    while (index < len && s.charAt(index) == ' ') {
+      index++;
     }
+
+    if (index == len) return 0;
+
+    char ch = s.charAt(index);
 
     boolean isNegative = false;
 
-    if (index < len) {
-
-      if (str.charAt(index) == '-') {
-        isNegative = true;
-        ++index;
-      } else if (str.charAt(index) == '+') {
-        ++index;
-      }
-
-    }
-
-    int result = 0;
-
-    while (index < len && isDigit(str.charAt(index))) {
-      int digit = str.charAt(index) - '0';
-      if (result > (Integer.MAX_VALUE / 10) ||
-          (result == (Integer.MAX_VALUE / 10) && digit > 7)) {
-        System.out.println(isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE);
-      }
-      result = (result * 10) + digit;
+    if (s.charAt(index) == '-') {
+      isNegative = true;
+      ++index;
+    } else if (s.charAt(index) == '+') {
       ++index;
     }
 
-    System.out.println(isNegative ? -result : result);
+    final int maxLimit = Integer.MAX_VALUE / 10;
+    int result = 0;
+
+    while (index < len && isDigit(s.charAt(index))) {
+      int digit = s.charAt(index) - '0';
+      if (result > (Integer.MAX_VALUE - digit) / 10) {
+        return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+      }
+
+      result = (result * 10) + digit;
+      index++;
+    }
+
+    return isNegative ? -result : result;
   }
 
   static boolean isDigit(char ch) {
@@ -7778,25 +7778,81 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 162. Pow(x, n)
 
-[Question link]()
+[Question link](https://leetcode.com/problems/powx-n/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=g9YQyYi4IQQ)
 
 ```java
+class Solution {
 
+  public double myPow(double x, int n) {
+    double res = helper(x, Math.abs(n));
+    return n >= 0 ? res : 1 / res;
+  }
+
+  public double helper(double x, int n) {
+    if (x == 0) return 0;
+    if (n == 0) return 1;
+
+    double res = helper(x, n / 2);
+    res = res * res;
+    return n % 2 == 0 ? res : res * x;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 163. Find numbers (words) in string 
 
 [Question link]()
 
 [Video Solution Link]()
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class FindNumbersInString2 {
+
+  public static void main(String[] args) {
+    String inputString = "ffdfdonfivejjsix";
+    List<String> result = findNumbersInString(inputString);
+
+    for (String match : result) {
+      System.out.println(match);
+    }
+  }
+
+  public static List<String> findNumbersInString(String inputString) {
+
+    List<String> matches = new ArrayList<>();
+
+    String[] numbers = {
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+    };
+
+    for (String number : numbers) {
+      int index = 0;
+      while ((index = inputString.indexOf(number, index)) != -1) {
+        matches.add(number);
+        index += number.length();
+      }
+    }
+
+    return matches;
+  }
+}
 
 ```
 
