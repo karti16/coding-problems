@@ -171,7 +171,8 @@
 | 160.  | [Flattening a Linked List)](#160-flattening-a-linked-list)                                                                                                                               |
 | 161.  | [Copy List with Random Pointer)](#161-copy-list-with-random-pointer)                                                                                                                     |
 | 162.  | [Pow(x, n))](#162-powx-n)                                                                                                                                                                |
-| 163.  | [163. Find numbers (words) in string ](#163-find-numbers-words-in-string)                                                                                                                |
+| 163.  | [Find numbers (words) in string](#163-find-numbers-words-in-string)                                                                                                                      |
+| 164.  | [Count Good Numbers](#164-count-good-numbers)                                                                                                                                            |
 
 ## 1. Binary Search
 
@@ -7805,7 +7806,7 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 163. Find numbers (words) in string 
+## 163. Find numbers (words) in string
 
 [Question link]()
 
@@ -7858,14 +7859,29 @@ public class FindNumbersInString2 {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 164. Count Good Numbers
 
-[Question link]()
+[Question link](https://leetcode.com/problems/count-good-numbers/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=QaY7bg1AtnI&t=198s)
 
 ```java
+class Solution {
+  public long MOD = 1_000_000_007;
 
+  public int countGoodNumbers(long n) {
+    long even = (n + 1) / 2;
+    long odd = n / 2;
+    return (int) (pow(5, even) * pow(4, odd) % MOD);
+  }
+
+  public long pow(long x, long n) {
+    if (n == 0)
+      return 1;
+    long p = pow(x, n / 2);
+    return n % 2 == 0 ? (p * p) % MOD : (x * p * p) % MOD;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
