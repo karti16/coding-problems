@@ -1,22 +1,42 @@
+import java.util.Arrays;
+import java.util.Stack;
+
 public class Test {
   public static void main(String[] args) {
-    int x = 2;
-    int p = -5;
-    int n = Math.abs(p);
-    double ans = 1;
-    while (n > 0) {
-      if (n % 2 == 1) {
-        ans *= x;
-        n = n - 1;
-      } else {
-        x *= x;
-        n /= 2;
-      }
+    Stack<Integer> st = new Stack<>();
+
+    st.push(3);
+    st.push(2);
+    st.push(14);
+    st.push(48);
+
+    System.out.println(Arrays.toString(st.toArray()));
+
+    sort(st);
+
+    System.out.println(Arrays.toString(st.toArray()));
+  }
+
+  public static void sort(Stack<Integer> st) {
+    if (st.isEmpty()) {
+      return;
     }
 
-    if (p < 0) {
-      ans = 1 / ans;
+    int temp = st.pop();
+    sort(st);
+
+    insertAtCorrectPosition(st, temp);
+  }
+
+  public static void insertAtCorrectPosition(Stack<Integer> st, int temp) {
+    if (st.isEmpty()) {
+      st.push(temp);
+      return;
     }
-    System.out.println(ans);
+
+    int elem = st.pop();
+    insertAtCorrectPosition(st, temp);
+
+    st.push(elem);
   }
 }

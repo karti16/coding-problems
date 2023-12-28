@@ -173,6 +173,8 @@
 | 162.  | [Pow(x, n))](#162-powx-n)                                                                                                                                                                |
 | 163.  | [Find numbers (words) in string](#163-find-numbers-words-in-string)                                                                                                                      |
 | 164.  | [Count Good Numbers](#164-count-good-numbers)                                                                                                                                            |
+| 165.  | [Sort a stack using recursion](#165-sort-a-stack-using-recursion)                                                                                                                        |
+| 166.  | [Reverse Stack Using Recursion](#166-reverse-stack-using-recursion)                                                                                                                      |
 
 ## 1. Binary Search
 
@@ -7909,6 +7911,172 @@ class Solution {
     return n % 2 == 0 ? (p * p) % MOD : (x * p * p) % MOD;
   }
 }
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 165. Sort a stack using recursion
+
+[Question link](https://www.codingninjas.com/studio/problems/sort-a-stack_985275?leftPanelTabValue=PROBLEM)
+
+[Video Solution Link](https://www.youtube.com/watch?v=_s6GokFRsiI)
+
+```java
+import java.util.Arrays;
+import java.util.Stack;
+
+public class Test {
+  public static void main(String[] args) {
+    Stack<Integer> st = new Stack<>();
+
+    st.push(2);
+    st.push(120);
+    st.push(-1);
+    st.push(9);
+
+    System.out.println(Arrays.toString(st.toArray()));
+
+    sort(st);
+
+    System.out.println(Arrays.toString(st.toArray()));
+  }
+
+  public static void sort(Stack<Integer> st) {
+    if (st.isEmpty()) {
+      return;
+    }
+
+    int temp = st.pop();
+    sort(st);
+
+    insertAtCorrectPosition(st, temp);
+  }
+
+  public static void insertAtCorrectPosition(Stack<Integer> st, int temp) {
+    if (st.isEmpty() || st.peek() < temp) {
+      st.push(temp);
+      return;
+    }
+
+    int elem = st.pop();
+    insertAtCorrectPosition(st, temp);
+
+    st.push(elem);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 166. Reverse Stack Using Recursion
+
+[Question link](https://www.codingninjas.com/studio/problems/reverse-stack-using-recursion_631875?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
+
+[Video Solution Link](https://www.youtube.com/watch?v=_s6GokFRsiI)
+
+```java
+import java.util.Arrays;
+import java.util.Stack;
+
+public class Test {
+  public static void main(String[] args) {
+    Stack<Integer> st = new Stack<>();
+
+    st.push(3);
+    st.push(2);
+    st.push(14);
+    st.push(48);
+
+    System.out.println(Arrays.toString(st.toArray()));
+
+    sort(st);
+
+    System.out.println(Arrays.toString(st.toArray()));
+  }
+
+  public static void sort(Stack<Integer> st) {
+    if (st.isEmpty()) {
+      return;
+    }
+
+    int temp = st.pop();
+    sort(st);
+
+    insertAtCorrectPosition(st, temp);
+  }
+
+  public static void insertAtCorrectPosition(Stack<Integer> st, int temp) {
+    if (st.isEmpty()) {
+      st.push(temp);
+      return;
+    }
+
+    int elem = st.pop();
+    insertAtCorrectPosition(st, temp);
+
+    st.push(elem);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
