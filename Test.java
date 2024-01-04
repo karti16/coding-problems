@@ -1,42 +1,31 @@
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Test {
+
   public static void main(String[] args) {
-    Stack<Integer> st = new Stack<>();
+    int[] arr = { 1, 2, 3 };
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> subset = new ArrayList<>();
+    backTrack(0, arr, res, subset);
 
-    st.push(3);
-    st.push(2);
-    st.push(14);
-    st.push(48);
-
-    System.out.println(Arrays.toString(st.toArray()));
-
-    sort(st);
-
-    System.out.println(Arrays.toString(st.toArray()));
+    System.out.println(res.toString());
   }
 
-  public static void sort(Stack<Integer> st) {
-    if (st.isEmpty()) {
+  public static void backTrack(
+      int i,
+      int[] arr,
+      List<List<Integer>> res,
+      List<Integer> subset) {
+
+    if (i >= arr.length) {
+      res.add(new ArrayList<>(subset));
       return;
     }
+    subset.add(arr[i]);
+    backTrack(i + 1, arr, res, subset);
 
-    int temp = st.pop();
-    sort(st);
-
-    insertAtCorrectPosition(st, temp);
-  }
-
-  public static void insertAtCorrectPosition(Stack<Integer> st, int temp) {
-    if (st.isEmpty()) {
-      st.push(temp);
-      return;
-    }
-
-    int elem = st.pop();
-    insertAtCorrectPosition(st, temp);
-
-    st.push(elem);
+    subset.remove(subset.size() - 1);
+    backTrack(i + 1, arr, res, subset);
   }
 }

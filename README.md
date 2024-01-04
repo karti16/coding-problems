@@ -175,6 +175,9 @@
 | 164.  | [Count Good Numbers](#164-count-good-numbers)                                                                                                                                            |
 | 165.  | [Sort a stack using recursion](#165-sort-a-stack-using-recursion)                                                                                                                        |
 | 166.  | [Reverse Stack Using Recursion](#166-reverse-stack-using-recursion)                                                                                                                      |
+| 167.  | [Binary strings with no consecutive 1s.](#167-binary-strings-with-no-consecutive-1s)                                                                                                     |
+| 168.  | [Generate Parentheses](#168-generate-parentheses)                                                                                                                                        |
+| 169.  | [Subsets](#169-subsets)                                                                                                                                                                  |
 
 ## 1. Binary Search
 
@@ -8021,37 +8024,132 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 167. Binary strings with no consecutive 1s.
 
-[Question link]()
+[Question link](https://www.codingninjas.com/studio/problems/-binary-strings-with-no-consecutive-1s._893001?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=Bq9lgqC1YwE)
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+  public static void main(String[] args) {
+    int n = 4;
+    List<String> ans = new ArrayList<>();
+
+    solve(n - 1, "0", ans);
+    solve(n - 1, "1", ans);
+
+    System.out.println(ans.toString());
+  }
+
+  public static void solve(int n, String curr, List<String> ans) {
+    if (n == 0) {
+      ans.add(curr);
+      return;
+    }
+
+    if (curr.charAt(curr.length() - 1) == '1') {
+      solve(n - 1, curr + "0", ans);
+      return;
+    }
+
+    solve(n - 1, curr + "0", ans);
+    solve(n - 1, curr + "1", ans);
+
+  }
+
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 168. Generate Parentheses
+
+[Question link](https://leetcode.com/problems/generate-parentheses/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=s9fokUqJ76A&pp=ygUUZ2VuZXJhdGUgcGFyZW50aGVzZXM%3D)
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int n = 3;
+    List<String> res = new ArrayList<>();
+
+    backTrack(res, 0, 0, "", n);
+
+    System.out.println(res.toString());
+  }
+
+  public static void backTrack(
+      List<String> res,
+      int openN,
+      int closeN,
+      String str,
+      int n) {
+    if (str.length() == n * 2) {
+      res.add(str);
+      return;
+    }
+
+    if (openN < n) {
+      backTrack(res, openN + 1, closeN, str + "(", n);
+    }
+
+    if (closeN < openN) {
+      backTrack(res, openN, closeN + 1, str + ")", n);
+    }
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 169. Subsets
 
-[Question link]()
+[Question link](https://leetcode.com/problems/subsets/description/)
 
-[Video Solution Link]()
-
-```java
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
-
-## 51. title
-
-[Question link]()
-
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=REOH22Xwdkk)
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] arr = { 1, 2, 3 };
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> subset = new ArrayList<>();
+    backTrack(0, arr, res, subset);
+
+    System.out.println(res.toString());
+  }
+
+  public static void backTrack(
+      int i,
+      int[] arr,
+      List<List<Integer>> res,
+      List<Integer> subset) {
+
+    if (i >= arr.length) {
+      res.add(new ArrayList<>(subset));
+      return;
+    }
+    subset.add(arr[i]);
+    backTrack(i + 1, arr, res, subset);
+
+    subset.remove(subset.size() - 1);
+    backTrack(i + 1, arr, res, subset);
+  }
+}
 
 ```
 
