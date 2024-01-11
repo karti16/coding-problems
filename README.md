@@ -7,6 +7,8 @@
 
 ## List of Problems
 
+[Table Bottom](#bottom-of-table)
+
 | S. no | Problem                                                                                                                                                                                  |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1.    | [Binary Search](#1-binary-search)                                                                                                                                                        |
@@ -178,6 +180,13 @@
 | 167.  | [Binary strings with no consecutive 1s.](#167-binary-strings-with-no-consecutive-1s)                                                                                                     |
 | 168.  | [Generate Parentheses](#168-generate-parentheses)                                                                                                                                        |
 | 169.  | [Subsets](#169-subsets)                                                                                                                                                                  |
+| 170.  | [Distinct Subsequences](#170-distinct-subsequences)                                                                                                                                      |
+| 171.  | [Subsets II](#171-subsets-ii)                                                                                                                                                            |
+| 172.  | [Print all distinct subsequence in a string](#172-print-all-distinct-subsequence-in-a-string)                                                                                            |
+
+## Bottom of table
+
+---
 
 ## 1. Binary Search
 
@@ -8155,38 +8164,147 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 170. Distinct Subsequences
 
-[Question link]()
+[Question link](https://leetcode.com/problems/distinct-subsequences/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://youtu.be/-RDzMJ33nx8?si=l_UIjpT0wx73FVlN)
 
 ```java
+import java.util.HashMap;
+
+public class Test {
+
+  public static void main(String[] args) {
+    final String t = "rabbit";
+    final String s = "rabbbit";
+    HashMap<String, Integer> cache = new HashMap<>();
+
+    int result = bfs(0, 0, s, t, cache);
+    System.out.println(result);
+  }
+
+  public static int bfs(int i, int j, String s, String t, HashMap<String, Integer> cache) {
+    String key = "" + i + "_" + j;
+
+    if (j == t.length()) {
+      return 1;
+    }
+    if (i == s.length()) {
+      return 0;
+    }
+
+    if (cache.containsKey(key)) {
+      return cache.get(key);
+    }
+
+    if (s.charAt(i) == t.charAt(j)) {
+      int r = bfs(i + 1, j + 1, s, t, cache) + bfs(i + 1, j, s, t, cache);
+      cache.put(key, r);
+    } else {
+      int r = bfs(i + 1, j, s, t, cache);
+      cache.put(key, r);
+    }
+
+    return cache.get(key);
+
+  }
+
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 171. Subsets II
 
-[Question link]()
+[Question link](https://leetcode.com/problems/subsets-ii/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=GBKI9VSKdGg)
 
 ```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+public class Test {
+
+  public static void main(String[] args) {
+    int[] arr = { 2, 2, 1 };
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> subset = new ArrayList<>();
+
+    Arrays.sort(arr);
+    backTrack(0, arr, res, subset);
+
+    System.out.println(res.toString());
+  }
+
+  public static void backTrack(
+      int i,
+      int[] arr,
+      List<List<Integer>> res,
+      List<Integer> subset) {
+
+    if (i >= arr.length) {
+      res.add(new ArrayList<>(subset));
+      return;
+    }
+
+    subset.add(arr[i]);
+    backTrack(i + 1, arr, res, subset);
+    subset.remove(subset.size() - 1);
+
+    while (i + 1 < arr.length && arr[i] == arr[i + 1]) {
+      i += 1;
+    }
+    backTrack(i + 1, arr, res, subset);
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 172. Print all distinct subsequence in a string
 
-[Question link]()
+[Question link](https://leetcode.com/problems/distinct-subsequences-ii/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=Vn2v6ajA7U0)
 
 ```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
+public class Test {
+
+  public static void main(String[] args) {
+    String str = "aba";
+    HashSet<String> set = new HashSet<>();
+
+    backTrack(str, "", 0, set);
+
+    List<String> list = new ArrayList<String>(set);
+    Collections.sort(list);
+
+    System.out.println(list);
+  }
+
+  public static void backTrack(String str, String curr, int i, HashSet<String> set) {
+
+    if (i >= str.length()) {
+      if (curr != "") {
+        set.add(curr);
+      }
+      return;
+    }
+
+    backTrack(str, curr + str.charAt(i), i + 1, set);
+    backTrack(str, curr, i + 1, set);
+
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
