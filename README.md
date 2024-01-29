@@ -3705,9 +3705,7 @@ public class test {
           } else if (sum < target) {
             left++;
           } else {
-            res.add(new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[left],
-                nums[right])));
-
+            res.add(new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[left], nums[right])));
             left++;
             right--;
             while (left < right && nums[left] == nums[left - 1]) {
@@ -3734,7 +3732,7 @@ import java.util.List;
 public class test {
   public static void main(String[] args) {
     int[] nums = { 1, 0, -1, 0, -2, 2 };
-    int target = 0;
+    long target = 0;
     Arrays.sort(nums);
     List<List<Integer>> res = new ArrayList<List<Integer>>();
     ArrayList<Integer> quad = new ArrayList<>();
@@ -3743,7 +3741,7 @@ public class test {
     System.out.println(res);
   }
 
-  static void kSum(int k, int start, int target, List<List<Integer>> res, ArrayList<Integer> quad, int[] nums) {
+  static void kSum(int k, int start, long target, List<List<Integer>> res, ArrayList<Integer> quad, int[] nums) {
     if (k != 2) {
       for (int i = start; i < nums.length - k + 1; i++) {
         if (i != start && nums[i] == nums[i - 1]) {
