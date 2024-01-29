@@ -2,29 +2,33 @@
 
 ## List of Problems
 
-| S. no | Problem                                                              |
-| ----- | -------------------------------------------------------------------- |
-| 1.    | [Function Composition](#1-function-composition)                      |
-| 2.    | [Curried Function](#2-curried-function)                              |
-| 3.    | [Sleep](#3-sleep)                                                    |
-| 4.    | [Promise Time Limit](#4-promise-time-limit)                          |
-| 5.    | [Promise Pool](#5-promise-pool)                                      |
-| 6.    | [Cache With Time Limit](#5-promise-pool)                             |
-| 7.    | [Debounce](#7-debounce)                                              |
-| 8.    | [Throttle](#8-throttle)                                              |
-| 9.    | [Objects Deep Equal](#9-objects-deep-equal)                          |
-| 10.   | [Objects to JSON](#10-objects-to-json)                               |
-| 11.   | [JSON to Matrix](#11-json-to-matrix)                                 |
-| 12.   | [Difference Between Two Objects](#12-difference-between-two-objects) |
-| 13.   | [Chunk Array](#13-chunk-array)                                       |
-| 14.   | [Flatten Deeply Nested Array](#14-flatten-deeply-nested-array)       |
-| 15.   | [Event Emitter](#15-event-emitter)                                   |
-| 16.   | [Array Wrapper](#16-array-wrapper)                                   |
-| 17.   | [Generate Fibonacci Sequence](#17-generate-fibonacci-sequence)       |
-| 18.   | [Nested Array Generator](#18-nested-array-generator)                 |
-| 19.   | [Concurrently run tasks](#19-concurrently-run-tasks)                 |
-| 20.   | [Toggle Functions Arguments](#20-toggle-functions-arguments)         |
-| 21.   | [Sampler Function](#21-sampler-function)                             |
+| S. no | Problem                                                                                    |
+| ----- | ------------------------------------------------------------------------------------------ |
+| 1.    | [Function Composition](#1-function-composition)                                            |
+| 2.    | [Curried Function](#2-curried-function)                                                    |
+| 3.    | [Sleep](#3-sleep)                                                                          |
+| 4.    | [Promise Time Limit](#4-promise-time-limit)                                                |
+| 5.    | [Promise Pool](#5-promise-pool)                                                            |
+| 6.    | [Cache With Time Limit](#5-promise-pool)                                                   |
+| 7.    | [Debounce](#7-debounce)                                                                    |
+| 8.    | [Throttle](#8-throttle)                                                                    |
+| 9.    | [Objects Deep Equal](#9-objects-deep-equal)                                                |
+| 10.   | [Objects to JSON](#10-objects-to-json)                                                     |
+| 11.   | [JSON to Matrix](#11-json-to-matrix)                                                       |
+| 12.   | [Difference Between Two Objects](#12-difference-between-two-objects)                       |
+| 13.   | [Chunk Array](#13-chunk-array)                                                             |
+| 14.   | [Flatten Deeply Nested Array](#14-flatten-deeply-nested-array)                             |
+| 15.   | [Event Emitter](#15-event-emitter)                                                         |
+| 16.   | [Array Wrapper](#16-array-wrapper)                                                         |
+| 17.   | [Generate Fibonacci Sequence](#17-generate-fibonacci-sequence)                             |
+| 18.   | [Nested Array Generator](#18-nested-array-generator)                                       |
+| 19.   | [Concurrently run tasks](#19-concurrently-run-tasks)                                       |
+| 20.   | [Toggle Functions Arguments](#20-toggle-functions-arguments)                               |
+| 21.   | [Sampler Function](#21-sampler-function)                                                   |
+| 22.   | [Implement curry()](#22-implement-curry)                                                   |
+| 23.   | [Implement curry() with placeholder support](#23-implement-curry-with-placeholder-support) |
+| 24.   | [Implement Array.prototype.flat()](#24-implement-arrayprototypeflat)                       |
+| 25.   | [Implement basic throttle()](#25-implement-basic-throttle)                                 |
 
 ## 1. Function Composition
 
@@ -945,6 +949,169 @@ sample('abs');
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 22. Implement curry()
+
+[Question link](https://bigfrontend.dev/problem/implement-curry)
+
+[Video Solution Link](https://www.youtube.com/watch?v=kZdXvK3F8fo)
+
+```javascript
+function curry(fn) {
+  return function curried(...args){
+    if(args.length >= fn.length){
+      return fn.apply(this, args)
+    }else{
+      return function (...args2){
+        return curried.apply(this, args.concat(args2))
+      }
+    }
+  }
+}
+
+
+const join = (a, b, c) => {
+   return `${a}_${b}_${c}`
+}
+
+const curriedJoin = curry(join)
+
+curriedJoin(1, 2, 3) // '1_2_3'
+
+curriedJoin(1)(2, 3) // '1_2_3'
+
+curriedJoin(1, 2)(3) // '1_2_3'
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 23.  Implement curry() with placeholder support
+
+[Question link](https://bigfrontend.dev/problem/implement-curry-with-placeholder)
+
+[Video Solution Link]()
+
+```javascript
+function curry(fn) {
+  return function curried(...args){
+    const complete = args.length >= fn.length && !args.slice(0, fn.length).includes(curry.placeholder);
+    if(complete) return fn.apply(this, args)
+
+    return function (...newArgs){
+      const res = args.map(arg => arg === curry.placeholder && newArgs.length ? newArgs.shift() : arg)
+      return curried(...res, ...newArgs);
+    }
+  }
+}
+
+
+curry.placeholder = Symbol()
+
+
+const  join = (a, b, c) => {
+   return `${a}_${b}_${c}`
+}
+
+const curriedJoin = curry(join)
+const _ = curry.placeholder
+
+curriedJoin(1, 2, 3) // '1_2_3'
+
+curriedJoin(_, 2)(1, 3) // '1_2_3'
+
+curriedJoin(_, _, _)(1)(_, 3)(2) // '1_2_3'
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 24. Implement Array.prototype.flat()
+
+[Question link](https://bigfrontend.dev/problem/implement-Array-prototype.flat)
+
+[Video Solution Link]()
+
+```javascript
+function flat(arr, depth = 1) {
+  const res = [];
+
+  function helper(arr, n){
+    for(const val of arr){
+      if(Array.isArray(val) && n < depth){
+        helper(val, n + 1);
+      }else{
+        res.push(val);
+      }
+    }
+    return res;
+  }
+
+  return helper(arr, 0)
+}
+
+const arr = [1, [2], [3, [4]]];
+
+flat(arr)
+// [1, 2, 3, [4]]
+
+flat(arr, 1)
+// [1, 2, 3, [4]]
+
+flat(arr, 2)
+// [1, 2, 3, 4]
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 25. Implement basic throttle()
+
+[Question link](https://bigfrontend.dev/problem/implement-basic-throttle)
+
+[Video Solution Link](https://www.youtube.com/watch?v=cjIswDCKgu0)
+
+```javascript
+function throttle(func, wait) {
+  let waiting = false;
+  let lastArgs = null;
+
+  function startCooling(){
+    setTimeout(() => {
+      if(lastArgs){
+        func.apply(this, lastArgs);
+        lastArgs = null;
+        startCooling();
+      }else{
+        waiting = false;
+      }
+    },wait);
+  }
+
+  return function (...args){
+    if(!waiting){
+      func.apply(this, args);
+      waiting = true;
+      startCooling()
+    }else{
+      lastArgs = args;
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 1. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```javascript
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
 ## 1. title
 
 [Question link]()
@@ -968,3 +1135,28 @@ sample('abs');
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+## 1. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```javascript
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 1. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```javascript
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+

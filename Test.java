@@ -1,38 +1,42 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Test {
 
   public static void main(String[] args) {
-    int[] arr = { 2, 2, 1 };
-    List<List<Integer>> res = new ArrayList<>();
-    List<Integer> subset = new ArrayList<>();
+    String a = "f";
+    String b = "eeg";
 
-    Arrays.sort(arr);
-    backTrack(0, arr, res, subset);
+    int aCount = countSubsequence(a);
+    int bCount = countSubsequence(b);
 
-    System.out.println(res.toString());
+    System.out.println(aCount >= bCount ? a : b);
+
   }
 
-  public static void backTrack(
-      int i,
-      int[] arr,
-      List<List<Integer>> res,
-      List<Integer> subset) {
+  public static int countSubsequence(String s) {
+    int mod = (int) 1e9 + 7;
+    HashMap<Character, Integer> lo = new HashMap<>();
+    int[] dp = new int[s.length() + 1];
 
-    if (i >= arr.length) {
-      res.add(new ArrayList<>(subset));
-      return;
+    dp[0] = 1;
+
+    for (int i = 1; i <= s.length(); i++) {
+      dp[i] = (2 * (dp[i - 1] % mod)) % mod;
+
+      char ch = s.charAt(i - 1);
+
+      if (lo.containsKey(ch)) {
+        int j = lo.get(ch);
+        dp[i] = dp[i] - dp[j - 1];
+
+      }
+
+      lo.put(ch, i);
     }
 
-    subset.add(arr[i]);
-    backTrack(i + 1, arr, res, subset);
-    subset.remove(subset.size() - 1);
-
-    while (i + 1 < arr.length && arr[i] == arr[i + 1]) {
-      i += 1;
-    }
-    backTrack(i + 1, arr, res, subset);
+    return dp[s.length()] - 1;
   }
 }
