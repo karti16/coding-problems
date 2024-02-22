@@ -1,3 +1,12 @@
+## 1. In a given array, find the maximum digits in the array and reverse each element such that the number of digits of each element is equal to the maximum digit found in the array.
+
+> zoho
+
+Input : [1,2,6,15,4]
+
+Output : [10,20,60,51,40]
+
+```java
 import java.util.Arrays;
 
 public class Test {
@@ -30,3 +39,4 @@ public class Test {
     System.out.println(Arrays.toString(arr));
   }
 }
+```
