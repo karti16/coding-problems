@@ -183,6 +183,7 @@
 | 170.  | [Distinct Subsequences](#170-distinct-subsequences)                                                                                                                                      |
 | 171.  | [Subsets II](#171-subsets-ii)                                                                                                                                                            |
 | 172.  | [Print all distinct subsequence in a string](#172-print-all-distinct-subsequence-in-a-string)                                                                                            |
+| 173.  | [Minimum Length of String After Deleting Similar Ends](#173-minimum-length-of-string-after-deleting-similar-ends)                                                                        |
 
 ## Bottom of table
 
@@ -8307,14 +8308,31 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 51. title
+## 173. Minimum Length of String After Deleting Similar Ends
 
-[Question link]()
+[Question link](https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/description/?envType=daily-question&envId=2024-03-05)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=318hrWVr_5U)
 
 ```java
+public class Test {
 
+  public static void main(String[] args) {
+    String s = "aabccabba";
+
+    int l = 0;
+    int r = s.length() - 1;
+
+    while (l < r && s.charAt(l) == s.charAt(r)) {
+      char tmp = s.charAt(l);
+
+      while (l <= r && s.charAt(l) == tmp) l += 1;
+      while (l <= r && s.charAt(r) == tmp) r -= 1;
+    }
+
+    System.out.println(r - l + 1);
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -8330,4 +8348,97 @@ public class Test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 51. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+
 
