@@ -1,32 +1,18 @@
-import java.util.Arrays;
-
 public class Test {
 
   public static void main(String[] args) {
-    int[] arr = { 4, 3, 70, 15, 118 };
+    String s = "aabccabba";
 
-    int maxDigit = 0;
+    int l = 0;
+    int r = s.length() - 1;
 
-    for (int i = 0; i < arr.length; i++) {
-      String s = Integer.toString(arr[i]);
-      maxDigit = s.length() > maxDigit ? s.length() : maxDigit;
+    while (l < r && s.charAt(l) == s.charAt(r)) {
+      char tmp = s.charAt(l);
+
+      while (l <= r && s.charAt(l) == tmp) l += 1;
+      while (l <= r && s.charAt(r) == tmp) r -= 1;
     }
 
-    for (int i = 0; i < arr.length; i++) {
-      StringBuilder sb = new StringBuilder(Integer.toString(arr[i]));
-      sb.reverse();
-      if (sb.length() < maxDigit) {
-        while (sb.length() < maxDigit) {
-          sb.append("0");
-        }
-
-        arr[i] = Integer.parseInt(sb.toString());
-      } else {
-        arr[i] = Integer.parseInt(sb.substring(0, maxDigit));
-
-      }
-    }
-
-    System.out.println(Arrays.toString(arr));
+    System.out.println(r - l + 1);
   }
 }
