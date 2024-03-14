@@ -3,21 +3,23 @@ import java.util.Arrays;
 public class Test {
 
   public static void main(String[] args) {
-    int n = 5;
-    int[] dp = new int[n + 1];
-    Arrays.fill(dp, -1);
-    int result = solve(n, dp);
-    System.out.println(result); // 8
-  }
+    int[] nums = { 1, 2, 3, 4 };
 
-  public static int solve(int n, int[] dp) {
-    if (n < 0) return 0;
-    if (n == 0) return 1;
+    int[] res = new int[nums.length];
+    Arrays.fill(res, 1);
 
-    if (dp[n] != -1) return dp[n];
+    int p = 1;
 
-    dp[n] = solve(n - 1, dp) + solve(n - 2, dp);
+    for (int i = 0; i < nums.length; i++) {
+      res[i] *= p;
+      p *= nums[i];
+    }
 
-    return dp[n];
+    p = 1;
+    for (int i = nums.length - 1; i >= 0; i--) {
+      res[i] *= p;
+      p *= nums[i];
+    }
+    System.out.println(Arrays.toString(res));
   }
 }
