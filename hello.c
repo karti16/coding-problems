@@ -1,18 +1,15 @@
 #include <stdio.h>
+#include <math.h>
+
 
 int main(void) {
-  float largest = 0.0f;
-  float current;
+  float a = 3.14;
+  float b = 1.2;
 
-  do {
-    printf("Enter a number: ");
-    scanf("%f", &current);
+  float rem = fmod(a,b);
 
-    if (current > largest)
-      largest = current;
-  } while (current > 0);
+  printf("%lf", rem);
 
-  printf("\nThe largest number entered was %f\n", largest);
-
+  
   return 0;
 }
