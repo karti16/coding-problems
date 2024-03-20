@@ -195,6 +195,8 @@
 
 | 182.  | [Longest Repeating Character Replacement](#182-longest-repeating-character-replacement)                                                                                    |
 
+| 183.  | [Permutation in String](#183-permutation-in-string)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -8756,13 +8758,107 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 183. Permutation in String
 
-[Question link]()
+[Question link](https://leetcode.com/problems/permutation-in-string/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=UbyhOgBN834)
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    String s1 = "adc";
+    String s2 = "dcda";
+
+    boolean res = false;
+    if (s1.length() > s2.length()) {
+      System.out.println(false);
+    }
+    int[] freq = new int[26];
+    for (int i = 0; i < s1.length(); i++) {
+      freq[s1.charAt(i) - 'a'] += 1;
+      freq[s2.charAt(i) - 'a'] -= 1;
+    }
+
+    for (int i = 0; i < s2.length() - s1.length(); i++) {
+      if (checkAnagram(freq)) {
+        res = true;
+      }
+      freq[s2.charAt(i) - 'a'] += 1;
+      freq[s2.charAt(i + s1.length()) - 'a'] -= 1;
+    }
+
+    res = checkAnagram(freq);
+    System.out.println(res);
+  }
+
+  public static boolean checkAnagram(int[] freq) {
+    for (int i = 0; i < freq.length; i++) {
+      if (freq[i] != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+
+
+------------------------
+public class Test {
+
+  public static void main(String[] args) {
+    String s1 = "adc";
+    String s2 = "dcda";
+
+    if (s1.length() > s2.length()) {
+      System.out.println(false);
+    }
+
+    int[] s1Count = new int[26];
+    int[] s2Count = new int[26];
+
+    int matches = 0;
+
+    for (int i = 0; i < s1.length(); i++) {
+      s1Count[s1.charAt(i) - 'a'] += 1;
+      s2Count[s2.charAt(i) - 'a'] += 1;
+    }
+
+    for (int i = 0; i < 26; i++) {
+      matches += (s1Count[i] == s2Count[i] ? 1 : 0);
+    }
+
+    int l = 0;
+
+    for (int r = s1.length(); r < s2.length(); r++) {
+      if (matches == 26) {
+        break;
+      }
+
+      int index = s2.charAt(r) - 'a';
+      s2Count[index] += 1;
+
+      if (s1Count[index] == s2Count[index]) {
+        matches += 1;
+      } else if (s1Count[index] + 1 == s2Count[index]) {
+        matches -= 1;
+      }
+
+      index = s2.charAt(l) - 'a';
+      s2Count[index] -= 1;
+
+      if (s1Count[index] == s2Count[index]) {
+        matches += 1;
+      } else if (s1Count[index] - 1 == s2Count[index]) {
+        matches -= 1;
+      }
+      l += 1;
+    }
+
+    System.out.println(matches == 26);
+  }
+}
 
 ```
 

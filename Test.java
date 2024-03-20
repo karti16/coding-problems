@@ -1,26 +1,54 @@
 public class Test {
 
   public static void main(String[] args) {
-    String s = "AABABBA";
-    int[] freq = new int[26];
-    int mostFreqLetter = 0;
-    int k = 1;
-    int l = 0;
-    int max = 0;
+    String s1 = "adc";
+    String s2 = "dcda";
 
-    for (int r = 0; r < s.length(); r++) {
-      freq[s.charAt(r) - 'A']++;
-      mostFreqLetter = Math.max(mostFreqLetter, freq[s.charAt(r) - 'A']);
-
-      int lettersToChange = (r - l + 1) - mostFreqLetter;
-      if (lettersToChange > k) {
-        freq[s.charAt(l) - 'A']--;
-        l += 1;
-      }
-
-      max = Math.max(max, r - l + 1);
+    if (s1.length() > s2.length()) {
+      System.out.println(false);
     }
 
-    System.out.println(max);
+    int[] s1Count = new int[26];
+    int[] s2Count = new int[26];
+
+    int matches = 0;
+
+    for (int i = 0; i < s1.length(); i++) {
+      s1Count[s1.charAt(i) - 'a'] += 1;
+      s2Count[s2.charAt(i) - 'a'] += 1;
+    }
+
+    for (int i = 0; i < 26; i++) {
+      matches += (s1Count[i] == s2Count[i] ? 1 : 0);
+    }
+
+    int l = 0;
+
+    for (int r = s1.length(); r < s2.length(); r++) {
+      if (matches == 26) {
+        break;
+      }
+
+      int index = s2.charAt(r) - 'a';
+      s2Count[index] += 1;
+
+      if (s1Count[index] == s2Count[index]) {
+        matches += 1;
+      } else if (s1Count[index] + 1 == s2Count[index]) {
+        matches -= 1;
+      }
+
+      index = s2.charAt(l) - 'a';
+      s2Count[index] -= 1;
+
+      if (s1Count[index] == s2Count[index]) {
+        matches += 1;
+      } else if (s1Count[index] - 1 == s2Count[index]) {
+        matches -= 1;
+      }
+      l += 1;
+    }
+
+    System.out.println(matches == 26);
   }
 }
