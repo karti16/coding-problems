@@ -191,6 +191,7 @@
 | 178.  | [Valid Palindrome](#178-valid-palindrome)                                                                                                                                                |
 | 179.  | [Container With Most Water](#179-container-with-most-water)                                                                                                                              |
 | 180.  | [Trapping Rain Water](#180-trapping-rain-water)                                                                                                                                          |
+| 181.  | [Longest Substring Without Repeating Characters](#181-longest-substring-without-repeating-characters)                                                                                    |
 
 ## Bottom of table
 
@@ -2465,6 +2466,9 @@ public class test {
 
 [Video Solution Link](https://www.youtube.com/watch?v=eMSfBgbiEjk)
 
+[Video Solution Link](https://www.youtube.com/watch?v=1pkOgXD63yU)
+
+
 ```java
 public class test {
   public static void main(String[] args) {
@@ -2480,6 +2484,31 @@ public class test {
     System.out.println(maxPro);
   }
 
+}
+----------------------------
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] prices = { 7, 1, 5, 3, 6, 4 };
+
+    int l = 0;
+    int r = 1;
+
+    int maxP = 0;
+
+    while (r < prices.length) {
+      if (prices[l] < prices[r]) {
+        int profit = prices[r] - prices[l];
+        maxP = Math.max(maxP, profit);
+      } else {
+        l = r;
+      }
+      r += 1;
+    }
+
+    System.out.println(maxP);
+  }
 }
 
 ```
@@ -8650,7 +8679,44 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 51. title
+## 181. Longest Substring Without Repeating Characters
+
+[Question link](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=wiGpQwVHdE0)
+
+```java
+import java.util.HashSet;
+
+public class Test {
+
+  public static void main(String[] args) {
+    String s = "abcabcbb";
+    int l = 0;
+
+    int maxLength = 0;
+    HashSet<Character> charSet = new HashSet<>();
+
+    for (int r = 0; r < s.length(); r++) {
+      while (charSet.contains(s.charAt(r))) {
+        charSet.remove(s.charAt(l));
+        l++;
+      }
+
+      charSet.add(s.charAt(r));
+      maxLength = Math.max(maxLength, r - l + 1);
+    }
+
+    System.out.println(maxLength);
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 180. title
 
 [Question link]()
 
@@ -8662,6 +8728,41 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
 
 
 

@@ -1,25 +1,24 @@
+import java.util.HashSet;
+
 public class Test {
 
   public static void main(String[] args) {
-    int[] height = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
-    int res = 0;
+    String s = "abcabcbb";
     int l = 0;
-    int r = height.length - 1;
-    int leftMax = height[l];
-    int rightMax = height[r];
 
-    while (l < r) {
-      if (leftMax < rightMax) {
+    int maxLength = 0;
+    HashSet<Character> charSet = new HashSet<>();
+
+    for (int r = 0; r < s.length(); r++) {
+      while (charSet.contains(s.charAt(r))) {
+        charSet.remove(s.charAt(l));
         l++;
-        leftMax = Math.max(leftMax, height[l]);
-        res += leftMax - height[l];
-      } else {
-        r--;
-        rightMax = Math.max(rightMax, height[r]);
-        res += rightMax - height[r];
       }
+
+      charSet.add(s.charAt(r));
+      maxLength = Math.max(maxLength, r - l + 1);
     }
 
-    System.out.println(res);
+    System.out.println(maxLength);
   }
 }
