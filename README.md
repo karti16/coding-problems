@@ -190,6 +190,7 @@
 | 177.  | [Encode and Decode String](#177-encode-and-decode-string)                                                                                                                                |
 | 178.  | [Valid Palindrome](#178-valid-palindrome)                                                                                                                                                |
 | 179.  | [Container With Most Water](#179-container-with-most-water)                                                                                                                              |
+| 180.  | [Trapping Rain Water](#180-trapping-rain-water)                                                                                                                                          |
 
 ## Bottom of table
 
@@ -8611,13 +8612,38 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 51. title
+## 180. Trapping Rain Water
 
-[Question link]()
+[Question link](https://leetcode.com/problems/trapping-rain-water/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    int[] height = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+    int res = 0;
+    int l = 0;
+    int r = height.length - 1;
+    int leftMax = height[l];
+    int rightMax = height[r];
+
+    while (l < r) {
+      if (leftMax < rightMax) {
+        l++;
+        leftMax = Math.max(leftMax, height[l]);
+        res += leftMax - height[l];
+      } else {
+        r--;
+        rightMax = Math.max(rightMax, height[r]);
+        res += rightMax - height[r];
+      }
+    }
+
+    System.out.println(res);
+  }
+}
 
 ```
 
