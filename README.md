@@ -189,6 +189,7 @@
 | 176.  | [Valid Sudoku](#176-valid-sudoku)                                                                                                                                                        |
 | 177.  | [Encode and Decode String](#177-encode-and-decode-string)                                                                                                                                |
 | 178.  | [Valid Palindrome](#178-valid-palindrome)                                                                                                                                                |
+| 179.  | [Container With Most Water](#179-container-with-most-water)                                                                                                                              |
 
 ## Bottom of table
 
@@ -8574,13 +8575,36 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 51. title
+## 179. Container With Most Water
 
-[Question link]()
+[Question link](https://leetcode.com/problems/container-with-most-water/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=UuiTKBwPgAo)
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    int[] height = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+    int max = Integer.MIN_VALUE;
+
+    int l = 0;
+    int r = height.length - 1;
+
+    while (l < r) {
+      int w = Math.min(height[l], height[r]) * (r - l);
+      max = Math.max(max, w);
+
+      if (height[l] < height[r]) {
+        l++;
+      } else {
+        r--;
+      }
+    }
+
+    System.out.println(max);
+  }
+}
 
 ```
 
