@@ -186,6 +186,9 @@
 | 173.  | [Minimum Length of String After Deleting Similar Ends](#173-minimum-length-of-string-after-deleting-similar-ends)                                                                        |
 | 174.  | [Climbing Stairs](#174-climbing-stairs)                                                                                                                                                  |
 | 175.  | [Product of Array Except Self](#175-product-of-array-except-self)                                                                                                                        |
+| 176.  | [Valid Sudoku](#176-valid-sudoku)                                                                                                                                                        |
+| 177.  | [Encode and Decode String](#177-encode-and-decode-string)                                                                                                                                |
+| 178.  | [Valid Palindrome](#178-valid-palindrome)                                                                                                                                                |
 
 ## Bottom of table
 
@@ -8413,39 +8416,158 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 51. title
+## 176. Valid Sudoku
 
-[Question link]()
 
-[Video Solution Link]()
+[Question link](https://leetcode.com/problems/valid-sudoku/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=TjFXEUCMqI8)
 
 ```java
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Test {
+
+  public static void main(String[] args) {
+    String[][] board = {
+      { "5", "3", ".", ".", "7", ".", ".", ".", "." },
+      { "6", ".", ".", "1", "9", "5", ".", ".", "." },
+      { ".", "9", "8", ".", ".", ".", ".", "6", "." },
+      { "8", ".", ".", ".", "6", ".", ".", ".", "3" },
+      { "4", ".", ".", "8", ".", "3", ".", ".", "1" },
+      { "7", ".", ".", ".", "2", ".", ".", ".", "6" },
+      { ".", "6", ".", ".", ".", ".", "2", "8", "." },
+      { ".", ".", ".", "4", "1", "9", ".", ".", "5" },
+      { ".", ".", ".", ".", "8", ".", ".", "7", "9" },
+    };
+    Set<String> seen = new HashSet<>();
+
+    for (int row = 0; row < 9; row++) {
+      for (int col = 0; col < 9; col++) {
+        String boardValue = board[row][col];
+        if (boardValue == ".") continue;
+
+        if (
+          !seen.add(boardValue + "found in row" + row) ||
+          !seen.add(boardValue + "found in column" + col) ||
+          !seen.add(
+            boardValue + " found in cube 3*3 matrix" + row / 3 + "-" + col / 3
+          )
+        ) {
+          System.out.println(false);
+        }
+      }
+    }
+
+    System.out.println(true);
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 51. title
+## 177. Encode and Decode String 
 
 [Question link]()
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=B1k_sxOSgv8)
 
 ```java
+import java.util.ArrayList;
+
+public class Test {
+
+  public static void main(String[] args) {
+    String[] list = { "leet", "code", "love", "you" };
+
+    String encoded = encode(list);
+    System.out.println(encoded); // 4#leet4#code4#love3#you
+    ArrayList<String> result = decode(encoded);
+    System.out.println(result); // [leet, code, love, you]
+  }
+
+  public static String encode(String[] list) {
+    String result = "";
+
+    for (String s : list) {
+      result += s.length() + "#" + s;
+    }
+
+    return result;
+  }
+
+  public static ArrayList<String> decode(String sentence) {
+    ArrayList<String> list = new ArrayList<String>();
+    int n = 0;
+    int i = 0;
+    while (i < sentence.length()) {
+      int j = i;
+      while (sentence.charAt(j) != '#') {
+        j += 1;
+      }
+
+      n = Integer.parseInt(sentence.substring(i, j));
+      list.add(sentence.substring(j + 1, j + 1 + n));
+      i = j + 1 + n;
+    }
+
+    return list;
+  }
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 51. title
+## 178. Valid Palindrome
 
-[Question link]()
+[Question link](https://leetcode.com/problems/valid-palindrome/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=jJXJ16kPFWg)
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    String str = "A man, a plan, a canal: Panama";
+    int l = 0;
+    int r = str.length() - 1;
+    boolean isPalindrome = true;
+
+    while (l < r) {
+      while (l < r && !isAlphaNumeric(str.charAt(l))) {
+        l += 1;
+      }
+      while (r > l && !isAlphaNumeric(str.charAt(r))) {
+        r -= 1;
+      }
+      char a = Character.toLowerCase(str.charAt(l));
+      char b = Character.toLowerCase(str.charAt(r));
+
+      if (a != b) {
+        isPalindrome = false;
+        break;
+      }
+      l += 1;
+      r -= 1;
+    }
+
+    System.out.println(isPalindrome ? "Palindrome" : "Not a palindrome");
+  }
+
+  public static boolean isAlphaNumeric(char c) {
+    return (
+      ((int) c >= (int) 'A' && (int) c <= (int) 'Z') ||
+      ((int) c >= (int) 'a' && (int) c <= (int) 'z') ||
+      ((int) c >= (int) '0' && (int) c <= (int) '9')
+    );
+  }
+}
 
 ```
 
