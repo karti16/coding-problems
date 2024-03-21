@@ -197,6 +197,10 @@
 
 | 183.  | [Permutation in String](#183-permutation-in-string)                                                                                    |
 
+| 184.  | [Minimum Window Substring](#184-minimum-window-substring)                                                                                    |
+
+| 185.  | [Sliding Window Maximum](#185-sliding-window-maximum)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -8765,6 +8769,42 @@ public class Test {
 [Video Solution Link](https://www.youtube.com/watch?v=UbyhOgBN834)
 
 ```java
+
+public class Test {
+
+  public static void main(String[] args) {
+    String s1 = "adc";
+    String s2 = "dcda";
+
+    boolean flag = false;
+
+    int n = s1.length();
+    int[] freq = new int[26];
+    int m = s2.length();
+
+    for (int i = 0; i < n; i++) {
+      freq[s1.charAt(i) - 'a']++;
+    }
+
+    int[] freq2 = new int[26];
+    for (int i = 0; i < m; i++) {
+
+      freq2[s2.charAt(i) - 'a']++;
+
+      if (i >= n) {
+          freq2[s2.charAt(i - n) - 'a']--;
+      }
+
+      if (Arrays.equals(freq, freq2)){
+        flag = true;
+      }
+    }
+
+    System.out.println(falg);;
+
+  }
+}
+------------------------------------------
 public class Test {
 
   public static void main(String[] args) {
@@ -8860,6 +8900,107 @@ public class Test {
   }
 }
 
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 184. Minimum Window Substring
+
+[Question link](https://leetcode.com/problems/minimum-window-substring/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=jSto0O4AJbM)
+
+```java
+import java.util.HashMap;
+
+public class Test {
+
+  public static void main(String[] args) {
+    String s = "ADOBECODEBANC";
+    String t = "ABCA";
+
+    HashMap<Character, Integer> map = new HashMap<>();
+
+    for (char x : t.toCharArray()) {
+      map.put(x, map.getOrDefault(x, 0) + 1);
+    }
+
+    System.out.println(map);
+    int matched = 0;
+    int start = 0;
+    int minLen = s.length() + 1;
+    int subStr = 0;
+
+    for (int endWindow = 0; endWindow < s.length(); endWindow++) {
+      char right = s.charAt(endWindow);
+      if (map.containsKey(right)) {
+        map.put(right, map.get(right) - 1);
+        if (map.get(right) == 0) matched++;
+      }
+
+      while (matched == map.size()) {
+        if (minLen > endWindow - start + 1) {
+          minLen = endWindow - start + 1;
+          subStr = start;
+        }
+        char deleted = s.charAt(start++);
+        if (map.containsKey(deleted)) {
+          if (map.get(deleted) == 0) matched--;
+          map.put(deleted, map.get(deleted) + 1);
+        }
+      }
+    }
+
+    if (minLen > s.length()) {
+      System.out.println("");
+    } else {
+      System.out.println(s.substring(subStr, subStr + minLen));
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 185. Sliding Window Maximum
+
+[Question link](https://leetcode.com/problems/sliding-window-maximum/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=DfljaUwZsOk)
+
+```java
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
+    int k = 3;
+    int[] ans = new int[nums.length - k + 1];
+    int j = 0;
+
+    Deque<Integer> q = new LinkedList<>();
+    for (int i = 0; i < nums.length; i++) {
+      if (!q.isEmpty() && q.peekFirst() < i - k + 1) {
+        q.pollFirst();
+      }
+
+      while (!q.isEmpty() && nums[i] > nums[q.peekLast()]) {
+        q.pollLast();
+      }
+
+      q.offer(i);
+
+      if (i >= k - 1) {
+        ans[j++] = nums[q.peekFirst()];
+      }
+    }
+    System.out.println(Arrays.toString(ans));
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**

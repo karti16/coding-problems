@@ -1,54 +1,31 @@
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class Test {
 
   public static void main(String[] args) {
-    String s1 = "adc";
-    String s2 = "dcda";
+    int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
+    int k = 3;
+    int[] ans = new int[nums.length - k + 1];
+    int j = 0;
 
-    if (s1.length() > s2.length()) {
-      System.out.println(false);
-    }
-
-    int[] s1Count = new int[26];
-    int[] s2Count = new int[26];
-
-    int matches = 0;
-
-    for (int i = 0; i < s1.length(); i++) {
-      s1Count[s1.charAt(i) - 'a'] += 1;
-      s2Count[s2.charAt(i) - 'a'] += 1;
-    }
-
-    for (int i = 0; i < 26; i++) {
-      matches += (s1Count[i] == s2Count[i] ? 1 : 0);
-    }
-
-    int l = 0;
-
-    for (int r = s1.length(); r < s2.length(); r++) {
-      if (matches == 26) {
-        break;
+    Deque<Integer> q = new LinkedList<>();
+    for (int i = 0; i < nums.length; i++) {
+      if (!q.isEmpty() && q.peekFirst() < i - k + 1) {
+        q.pollFirst();
       }
 
-      int index = s2.charAt(r) - 'a';
-      s2Count[index] += 1;
-
-      if (s1Count[index] == s2Count[index]) {
-        matches += 1;
-      } else if (s1Count[index] + 1 == s2Count[index]) {
-        matches -= 1;
+      while (!q.isEmpty() && nums[i] > nums[q.peekLast()]) {
+        q.pollLast();
       }
 
-      index = s2.charAt(l) - 'a';
-      s2Count[index] -= 1;
+      q.offer(i);
 
-      if (s1Count[index] == s2Count[index]) {
-        matches += 1;
-      } else if (s1Count[index] - 1 == s2Count[index]) {
-        matches -= 1;
+      if (i >= k - 1) {
+        ans[j++] = nums[q.peekFirst()];
       }
-      l += 1;
     }
-
-    System.out.println(matches == 26);
+    System.out.println(Arrays.toString(ans));
   }
 }
