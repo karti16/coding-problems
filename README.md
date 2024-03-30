@@ -201,6 +201,16 @@
 
 | 185.  | [Sliding Window Maximum](#185-sliding-window-maximum)                                                                                    |
 
+| 186.  | [Squares of a Sorted Array](#186-squares-of-a-sorted-array)                                                                                    |
+
+| 187.  | [Subarray Product Less Than K](#187-subarray-product-less-than-k)                                                                                    |
+
+| 188.  | [Min Stack](#188-min-stack)                                                                                    |
+
+| 189.  | [Evaluate Reverse Polish Notation](#189-evaluate-reverse-polish-notation)                                                                                    |
+
+| 190.  | [Daily Temperatures](#190-daily-temperatures)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -2437,6 +2447,8 @@ public class test {
 **[⬆ Back to Top](#list-of-problems)**
 
 ## 55. Maximum Subarray
+
+- Kadane's Algorithm
 
 [Question link](https://leetcode.com/problems/maximum-subarray/description/)
 
@@ -9005,6 +9017,242 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 186. Squares of a Sorted Array
+
+[Question link](https://leetcode.com/problems/squares-of-a-sorted-array/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=FPCZsG_AkUg)
+
+```java
+import java.util.Arrays;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] nums = { -7, -3, 2, 3, 11 };
+    int len = nums.length;
+    int[] res = new int[len];
+
+    int l = 0;
+    int r = len - 1;
+
+    int j = len - 1;
+
+    while (l <= r) {
+      int l_square = nums[l] * nums[l];
+      int r_square = nums[r] * nums[r];
+
+      if (l_square >= r_square) {
+        res[j--] = l_square;
+        l++;
+      } else {
+        res[j--] = r_square;
+        r--;
+      }
+    }
+
+    System.out.println(Arrays.toString(res));
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 187. Subarray Product Less Than K
+
+[Question link](https://leetcode.com/problems/subarray-product-less-than-k/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Cg6_nF7YIks)
+
+```java
+public class Test {
+
+  public static void main(String[] args) {
+    int[] nums = { 10, 5, 2, 6 };
+    int k = 100;
+
+    int l = 0;
+    int count = 0;
+    int product = 1;
+
+    for (int r = 0; r < nums.length; r++) {
+      product *= nums[r];
+
+      while (l <= r && product >= k) {
+        product = product / nums[l];
+        l++;
+      }
+      count += (r - l + 1);
+    }
+
+    System.out.println(count);
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 188. Min Stack
+
+[Question link](https://leetcode.com/problems/min-stack/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=qkLl7nAwDPo)
+
+```java
+import java.util.ArrayList;
+
+class MinStack {
+
+  ArrayList<Integer> stack = new ArrayList<>();
+  ArrayList<Integer> min = new ArrayList<>();
+
+  public MinStack() {}
+
+  public void push(int val) {
+    stack.add(val);
+    int topMinEle = val;
+    if (!min.isEmpty()) {
+      topMinEle = Math.min(val, min.get(min.size() - 1));
+    }
+    min.add(topMinEle);
+  }
+
+  public void pop() {
+    stack.remove(stack.size() - 1);
+    min.remove(min.size() - 1);
+  }
+
+  public int top() {
+    int topElement = stack.get(stack.size() - 1);
+    stack.remove(stack.size() - 1);
+    return topElement;
+  }
+
+  public int getMin() {
+    int topMin = min.get(min.size() - 1);
+    return topMin;
+  }
+
+  public void print() {
+    System.out.println("stack : " + stack);
+    System.out.println("min : " + min);
+  }
+}
+
+-----
+public class Test {
+
+  public static void main(String[] args) {
+    MinStack obj = new MinStack();
+    obj.push(2);
+    obj.push(0);
+    obj.push(3);
+    obj.push(0);
+
+    obj.pop();
+    obj.pop();
+    obj.pop();
+    obj.getMin();
+
+    // int param_3 = obj.top();
+    // int param_4 = obj.getMin();
+
+    obj.print();
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 189. Evaluate Reverse Polish Notation
+
+[Question link](https://leetcode.com/problems/evaluate-reverse-polish-notation/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=qN8LPIcY6K4)
+
+[Video Solution Link](https://www.youtube.com/watch?v=iu0082c4HDE)
+
+
+```java
+import java.util.ArrayList;
+
+public class Test {
+
+  public static void main(String[] args) {
+    String[] tokens = { "2", "1", "+", "3", "*" };
+    ArrayList<Integer> stack = new ArrayList<>();
+
+    for (String s : tokens) {
+      if (s.equals("+")) {
+        int op1 = stack.remove(stack.size() - 1);
+        int op2 = stack.remove(stack.size() - 1);
+        stack.add(op2 + op1);
+      } else if (s.equals("*")) {
+        int op1 = stack.remove(stack.size() - 1);
+        int op2 = stack.remove(stack.size() - 1);
+        stack.add(op2 * op1);
+      } else if (s.equals("-")) {
+        int op1 = stack.remove(stack.size() - 1);
+        int op2 = stack.remove(stack.size() - 1);
+        stack.add(op2 - op1);
+      } else if (s.equals("/")) {
+        int op1 = stack.remove(stack.size() - 1);
+        int op2 = stack.remove(stack.size() - 1);
+        stack.add(op2 / op1);
+      } else {
+        int n = Integer.parseInt(s);
+        stack.add(n);
+      }
+    }
+
+    System.out.println(stack);
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 190. Daily Temperatures
+
+[Question link](https://leetcode.com/problems/daily-temperatures/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=cTBiBSnjO3c)
+
+```java
+import java.util.Arrays;
+import java.util.Stack;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] temperatures = { 73, 74, 75, 71, 69, 72, 76, 73 };
+    Stack<Integer> stack = new Stack<>();
+    int[] res = new int[temperatures.length];
+
+    for (int i = 0; i < temperatures.length; i++) {
+      while (!stack.empty() && temperatures[i] > temperatures[stack.peek()]) {
+        int idx = stack.pop();
+        res[idx] = i - idx;
+      }
+
+      stack.push(i);
+    }
+
+    System.out.println(Arrays.toString(res));
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
 ## 180. title
 
 [Question link]()
@@ -9017,6 +9265,7 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+
 ## 180. title
 
 [Question link]()
@@ -9028,6 +9277,20 @@ public class Test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
 
 
 

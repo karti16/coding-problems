@@ -1,31 +1,22 @@
 import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class Test {
 
   public static void main(String[] args) {
-    int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
-    int k = 3;
-    int[] ans = new int[nums.length - k + 1];
-    int j = 0;
+    int[] temperatures = { 73, 74, 75, 71, 69, 72, 76, 73 };
+    Stack<Integer> stack = new Stack<>();
+    int[] res = new int[temperatures.length];
 
-    Deque<Integer> q = new LinkedList<>();
-    for (int i = 0; i < nums.length; i++) {
-      if (!q.isEmpty() && q.peekFirst() < i - k + 1) {
-        q.pollFirst();
+    for (int i = 0; i < temperatures.length; i++) {
+      while (!stack.empty() && temperatures[i] > temperatures[stack.peek()]) {
+        int idx = stack.pop();
+        res[idx] = i - idx;
       }
 
-      while (!q.isEmpty() && nums[i] > nums[q.peekLast()]) {
-        q.pollLast();
-      }
-
-      q.offer(i);
-
-      if (i >= k - 1) {
-        ans[j++] = nums[q.peekFirst()];
-      }
+      stack.push(i);
     }
-    System.out.println(Arrays.toString(ans));
+
+    System.out.println(Arrays.toString(res));
   }
 }
