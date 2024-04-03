@@ -4,19 +4,31 @@ import java.util.Stack;
 public class Test {
 
   public static void main(String[] args) {
-    int[] temperatures = { 73, 74, 75, 71, 69, 72, 76, 73 };
-    Stack<Integer> stack = new Stack<>();
-    int[] res = new int[temperatures.length];
+    int[] pos = { 10, 8, 0, 5, 3 };
+    int[] speed = { 2, 4, 1, 1, 3 };
+    int target = 12;
 
-    for (int i = 0; i < temperatures.length; i++) {
-      while (!stack.empty() && temperatures[i] > temperatures[stack.peek()]) {
-        int idx = stack.pop();
-        res[idx] = i - idx;
-      }
+    int[][] posSpeed = new int[pos.length][2];
 
-      stack.push(i);
+    for (int i = 0; i < pos.length; i++) {
+      posSpeed[i][0] = pos[i];
+      posSpeed[i][1] = speed[i];
     }
 
-    System.out.println(Arrays.toString(res));
+    Arrays.sort(posSpeed, (a, b) -> Integer.compare(b[0], a[0]));
+    Stack<Double> stack = new Stack<>();
+
+    for (int i = 0; i < pos.length; i++) {
+      int p = posSpeed[i][0];
+      int s = posSpeed[i][1];
+      double currentTime = (double) (target - p) / s;
+
+      if (!stack.isEmpty() && currentTime <= stack.peek()) {
+        continue;
+      } else {
+        stack.push(currentTime);
+      }
+    }
+    System.out.println(stack.size());
   }
 }

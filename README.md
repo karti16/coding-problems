@@ -211,6 +211,8 @@
 
 | 190.  | [Daily Temperatures](#190-daily-temperatures)                                                                                    |
 
+| 191.  | [Car Fleet](#191-car-fleet)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -9253,13 +9255,47 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 180. title
+## 191. Car Fleet
 
-[Question link]()
+[Question link](https://leetcode.com/problems/car-fleet/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=Pr6T-3yB9RM)
 
 ```java
+import java.util.Arrays;
+import java.util.Stack;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] pos = { 10, 8, 0, 5, 3 };
+    int[] speed = { 2, 4, 1, 1, 3 };
+    int target = 12;
+
+    int[][] posSpeed = new int[pos.length][2];
+
+    for (int i = 0; i < pos.length; i++) {
+      posSpeed[i][0] = pos[i];
+      posSpeed[i][1] = speed[i];
+    }
+
+    Arrays.sort(posSpeed, (a, b) -> Integer.compare(b[0], a[0]));
+    Stack<Double> stack = new Stack<>();
+
+    for (int i = 0; i < pos.length; i++) {
+      int p = posSpeed[i][0];
+      int s = posSpeed[i][1];
+      double currentTime = (double) (target - p) / s;
+
+      if (!stack.isEmpty() && currentTime <= stack.peek()) {
+        continue;
+      } else {
+        stack.push(currentTime);
+      }
+    }
+    System.out.println(stack.size());
+  }
+}
 
 ```
 
