@@ -215,9 +215,11 @@
 
 | 192.  | [Next Greater Element I](#192-next-greater-element-i)                                                                                    |
 
-| 192.  | [Largest Rectangle in Histogram](#193-largest-rectangle-in-histogram)                                                                                    |
+| 193.  | [Largest Rectangle in Histogram](#193-largest-rectangle-in-histogram)                                                                                    |
 
-| 193.  | [Search in Rotated Sorted Array](#194-search-in-rotated-sorted-array)                                                                                    |
+| 194.  | [Search in Rotated Sorted Array](#194-search-in-rotated-sorted-array)                                                                                    |
+
+| 195.  | [Time Based Key-Value Store](#195-time-based-key-value-store)                                                                                    |
 
 ## Bottom of table
 
@@ -9484,13 +9486,90 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 180. title
+## 195. Time Based Key-Value Store
 
-[Question link]()
+[Question link](https://leetcode.com/problems/time-based-key-value-store/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=fu2cD_6E8Hw)
 
 ```java
+import java.util.ArrayList;
+import java.util.HashMap;
+
+class TimeMap {
+
+  private final HashMap<String, ArrayList<Pair<String, Integer>>> store;
+
+  public TimeMap() {
+    store = new HashMap<>();
+  }
+
+  public void set(String key, String value, int timestamp) {
+    if (!store.containsKey(key)) {
+      store.put(key, new ArrayList<>());
+    }
+
+    store.get(key).add(new Pair<>(value, timestamp));
+  }
+
+  public String get(String key, int timestamp) {
+    if (!store.containsKey(key)) return "";
+    String res = "";
+    ArrayList<Pair<String, Integer>> list = store.get(key);
+
+    int l = 0;
+    int r = list.size() - 1;
+
+    while (l <= r) {
+      int m = l + (r - l) / 2;
+
+      if (list.get(m).getTimestamp() <= timestamp) {
+        res = list.get(m).getValue();
+        l = m + 1;
+      } else {
+        r = m - 1;
+      }
+    }
+
+    return res;
+  }
+
+  class Pair<A, B> {
+
+    private final A value;
+    private final B timestamp;
+
+    Pair(A value, B timestamp) {
+      this.value = value;
+      this.timestamp = timestamp;
+    }
+
+    A getValue() {
+      return value;
+    }
+
+    B getTimestamp() {
+      return timestamp;
+    }
+  }
+}
+
+
+
+// -----------
+
+public class Test {
+
+  public static void main(String[] args) {
+    TimeMap timeMap = new TimeMap();
+
+    timeMap.set("foo", "bar1", 1);
+    timeMap.set("foo", "bar2", 2);
+    timeMap.set("foo", "bar3", 7);
+
+    System.out.println(timeMap.get("foo", 5));
+  }
+}
 
 ```
 
