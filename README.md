@@ -213,6 +213,12 @@
 
 | 191.  | [Car Fleet](#191-car-fleet)                                                                                    |
 
+| 192.  | [Next Greater Element I](#192-next-greater-element-i)                                                                                    |
+
+| 192.  | [Largest Rectangle in Histogram](#193-largest-rectangle-in-histogram)                                                                                    |
+
+| 193.  | [Search in Rotated Sorted Array](#194-search-in-rotated-sorted-array)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -5585,6 +5591,49 @@ public class test {
   }
 }
 
+// ---------------------
+
+import java.util.Stack;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[][] matrix = { { 1, 3, 5, 7 }, { 10, 11, 16, 20 }, { 23, 30, 34, 60 } };
+    int target = 3;
+
+    for (int row = 0; row < matrix.length; row++) {
+      if (
+        matrix[row][0] <= target &&
+        matrix[row][matrix[row].length - 1] >= target
+      ) {
+        int col = binarySearch(matrix[row], target);
+        if (col != -1) {
+          System.out.println(row + ", " + col);
+          break;
+        }
+      }
+    }
+  }
+
+  public static int binarySearch(int[] nums, int target) {
+    int l = 0;
+    int r = nums.length - 1;
+
+    while (l <= r) {
+      int mid = l + (r - l) / 2;
+      if (nums[mid] < target) {
+        l = mid + 1;
+      } else if (nums[mid] > target) {
+        r = mid - 1;
+      } else {
+        return mid;
+      }
+    }
+
+    return -1;
+  }
+}
+
 
 ```
 
@@ -9302,6 +9351,152 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
+## 192. Next Greater Element I
+
+[Question link](https://leetcode.com/problems/next-greater-element-i/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=68a1Dc_qVq4&t=13s)
+
+```java
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Stack;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] nums1 = { 4, 1, 2 };
+    int[] nums2 = { 1, 3, 4, 2 };
+    int[] res = new int[nums1.length];
+    Arrays.fill(res, -1);
+
+    HashMap<Integer, Integer> map = new HashMap<>();
+    Stack<Integer> stack = new Stack<>();
+
+    for (int i = 0; i < nums1.length; i++) {
+      map.put(nums1[i], i);
+    }
+
+    for (int i = 0; i < nums2.length; i++) {
+      while (!stack.empty() && stack.peek() < nums2[i]) {
+        int ele = stack.pop();
+        if (map.containsKey(ele)) {
+          res[map.get(ele)] = nums2[i];
+        }
+      }
+
+      stack.add(nums2[i]);
+    }
+
+    System.out.println(Arrays.toString(res));
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 193. Largest Rectangle in Histogram
+
+[Question link](https://leetcode.com/problems/largest-rectangle-in-histogram/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=zx5Sw9130L0)
+
+```java
+import java.util.Stack;
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] heights = { 2, 4 };
+    int maxArea = 0;
+
+    Stack<int[]> stack = new Stack<>();
+
+    for (int i = 0; i < heights.length; i++) {
+      int start = i;
+      while (!stack.empty() && stack.peek()[1] > heights[i]) {
+        int[] temp = stack.pop();
+        int calArea = temp[1] * (i - temp[0]);
+        maxArea = Math.max(maxArea, calArea);
+        start = temp[0];
+      }
+
+      stack.add(new int[] { start, heights[i] });
+    }
+
+    for (int[] temp : stack) {
+      int calArea = temp[1] * (heights.length - temp[0]);
+      maxArea = Math.max(maxArea, calArea);
+    }
+    System.out.println(maxArea);
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 194. Search in Rotated Sorted Array
+
+[Question link](https://www.youtube.com/watch?v=U8XENwh8Oy8)
+
+[Video Solution Link](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
+
+```java
+public class Test {
+
+  public static void main(String[] args) {
+    int[] nums = { 4, 5, 6, 7, 0, 1, 2 };
+    int target = 0;
+
+    int l = 0;
+    int r = nums.length - 1;
+
+    while (l <= r) {
+      int m = l + (r - l) / 2;
+      if (target == nums[m]) {
+        System.out.println(m);
+        break;
+      }
+      // left side
+      if (nums[l] <= nums[m]) {
+        if (target >= nums[l] && target <= nums[m]) {
+          r = m - 1;
+        } else {
+          l = m + 1;
+        }
+      } else {
+        // right side
+        if (target >= nums[m] && target <= nums[r]) {
+          l = m + 1;
+        } else {
+          r = m - 1;
+        }
+      }
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
 ## 180. title
 
 [Question link]()
@@ -9326,6 +9521,20 @@ public class Test {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
 
 
 

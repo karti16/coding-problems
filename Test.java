@@ -1,34 +1,33 @@
-import java.util.Arrays;
-import java.util.Stack;
-
 public class Test {
 
   public static void main(String[] args) {
-    int[] pos = { 10, 8, 0, 5, 3 };
-    int[] speed = { 2, 4, 1, 1, 3 };
-    int target = 12;
+    int[] nums = { 4, 5, 6, 7, 0, 1, 2 };
+    int target = 0;
 
-    int[][] posSpeed = new int[pos.length][2];
+    int l = 0;
+    int r = nums.length - 1;
 
-    for (int i = 0; i < pos.length; i++) {
-      posSpeed[i][0] = pos[i];
-      posSpeed[i][1] = speed[i];
-    }
-
-    Arrays.sort(posSpeed, (a, b) -> Integer.compare(b[0], a[0]));
-    Stack<Double> stack = new Stack<>();
-
-    for (int i = 0; i < pos.length; i++) {
-      int p = posSpeed[i][0];
-      int s = posSpeed[i][1];
-      double currentTime = (double) (target - p) / s;
-
-      if (!stack.isEmpty() && currentTime <= stack.peek()) {
-        continue;
+    while (l <= r) {
+      int m = l + (r - l) / 2;
+      if (target == nums[m]) {
+        System.out.println(m);
+        break;
+      }
+      // left side
+      if (nums[l] <= nums[m]) {
+        if (target >= nums[l] && target <= nums[m]) {
+          r = m - 1;
+        } else {
+          l = m + 1;
+        }
       } else {
-        stack.push(currentTime);
+        // right side
+        if (target >= nums[m] && target <= nums[r]) {
+          l = m + 1;
+        } else {
+          r = m - 1;
+        }
       }
     }
-    System.out.println(stack.size());
   }
 }
