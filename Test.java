@@ -1,29 +1,26 @@
 public class Test {
 
   public static void main(String[] args) {
-    int[] arr1 = { 2 };
-    int[] arr2 = { 1, 3 };
+    int[] arr1 = { 1, 2 };
+    int[] arr2 = { 3, 4 };
 
     System.out.println(findMedianSortedArrays(arr1, arr2));
   }
 
-  // 1,2,3,4,5,6,7,8,9,10
-  // 1,2,3,4,5
-  // total 15
-  // half 7
   public static double findMedianSortedArrays(int[] arr1, int[] arr2) {
     int total = arr1.length + arr2.length;
     int half = total / 2;
 
+    System.out.println(total);
+    System.out.println(half);
+
     int l = 0;
-    int r = arr1.length - 1;
-    System.out.println(l + ", " + r);
+    int r = arr1.length;
 
     while (l <= r) {
       int i = l + (r - l) / 2;
       int j = half - i;
 
-      System.out.println(i + ", " + j);
       int arr1Left = i > 0 ? arr1[i - 1] : Integer.MIN_VALUE;
       int arr1Right = i < arr1.length ? arr1[i] : Integer.MAX_VALUE;
 

@@ -221,6 +221,8 @@
 
 | 195.  | [Time Based Key-Value Store](#195-time-based-key-value-store)                                                                                    |
 
+| 196.  | [Merge Two Sorted Lists](#196-merge-two-sorted-lists)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -5288,6 +5290,59 @@ public class test {
     return 0.0;
   }
 }
+
+
+-------------------------
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] arr1 = { 1, 2 };
+    int[] arr2 = { 3, 4 };
+
+    System.out.println(findMedianSortedArrays(arr1, arr2));
+  }
+
+  public static double findMedianSortedArrays(int[] arr1, int[] arr2) {
+    int total = arr1.length + arr2.length;
+    int half = total / 2;
+
+    System.out.println(total);
+    System.out.println(half);
+
+    int l = 0;
+    int r = arr1.length;
+
+    while (l <= r) {
+      int i = l + (r - l) / 2;
+      int j = half - i;
+
+      int arr1Left = i > 0 ? arr1[i - 1] : Integer.MIN_VALUE;
+      int arr1Right = i < arr1.length ? arr1[i] : Integer.MAX_VALUE;
+
+      int arr2Left = j > 0 ? arr2[j - 1] : Integer.MIN_VALUE;
+      int arr2Right = j < arr2.length ? arr2[j] : Integer.MAX_VALUE;
+
+      if (arr1Left <= arr2Right && arr2Left <= arr1Right) {
+        if (total % 2 == 1) {
+          return Math.min(arr1Right, arr2Right);
+        } else {
+          return (
+            (Math.max(arr1Left, arr2Left) + Math.min(arr1Right, arr2Right)) /
+            2.0
+          );
+        }
+      } else if (arr1Left > arr2Right) {
+        r = i - 1;
+      } else {
+        l = i + 1;
+      }
+    }
+
+    return 0.0;
+  }
+}
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -6451,6 +6506,19 @@ class Solution {
 
         return rest;
     }
+
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        ListNode newHead = reverseList(head.next);
+        ListNode front = head.next;
+        front.next = head;
+        head.next = null;
+        return newHead;
+
+    } 
 }
 ```
 
@@ -9576,14 +9644,39 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 180. title
+## 196. Merge Two Sorted Lists
 
-[Question link]()
+[Question link](https://leetcode.com/problems/merge-two-sorted-lists/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=XIdigk956u0)
 
 ```java
+class Solution {
+  public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    ListNode dummy = new ListNode();
+    ListNode curr = dummy;
 
+    while(list1 != null && list2 != null){
+      if(list1.val <= list2.val){
+        curr.next = list1;
+        list1 = list1.next;
+      }else{
+        curr.next = list2;
+        list2 = list2.next;
+      }
+
+      curr = curr.next;
+    }
+
+    if(list1 != null){
+      curr.next = list1;
+    }else if(list2 != null){
+      curr.next = list2;
+    }
+    
+    return dummy.next;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
