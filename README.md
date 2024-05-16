@@ -229,6 +229,10 @@
 
 | 199.  | [Merge k Sorted Lists](#199-merge-k-sorted-lists)                                                                                    |
 
+| 200.  | [Invert Binary Tree](#200-invert-binary-tree)                                                                                    |
+
+| 201.  | [Maximum Depth of Binary Tree](#201-maximum-depth-of-binary-tree)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -9817,27 +9821,48 @@ class Solution {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 180. title
+## 200. Invert Binary Tree
 
-[Question link]()
+[Question link](https://leetcode.com/problems/invert-binary-tree/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=OnSn2XEQ4MY)
 
 ```java
+class Solution {
+  public TreeNode invertTree(TreeNode root) {
+    if (root == null) {
+      return root;
+    }
 
+    TreeNode temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    invertTree(root.left);
+    invertTree(root.right);
+
+    return root;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 180. title
+## 201. Maximum Depth of Binary Tree
 
-[Question link]()
+[Question link](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=hTM3phVI6YQ)
 
 ```java
-
+class Solution {
+  public int maxDepth(TreeNode root) {
+    if (root == null)
+      return 0;
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**

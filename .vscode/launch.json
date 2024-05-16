@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Runner",
+      "request": "launch",
+      "mainClass": "Code.Java.BinaryTree.Runner",
+      "projectName": "coding-problems_52f80e24"
+    },
+    {
+      "type": "java",
       "name": "Current File",
       "request": "launch",
       "mainClass": "${file}"
