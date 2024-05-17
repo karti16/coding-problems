@@ -221,6 +221,18 @@
 
 | 195.  | [Time Based Key-Value Store](#195-time-based-key-value-store)                                                                                    |
 
+| 196.  | [Merge Two Sorted Lists](#196-merge-two-sorted-lists)                                                                                    |
+
+| 197.  | [Reorder List](#197-reorder-list)                                                                                    |
+
+| 198.  | [Find the Duplicate Number](#198-find-the-duplicate-number)                                                                                    |
+
+| 199.  | [Merge k Sorted Lists](#199-merge-k-sorted-lists)                                                                                    |
+
+| 200.  | [Invert Binary Tree](#200-invert-binary-tree)                                                                                    |
+
+| 201.  | [Maximum Depth of Binary Tree](#201-maximum-depth-of-binary-tree)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -5288,6 +5300,59 @@ public class test {
     return 0.0;
   }
 }
+
+
+-------------------------
+
+public class Test {
+
+  public static void main(String[] args) {
+    int[] arr1 = { 1, 2 };
+    int[] arr2 = { 3, 4 };
+
+    System.out.println(findMedianSortedArrays(arr1, arr2));
+  }
+
+  public static double findMedianSortedArrays(int[] arr1, int[] arr2) {
+    int total = arr1.length + arr2.length;
+    int half = total / 2;
+
+    System.out.println(total);
+    System.out.println(half);
+
+    int l = 0;
+    int r = arr1.length;
+
+    while (l <= r) {
+      int i = l + (r - l) / 2;
+      int j = half - i;
+
+      int arr1Left = i > 0 ? arr1[i - 1] : Integer.MIN_VALUE;
+      int arr1Right = i < arr1.length ? arr1[i] : Integer.MAX_VALUE;
+
+      int arr2Left = j > 0 ? arr2[j - 1] : Integer.MIN_VALUE;
+      int arr2Right = j < arr2.length ? arr2[j] : Integer.MAX_VALUE;
+
+      if (arr1Left <= arr2Right && arr2Left <= arr1Right) {
+        if (total % 2 == 1) {
+          return Math.min(arr1Right, arr2Right);
+        } else {
+          return (
+            (Math.max(arr1Left, arr2Left) + Math.min(arr1Right, arr2Right)) /
+            2.0
+          );
+        }
+      } else if (arr1Left > arr2Right) {
+        r = i - 1;
+      } else {
+        l = i + 1;
+      }
+    }
+
+    return 0.0;
+  }
+}
+
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -6451,6 +6516,19 @@ class Solution {
 
         return rest;
     }
+
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        ListNode newHead = reverseList(head.next);
+        ListNode front = head.next;
+        front.next = head;
+        head.next = null;
+        return newHead;
+
+    } 
 }
 ```
 
@@ -7640,47 +7718,6 @@ class LRUCache {
 [Video Solution Link](https://www.youtube.com/watch?v=Of0HPkk3JgI&t=665s&pp=ygUYUmV2ZXJzZSBOb2RlcyBpbiBrLUdyb3Vw)
 
 ```java
-class Solution {
-
-  public ListNode reverseKGroup(ListNode head, int k) {
-    if (k == 1 || head == null) {
-      return head;
-    }
-
-    ListNode dummy = new ListNode();
-    dummy.next = head;
-
-    ListNode prev = dummy;
-    ListNode curr = dummy;
-    ListNode next;
-
-    int count = 0;
-
-    while (curr.next != null) {
-      curr = curr.next;
-      count++;
-    }
-
-    while (count >= k) {
-      curr = prev.next;
-      next = curr.next;
-
-      for (int i = 1; i < k; i++) {
-        curr.next = next.next;
-        next.next = prev.next;
-        prev.next = next;
-        next = curr.next;
-      }
-
-      prev = curr;
-      count -= k;
-    }
-
-    return dummy.next;
-  }
-}
-
-------------------------------------
 
 class Solution {
 
@@ -7721,6 +7758,51 @@ class Solution {
     return dummy.next;
   }
 }
+
+----------------------------------------
+class Solution {
+
+  public ListNode reverseKGroup(ListNode head, int k) {
+    ListNode dummy = new ListNode(0, head);
+    ListNode groupPrev = dummy;
+
+    while (true) {
+      ListNode kth = getKth(groupPrev, k);
+
+      if (kth == null) {
+        break;
+      }
+
+      ListNode groupNext = kth.next;
+      ListNode prev = kth.next;
+      ListNode curr = groupPrev.next;
+
+      while (curr != groupNext) {
+        ListNode temp = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = temp;
+      }
+
+      ListNode temp = groupPrev.next;
+      groupPrev.next = kth;
+      groupPrev = temp;
+    }
+
+    return dummy.next;
+  }
+
+  public ListNode getKth(ListNode curr, int k) {
+    while (k > 0 && curr != null) {
+      curr = curr.next;
+      k--;
+    }
+
+    return curr;
+  }
+}
+
+
 
 ```
 
@@ -7826,51 +7908,6 @@ class GfG {
 [Video Solution Link](https://www.youtube.com/watch?v=VNf6VynfpdM)
 
 ```java
-class Solution {
-
-  public Node copyRandomList(Node head) {
-    if (head == null) {
-      return null;
-    }
-
-    Node temp = head;
-
-    while (temp != null) {
-      Node newNode = new Node(temp.val);
-      newNode.next = temp.next;
-      temp.next = newNode;
-      temp = newNode.next;
-    }
-
-    Node itr = head;
-
-    while (itr != null) {
-      if (itr.next != null) {
-        itr.next.random = itr.random != null ? itr.random.next : null;
-      }
-
-      itr = itr.next != null ? itr.next.next : null;
-    }
-
-    Node og = head;
-    Node copy = head.next;
-
-    Node ans = head.next;
-
-    while (og != null && copy != null) {
-      og.next = og.next != null ? og.next.next : null;
-      copy.next = copy.next != null ? copy.next.next : null;
-
-      og = og.next;
-      copy = copy.next;
-    }
-
-    return ans;
-  }
-}
-
----------------------------
-
 class Solution {
 
   public Node copyRandomList(Node head) {
@@ -9576,14 +9613,256 @@ public class Test {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 180. title
+## 196. Merge Two Sorted Lists
 
-[Question link]()
+[Question link](https://leetcode.com/problems/merge-two-sorted-lists/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=XIdigk956u0)
 
 ```java
+class Solution {
+  public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    ListNode dummy = new ListNode();
+    ListNode curr = dummy;
 
+    while(list1 != null && list2 != null){
+      if(list1.val <= list2.val){
+        curr.next = list1;
+        list1 = list1.next;
+      }else{
+        curr.next = list2;
+        list2 = list2.next;
+      }
+
+      curr = curr.next;
+    }
+
+    if(list1 != null){
+      curr.next = list1;
+    }else if(list2 != null){
+      curr.next = list2;
+    }
+    
+    return dummy.next;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 197. Reorder List
+
+[Question link](https://leetcode.com/problems/reorder-list/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=S5bfdUTrKLM)
+
+```java
+class Solution {
+
+  public void reorderList(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head.next;
+
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+
+    ListNode second = slow.next;
+    slow.next = null;
+    ListNode prev = null;
+
+    while (second != null) {
+      ListNode temp = second.next;
+      second.next = prev;
+      prev = second;
+      second = temp;
+    }
+
+    ListNode first = head;
+    second = prev;
+
+    while (second != null) {
+      ListNode ftemp = first.next;
+      ListNode stemp = second.next;
+
+      first.next = second;
+      second.next = ftemp;
+      first = ftemp;
+      second = stemp;
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 198. Find the Duplicate Number
+
+[Question link](https://leetcode.com/problems/find-the-duplicate-number/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=wjYnzkAhcNk)
+
+```java
+class Solution {
+
+  public int findDuplicate(int[] nums) {
+    int slow = nums[0];
+    int fast = nums[0];
+    do {
+      slow = nums[slow];
+      fast = nums[fast];
+      fast = nums[fast];
+    } while (slow != fast);
+
+    slow = nums[0];
+    while (slow != fast) {
+      slow = nums[slow];
+      fast = nums[fast];
+    }
+    return slow;
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 199. Merge k Sorted Lists
+
+[Question link](https://leetcode.com/problems/merge-k-sorted-lists/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
+
+```java
+class Solution {
+
+  public ListNode mergeKLists(ListNode[] lists) {
+    if (lists.length == 0) return null;
+
+    int size = lists.length;
+    int interval = 1;
+
+    while (interval < size) {
+      for (int i = 0; i < size - interval; i += 2 * interval) {
+        lists[i] = mergeList(lists[i], lists[i + interval]);
+      }
+
+      interval *= 2;
+    }
+
+    return lists[0];
+  }
+
+  public ListNode mergeList(ListNode list1, ListNode list2) {
+    ListNode dummy = new ListNode(0);
+    ListNode curr = dummy;
+
+    while (list1 != null && list2 != null) {
+      if (list1.val < list2.val) {
+        curr.next = list1;
+        list1 = list1.next;
+      } else {
+        curr.next = list2;
+        list2 = list2.next;
+      }
+
+      curr = curr.next;
+    }
+
+    if (list1 != null) {
+      curr.next = list1;
+    }
+
+    if (list2 != null) {
+      curr.next = list2;
+    }
+
+    return dummy.next;
+  }
+}
+------------------------------------------
+
+class Solution {
+
+  public ListNode mergeKLists(ListNode[] lists) {
+    if (lists.length == 0) return null;
+
+    PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val
+    );
+
+    for (ListNode node : lists) {
+      if (node != null) {
+        queue.offer(node);
+      }
+    }
+
+    ListNode dummy = new ListNode(0);
+    ListNode curr = dummy;
+    while (!queue.isEmpty()) {
+      ListNode node = queue.poll();
+      curr.next = node;
+      curr = curr.next;
+
+      if (node.next != null) {
+        queue.offer(node.next);
+      }
+    }
+
+    return dummy.next;
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 200. Invert Binary Tree
+
+[Question link](https://leetcode.com/problems/invert-binary-tree/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=OnSn2XEQ4MY)
+
+```java
+class Solution {
+  public TreeNode invertTree(TreeNode root) {
+    if (root == null) {
+      return root;
+    }
+
+    TreeNode temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+
+    invertTree(root.left);
+    invertTree(root.right);
+
+    return root;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 201. Maximum Depth of Binary Tree
+
+[Question link](https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=hTM3phVI6YQ)
+
+```java
+class Solution {
+  public int maxDepth(TreeNode root) {
+    if (root == null)
+      return 0;
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
@@ -9601,18 +9880,6 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-
-## 180. title
-
-[Question link]()
-
-[Video Solution Link]()
-
-```java
-
-```
-
-**[⬆ Back to Top](#list-of-problems)**
 
 
 
