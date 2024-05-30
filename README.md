@@ -233,9 +233,13 @@
 
 | 201.  | [Maximum Depth of Binary Tree](#201-maximum-depth-of-binary-tree)                                                                                    |
 
-| 202.  | [Restore IP Addresses](#202-restore-ip-addresses)                                                                                    |
+| 202.  | [Diameter of Binary Tree](#202-diameter-of-binary-tree)                                                                                    |
 
-| 203.  | [Text Justification](#203-text-justification)                                                                                    |
+| 203.  | [Balanced Binary Tree](#203-balanced-binary-tree)                                                                                    |
+
+| 204.  | [Restore IP Addresses](#204-restore-ip-addresses)                                                                                    |
+
+| 205.  | [Text Justification](#205-text-justification)                                                                                    |
 
 ## Bottom of table
 
@@ -9872,7 +9876,70 @@ class Solution {
 **[⬆ Back to Top](#list-of-problems)**
 
 
-## 202. Restore IP Addresses
+## 202. Diameter of Binary Tree
+
+[Question link](https://leetcode.com/problems/diameter-of-binary-tree/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Rezetez59Nk)
+
+```java
+class Solution {
+  public int diameterOfBinaryTree(TreeNode root) {
+    int[] maxDia = { 0 };
+    height(root, maxDia);
+    return maxDia[0];
+  }
+
+  private int height(TreeNode root, int[] maxDia) {
+    if (root == null)
+      return 0;
+
+    int lh = height(root.left, maxDia);
+    int rh = height(root.right, maxDia);
+
+    maxDia[0] = Math.max(maxDia[0], lh + rh);
+    return 1 + Math.max(lh, rh);
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 203. Balanced Binary Tree
+
+[Question link](https://leetcode.com/problems/balanced-binary-tree/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=Yt50Jfbd8Po)
+
+```java
+class Solution {
+  public boolean isBalanced(TreeNode root) {
+    return height(root) != -1;
+  }
+
+  private int height(TreeNode root) {
+    if (root == null)
+      return 0;
+
+    int lh = height(root.left);
+    if (lh == -1)
+      return -1;
+
+    int rh = height(root.right);
+    if (rh == -1)
+      return -1;
+
+    if (Math.abs(lh - rh) > 1)
+      return -1;
+    return Math.max(lh, rh) + 1;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 204. Restore IP Addresses
 
 [Question link](https://leetcode.com/problems/restore-ip-addresses/description/)
 
@@ -9918,7 +9985,7 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 203. Text Justification
+## 205. Text Justification
 
 [Question link](https://leetcode.com/problems/text-justification/description/)
 
@@ -10087,6 +10154,125 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
 ## 180. title
 
 [Question link]()
