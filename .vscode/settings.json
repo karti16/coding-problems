@@ -7,5 +7,8 @@
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "editor.codeLens": false,
-  "editor.acceptSuggestionOnEnter": "on"
+  "editor.acceptSuggestionOnEnter": "on",
+  "files.associations": {
+    "time.h": "c"
+  }
 }
