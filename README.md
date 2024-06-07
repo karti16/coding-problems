@@ -233,9 +233,13 @@
 
 | 201.  | [Maximum Depth of Binary Tree](#201-maximum-depth-of-binary-tree)                                                                                    |
 
-| 201.  | [Diameter of Binary Tree](#202-diameter-of-binary-tree)                                                                                    |
+| 202.  | [Diameter of Binary Tree](#202-diameter-of-binary-tree)                                                                                    |
 
-| 201.  | [Balanced Binary Tree](#203-balanced-binary-tree)                                                                                    |
+| 203.  | [Balanced Binary Tree](#203-balanced-binary-tree)                                                                                    |
+
+| 204.  | [Same Tree](#204-same-tree)                                                                                    |
+
+| 205.  | [Subtree of Another Tree](#205-subtree-of-another-tree)                                                                                    |
 
 ## Bottom of table
 
@@ -9935,26 +9939,63 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 204. Same Tree
 
-[Question link]()
+[Question link](https://leetcode.com/problems/same-tree/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=vRbbcKXCxOw&t=341s)
 
 ```java
+class Solution {
+  public boolean isSameTree(TreeNode p, TreeNode q) {
+    if (p == null && q == null)
+      return true;
+    if (p == null || q == null)
+      return false;
+    if (p.val != q.val)
+      return false;
 
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 205. Subtree of Another Tree
 
-[Question link]()
+[Question link](https://leetcode.com/problems/subtree-of-another-tree/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=E36O5SWp-LE&t=651s)
 
 ```java
+class Solution {
+  public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+    if (subRoot == null)
+      return true;
+    if (root == null)
+      return false;
 
+    if (root.val == subRoot.val) {
+      if (isSameTree(root, subRoot)) {
+        return true;
+      }
+    }
+
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+  }
+
+  private boolean isSameTree(TreeNode root, TreeNode subRoot) {
+    if (root == null && subRoot == null)
+      return true;
+    if (root == null || subRoot == null)
+      return false;
+    if (root.val != subRoot.val)
+      return false;
+
+    return isSameTree(root.left, subRoot.left) && isSameTree(root.right, subRoot.right);
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
