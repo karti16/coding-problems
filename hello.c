@@ -1,14 +1,15 @@
 #include <stdio.h>
-#include <math.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <assert.h>
 
 
-int main(void) {
-  float a = 3.14;
-  float b = 1.2;
 
-  float rem = fmod(a,b);
+int main(int argc, char *argv[]){
 
-  printf("%lf", rem);
+
+
+  printf("fdfd\n");
 
   
   return 0;

@@ -237,9 +237,19 @@
 
 | 203.  | [Balanced Binary Tree](#203-balanced-binary-tree)                                                                                    |
 
-| 204.  | [Same Tree](#204-same-tree)                                                                                    |
+| 204.  | [Restore IP Addresses](#204-restore-ip-addresses)                                                                                    |
 
-| 205.  | [Subtree of Another Tree](#205-subtree-of-another-tree)                                                                                    |
+| 205.  | [Text Justification](#205-text-justification)                                                                                    |
+
+| 206.  | [Shortest Distance to Target String in a Circular Array](#206-shortest-distance-to-target-string-in-a-circular-array)                                                                                    |
+
+| 207.  | [Lowest Common Ancestor of a Binary Search Tree](#207-lowest-common-ancestor-of-a-binary-search-tree)                                                                                    |
+
+| 208.  | [Binary Tree Level Order Traversal](#208-binary-tree-level-order-traversal)                                                                                    |
+
+| 209.  | [Same Tree](#209-same-tree)                                                                                    |
+
+| 210.  | [Subtree of Another Tree](#210-subtree-of-another-tree)   
 
 ## Bottom of table
 
@@ -9939,7 +9949,315 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 204. Same Tree
+## 204. Restore IP Addresses
+
+[Question link](https://leetcode.com/problems/restore-ip-addresses/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=61tN4YEdiTM)
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+  public static void main(String[] args) {
+    List<String> res = new ArrayList<>();
+    String s = "25525511135";
+    backtrack(s, 0, 0, "", res);
+
+    for (String str : res) {
+      System.out.println(str);
+    }
+  }
+
+  static void backtrack(String s, int index, int dots, String currIp, List<String> res) {
+    if (dots == 4 && index == s.length()) {
+      res.add(currIp.substring(0, currIp.length() - 1));
+      return;
+    }
+
+    if (dots > 4) {
+      return;
+    }
+
+    for (int j = index; j < Math.min(index + 3, s.length()); j++) {
+      int n = Integer.parseInt(s.substring(index, j + 1));
+
+      if (n < 256 && (index == j || s.charAt(index) != '0')) {
+        backtrack(s, j + 1, dots + 1, currIp + s.substring(index, j + 1) + ".", res);
+      }
+    }
+  }
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 205. Text Justification
+
+[Question link](https://leetcode.com/problems/text-justification/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=TzMl4Z7pVh8)
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+  public static void main(String[] args) {
+    List<String> res = new ArrayList<>();
+    String[] words = { "This", "is", "an", "example", "of", "text", "justification." };
+
+    int i = 0;
+    int maxWidth = 16;
+    int len = 0;
+    List<String> line = new ArrayList<>();
+
+    while (i < words.length) {
+
+      if (len + line.size() + words[i].length() > maxWidth) {
+
+        int extra_space = maxWidth - len;
+        int space = extra_space / Math.max(line.size() - 1, 1);
+        int remainder = extra_space % Math.max(line.size() - 1, 1);
+
+        for (int j = 0; j < Math.max(line.size() - 1, 1); j++) {
+          String temp = line.get(j) + " ".repeat(space);
+          line.set(j, temp);
+          if (remainder > 0) {
+            line.set(j, line.get(j) + " ");
+            remainder -= 1;
+          }
+        }
+        res.add(String.join("", line));
+        line.clear();
+        len = 0;
+      }
+
+      line.add(words[i]);
+      len += words[i].length();
+      i += 1;
+
+    }
+
+    String lastLine = String.join(" ", line);
+    int trailSpace = maxWidth - lastLine.length();
+    res.add(lastLine + " ".repeat(trailSpace));
+
+    for (String s : res) {
+      System.out.println(s);
+    }
+
+  }
+
+}
+
+
+--------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class Test {
+
+  public static void main(String[] args) {
+    List<String> res = new ArrayList<>();
+    String[] words = { "What", "must", "be", "acknowledgment", "shall", "be" };
+
+    int i = 0;
+    int maxWidth = 16;
+
+    while (i < words.length) {
+      int len = 0;
+      List<String> line = new ArrayList<>();
+
+      while (i < words.length) {
+        len += words[i].length() + 1;
+        if ((len - 1) <= maxWidth) {
+          line.add(words[i]);
+          i++;
+        } else {
+          break;
+        }
+      }
+      balSpaces(line, res, maxWidth, i == words.length);
+
+    }
+
+    for (String s : res) {
+      System.out.println(s);
+    }
+
+  }
+
+  static void balSpaces(List<String> line, List<String> res, int maxWidth, boolean isLastLine) {
+    int gap = line.size() - 1;
+    String temp = "";
+
+    int count = 0;
+    for (String s : line) {
+      count += s.length();
+    }
+    int totalSpace = maxWidth - count;
+
+    if (isLastLine) {
+      for (int i = 0; i < line.size() - 1; i++) {
+        temp += line.get(i) + " ".repeat(1);
+      }
+      temp += line.get(line.size() - 1);
+      temp = temp + " ".repeat(maxWidth - temp.length());
+      res.add(temp);
+      return;
+    }
+
+    if (gap == 0 && !isLastLine) {
+      int spaceEnd = maxWidth - line.get(0).length();
+      temp += line.get(line.size() - 1) + " ".repeat(spaceEnd);
+      res.add(temp);
+      return;
+    }
+
+    boolean isEven = totalSpace % gap == 0;
+
+    if (isEven) {
+      int spaceBetween = totalSpace / gap;
+      for (int i = 0; i < line.size() - 1; i++) {
+        temp += line.get(i) + " ".repeat(spaceBetween);
+      }
+      temp += line.get(line.size() - 1);
+      res.add(temp);
+
+    } else {
+
+      int extraGap = totalSpace % gap;
+      int spaceBetween = totalSpace / gap;
+      for (int i = 0; i < line.size() - 1; i++) {
+        int t = extraGap > 0 ? 1 : 0;
+        temp += line.get(i) + " ".repeat(spaceBetween + t);
+        --extraGap;
+      }
+      temp += line.get(line.size() - 1);
+      res.add(temp);
+
+    }
+
+  }
+
+}
+
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 206. Shortest Distance to Target String in a Circular Array
+
+[Question link](https://leetcode.com/problems/shortest-distance-to-target-string-in-a-circular-array/description/)
+
+[Video Solution Link]()
+
+```java
+public class Test {
+
+  public static void main(String[] args) {
+    String[] words = { "hello", "i", "am", "leetcode", "hello" };
+    String target = "hello";
+    int startIndex = 1;
+
+    int res = Integer.MAX_VALUE;
+
+    for (int i = 0; i < words.length; i++) {
+      if (target.endsWith(words[i])) {
+        int disClockWise = Math.abs(i - startIndex);
+
+        res = Math.min(res, disClockWise);
+        res = Math.min(res, words.length - disClockWise);
+      }
+    }
+
+    System.out.println(res == Integer.MAX_VALUE ? -1 : res);
+  }
+
+}
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 207. Lowest Common Ancestor of a Binary Search Tree
+
+[Question link](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=gs2LMfuOR9k)
+
+```java
+class Solution {
+  public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    TreeNode curr = root;
+
+    while (curr != null) {
+      if (p.val > curr.val && q.val > curr.val) {
+        curr = curr.right;
+      } else if (p.val < curr.val && q.val < curr.val) {
+        curr = curr.left;
+      } else {
+        return curr;
+      }
+    }
+
+    return root;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+## 208. Binary Tree Level Order Traversal
+
+[Question link](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+
+[Video Solution Link](https://www.youtube.com/watch?v=6ZnyEApgFYg)
+
+```java
+class Solution {
+  public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+
+    if (root == null)
+      return res;
+
+    queue.add(root);
+
+    while (!queue.isEmpty()) {
+      int len = queue.size();
+      List<Integer> level = new ArrayList<>();
+      for (int i = 0; i < len; i++) {
+        TreeNode curr = queue.poll();
+        level.add(curr.val);
+
+        if (curr.left != null) {
+          queue.add(curr.left);
+        }
+        if (curr.right != null) {
+          queue.add(curr.right);
+        }
+      }
+
+      res.add(level);
+    }
+
+    return res;
+  }
+}
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
+
+## 209. Same Tree
 
 [Question link](https://leetcode.com/problems/same-tree/description/)
 
@@ -9962,7 +10280,8 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 205. Subtree of Another Tree
+
+## 210. Subtree of Another Tree
 
 [Question link](https://leetcode.com/problems/subtree-of-another-tree/description/)
 
@@ -10095,6 +10414,17 @@ class Solution {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
 
 ## 180. title
 
@@ -10107,6 +10437,19 @@ class Solution {
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
+
+## 180. title
+
+[Question link]()
+
+[Video Solution Link]()
+
+```java
+
+```
+
+**[⬆ Back to Top](#list-of-problems)**
+
 
 
 
