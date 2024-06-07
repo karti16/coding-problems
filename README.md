@@ -241,6 +241,12 @@
 
 | 205.  | [Text Justification](#205-text-justification)                                                                                    |
 
+| 206.  | [Shortest Distance to Target String in a Circular Array](#206-shortest-distance-to-target-string-in-a-circular-array)                                                                                    |
+
+| 207.  | [Lowest Common Ancestor of a Binary Search Tree](#207-lowest-common-ancestor-of-a-binary-search-tree)                                                                                    |
+
+| 208.  | [Binary Tree Level Order Traversal](#208-binary-tree-level-order-traversal)                                                                                    |
+
 ## Bottom of table
 
 ---
@@ -10142,38 +10148,106 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 206. Shortest Distance to Target String in a Circular Array
 
-[Question link]()
+[Question link](https://leetcode.com/problems/shortest-distance-to-target-string-in-a-circular-array/description/)
 
 [Video Solution Link]()
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    String[] words = { "hello", "i", "am", "leetcode", "hello" };
+    String target = "hello";
+    int startIndex = 1;
+
+    int res = Integer.MAX_VALUE;
+
+    for (int i = 0; i < words.length; i++) {
+      if (target.endsWith(words[i])) {
+        int disClockWise = Math.abs(i - startIndex);
+
+        res = Math.min(res, disClockWise);
+        res = Math.min(res, words.length - disClockWise);
+      }
+    }
+
+    System.out.println(res == Integer.MAX_VALUE ? -1 : res);
+  }
+
+}
 
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 207. Lowest Common Ancestor of a Binary Search Tree
 
-[Question link]()
+[Question link](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=gs2LMfuOR9k)
 
 ```java
+class Solution {
+  public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    TreeNode curr = root;
 
+    while (curr != null) {
+      if (p.val > curr.val && q.val > curr.val) {
+        curr = curr.right;
+      } else if (p.val < curr.val && q.val < curr.val) {
+        curr = curr.left;
+      } else {
+        return curr;
+      }
+    }
+
+    return root;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 208. Binary Tree Level Order Traversal
 
-[Question link]()
+[Question link](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.youtube.com/watch?v=6ZnyEApgFYg)
 
 ```java
+class Solution {
+  public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
 
+    if (root == null)
+      return res;
+
+    queue.add(root);
+
+    while (!queue.isEmpty()) {
+      int len = queue.size();
+      List<Integer> level = new ArrayList<>();
+      for (int i = 0; i < len; i++) {
+        TreeNode curr = queue.poll();
+        level.add(curr.val);
+
+        if (curr.left != null) {
+          queue.add(curr.left);
+        }
+        if (curr.right != null) {
+          queue.add(curr.right);
+        }
+      }
+
+      res.add(level);
+    }
+
+    return res;
+  }
+}
 ```
 
 **[⬆ Back to Top](#list-of-problems)**
