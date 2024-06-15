@@ -251,6 +251,8 @@
 
 | 210.  | [Subtree of Another Tree](#210-subtree-of-another-tree)   
 
+| 211.  | [Euclidean algorithm for GCD of two numbers](#211-euclidean-algorithm-for-gcd-of-two-numbers)   
+
 ## Bottom of table
 
 ---
@@ -10319,13 +10321,29 @@ class Solution {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 211. Euclidean algorithm for GCD of two numbers
 
-[Question link]()
+[Question link](https://www.youtube.com/watch?v=fiOAxIwDCW0)
 
-[Video Solution Link]()
+[Video Solution Link](https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1)
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    System.out.println(gcd(33, 22));
+  }
+
+  static int gcd(int a, int b) {
+
+    if (b == 0)
+      return a;
+
+    return gcd(b, a % b);
+
+  }
+
+}
 
 ```
 
