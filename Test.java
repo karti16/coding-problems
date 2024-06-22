@@ -1,15 +1,22 @@
+import java.util.Arrays;
+
 public class Test {
 
   public static void main(String[] args) {
-    System.out.println(gcd(33, 22));
-  }
+    int[] arr = { 1, 5, 2, 78, 5, 43, 8 };
+    for (int i = 1; i < arr.length; i++) {
+      int key = arr[i];
+      int j = i - 1;
 
-  static int gcd(int a, int b) {
+      while (j >= 0 && arr[j] > key) {
+        arr[j + 1] = arr[j];
+        j--;
+      }
 
-    if (b == 0)
-      return a;
+      arr[j + 1] = key;
+    }
 
-    return gcd(b, a % b);
+    System.out.println(Arrays.toString(arr));
 
   }
 
