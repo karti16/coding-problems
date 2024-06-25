@@ -253,6 +253,8 @@
 
 | 211.  | [Euclidean algorithm for GCD of two numbers](#211-euclidean-algorithm-for-gcd-of-two-numbers)   
 
+| 212.  | [Armstrong Numbers](#212-armstrong-numbers)   
+
 ## Bottom of table
 
 ---
@@ -10349,13 +10351,31 @@ public class Test {
 
 **[⬆ Back to Top](#list-of-problems)**
 
-## 180. title
+## 212. Armstrong Numbers
 
-[Question link]()
+[Question link](https://www.geeksforgeeks.org/problems/armstrong-numbers2727/1)
 
 [Video Solution Link]()
 
 ```java
+public class Test {
+
+  public static void main(String[] args) {
+    int num = 153;
+    int num_bak = num;
+    int sum = 0;
+
+    while (num > 0) {
+      int n = num % 10;
+      sum += (n * n * n);
+      num /= 10;
+    }
+
+    System.out.println(sum == num_bak ? "Amstrong" : "Not a amstrong");
+
+  }
+
+}
 
 ```
 

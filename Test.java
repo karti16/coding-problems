@@ -1,22 +1,24 @@
-import java.util.Arrays;
 
 public class Test {
 
   public static void main(String[] args) {
-    int[] arr = { 1, 5, 2, 78, 5, 43, 8 };
-    for (int i = 1; i < arr.length; i++) {
-      int key = arr[i];
-      int j = i - 1;
+    int num = 5;
 
-      while (j >= 0 && arr[j] > key) {
-        arr[j + 1] = arr[j];
-        j--;
+    int low = 1;
+    int high = num;
+
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      int val = mid * mid;
+
+      if (val <= num) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
       }
-
-      arr[j + 1] = key;
     }
 
-    System.out.println(Arrays.toString(arr));
+    System.out.println(high);
 
   }
 
